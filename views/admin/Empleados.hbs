@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+	 <title>ADMIN-EMPLEADOS</title>
+	 <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logo.png">
+
+{{> head}}
+<body>
+	<!-- SideBar -->
+	{{> sidebar}}
+
+	<!-- Content page-->
+	<section class="full-box dashboard-contentPage">
+		<!-- NavBar -->
+		<nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+				<li>
+					<a href="#!" class="btn-Notifications-area">
+						<i class="zmdi zmdi-notifications-none"></i>
+						<span class="badge">7</span>
+					</a>
+				</li>
+				<li>
+					<a href="#!" class="btn-search">
+						<i class="zmdi zmdi-search"></i>
+					</a>
+				</li>
+				<li>
+					<a href="#!" class="btn-modal-help">
+						<i class="zmdi zmdi-help-outline"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- Content page -->
+		<div class="container-fluid">
+			<div class="page-header">
+			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Empleados <small>Admin</small></h1>
+			</div>
+			<p class="lead"></p>
+		</div>
+	<div class="container mt-5">
+    <h2 class="mb-4">Administrar Empleados</h2>
+
+    <!-- Formulario para agregar empleado -->
+    <form id="addEmployeeForm">
+        <div class="form-group">
+            <label for="employeeId">ID:</label>
+            <input type="text" class="form-control" id="employeeId" required>
+        </div>
+        <div class="form-group">
+            <label for="employeeName">Nombre:</label>
+            <input type="text" class="form-control" id="employeeName" required>
+        </div>
+        <div class="form-group">
+            <label for="employeeLastName">Apellido:</label>
+            <input type="text" class="form-control" id="employeeLastName" required>
+        </div>
+        <div class="form-group">
+            <label for="employeeRole">Rol:</label>
+            <input type="text" class="form-control" id="employeeRole" required>
+        </div>
+        <div class="form-group">
+            <label for="employeePhone">Teléfono:</label>
+            <input type="text" class="form-control" id="employeePhone" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar Empleado</button>
+    </form>
+
+    <hr>
+
+    <!-- Campo para buscar empleado por ID -->
+    <div class="form-inline mb-3">
+        <label for="searchId">Buscar por ID:</label>
+        <input type="text" class="form-control mx-2" id="searchId">
+        <button type="button" class="btn btn-primary" id="searchById">Buscar</button>
+    </div>
+
+    <!-- Tabla para mostrar empleados -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Estado</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Rol</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="employeeTable">
+            <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
+            <tr>
+            
+              
+            </tr>
+            <tr>
+      
+        </tbody>
+    </table>
+
+    <!-- Formulario para editar empleado (oculto al principio) -->
+    <form id="editEmployeeForm" style="display: none;">
+        <h3>Editar Empleado</h3>
+        <div class="form-group">
+            <label for="editEmployeeId">ID:</label>
+            <input type="text" class="form-control" id="editEmployeeId" readonly>
+        </div>
+        <div class="form-group">
+            <label for="editEmployeeName">Nombre:</label>
+            <input type="text" class="form-control" id="editEmployeeName" required>
+        </div>
+        <div class="form-group">
+            <label for="editEmployeeLastName">Apellido:</label>
+            <input type="text" class="form-control" id="editEmployeeLastName" required>
+        </div>
+        <div class="form-group">
+            <label for="editEmployeeRole">Rol:</label>
+            <input type="text" class="form-control" id="editEmployeeRole" required>
+        </div>
+        <div class="form-group">
+            <label for="editEmployeePhone">Teléfono:</label>
+            <input type="text" class="form-control" id="editEmployeePhone" required>
+        </div>
+        <button type="button" class="btn btn-primary" id="saveEditBtn">Guardar Cambios</button>
+        <button type="button" class="btn btn-secondary" id="cancelEditBtn">Cancelar</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Función para agregar empleado
+    $('#addEmployeeForm').on('submit', function(e) {
+        e.preventDefault();
+        var employeeId = $('#employeeId').val();
+        var employeeName = $('#employeeName').val();
+        var employeeLastName = $('#employeeLastName').val();
+        var employeeRole = $('#employeeRole').val();
+        var employeePhone = $('#employeePhone').val();
+        var newRow = '<tr><td>' + employeeId + '</td><td>Activo</td><td>' + employeeName + '</td><td>' + employeeLastName + '</td><td>' + employeeRole + '</td><td>' + employeePhone + '</td><td><button class="btn btn-danger delete-btn">Eliminar</button> <button class="btn btn-primary edit-btn">Editar</button> <button class="btn btn-success change-status-btn">Cambiar Estado</button></td></tr>';
+        $('#employeeTable').append(newRow);
+        $('#employeeId').val('');
+        $('#employeeName').val('');
+        $('#employeeLastName').val('');
+        $('#employeeRole').val('');
+        $('#employeePhone').val('');
+    });
+
+    // Función para eliminar empleado por ID
+    $(document).on('click', '.delete-btn', function() {
+        $(this).closest('tr').remove();
+    });
+
+    // Función para editar empleado
+    $(document).on('click', '.edit-btn', function() {
+        var row = $(this).closest('tr');
+        var id = row.find('td:eq(0)').text();
+        var name = row.find('td:eq(2)').text();
+        var lastName = row.find('td:eq(3)').text();
+		 var role = row.find('td:eq(4)').text();
+        var phone = row.find('td:eq(5)').text();
+        $('#editEmployeeId').val(id);
+        $('#editEmployeeName').val(name);
+        $('#editEmployeeLastName').val(lastName);
+        $('#editEmployeeRole').val(role);
+        $('#editEmployeePhone').val(phone);
+        $('#addEmployeeForm').hide();
+        $('#editEmployeeForm').show();
+    });
+
+    // Función para guardar cambios en la edición
+    $('#saveEditBtn').on('click', function() {
+        var id = $('#editEmployeeId').val();
+        var name = $('#editEmployeeName').val();
+        var lastName = $('#editEmployeeLastName').val();
+        var role = $('#editEmployeeRole').val();
+        var phone = $('#editEmployeePhone').val();
+        var row = $('#employeeTable').find('td:contains("' + id + '")').closest('tr');
+        row.find('td:eq(2)').text(name);
+        row.find('td:eq(3)').text(lastName);
+        row.find('td:eq(4)').text(role);
+        row.find('td:eq(5)').text(phone);
+        $('#editEmployeeForm').hide();
+        $('#addEmployeeForm').show();
+    });
+
+    // Función para cancelar la edición
+    $('#cancelEditBtn').on('click', function() {
+        $('#editEmployeeForm').hide();
+        $('#addEmployeeForm').show();
+    });
+
+    // Función para buscar empleado por ID
+    $('#searchById').on('click', function() {
+        var searchId = $('#searchId').val();
+        $('#employeeTable tbody tr').each(function() {
+            var employeeId = $(this).find('td:first').text();
+            if (employeeId === searchId || searchId === '') {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+
+    // Función para cambiar estado del empleado
+    $(document).on('click', '.change-status-btn', function() {
+        var row = $(this).closest('tr');
+        var statusCell = row.find('td:eq(1)');
+        var currentStatus = statusCell.text().trim();
+        var newStatus = currentStatus === 'Activo' ? 'Inactivo' : 'Activo';
+        statusCell.text(newStatus);
+    });
+});
+</script>
+
+	<!-- Notifications area -->
+	<section class="full-box Notifications-area">
+		<div class="full-box Notifications-bg btn-Notifications-area"></div>
+		<div class="full-box Notifications-body">
+			<div class="Notifications-body-title text-titles text-center">
+				Notifications <i class="zmdi zmdi-close btn-Notifications-area"></i>
+			</div>
+			<div class="list-group">
+			  	<div class="list-group-item">
+				    <div class="row-action-primary">
+				      	<i class="zmdi zmdi-alert-triangle"></i>
+				    </div>
+				    <div class="row-content">
+				      	<div class="least-content">17m</div>
+				      	<h4 class="list-group-item-heading">Tile with a label</h4>
+				      	<p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+				    </div>
+			  	</div>
+			  	<div class="list-group-separator"></div>
+			  	<div class="list-group-item">
+				    <div class="row-action-primary">
+				      	<i class="zmdi zmdi-alert-octagon"></i>
+				    </div>
+				    <div class="row-content">
+				      	<div class="least-content">15m</div>
+				      	<h4 class="list-group-item-heading">Tile with a label</h4>
+				      	<p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+				    </div>
+			  	</div>
+			  	<div class="list-group-separator"></div>
+				<div class="list-group-item">
+				    <div class="row-action-primary">
+				      	<i class="zmdi zmdi-help"></i>
+				    </div>
+				    <div class="row-content">
+				      	<div class="least-content">10m</div>
+				      	<h4 class="list-group-item-heading">Tile with a label</h4>
+				      	<p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
+				    </div>
+				</div>
+			  	<div class="list-group-separator"></div>
+			  	<div class="list-group-item">
+				    <div class="row-action-primary">
+				      	<i class="zmdi zmdi-info"></i>
+				    </div>
+				    <div class="row-content">
+				      	<div class="least-content">8m</div>
+				      	<h4 class="list-group-item-heading">Tile with a label</h4>
+				      	<p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
+				    </div>
+			  	</div>
+			</div>
+
+		</div>
+	</section>
+
+	<!-- Dialog help -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="Dialog-Help">
+	  	<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			    	<h4 class="modal-title">Help</h4>
+			    </div>
+			    <div class="modal-body">
+			        <p>
+			        	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt beatae esse velit ipsa sunt incidunt aut voluptas, nihil reiciendis maiores eaque hic vitae saepe voluptatibus. Ratione veritatis a unde autem!
+			        </p>
+			    </div>
+		      	<div class="modal-footer">
+		        	<button type="button" class="btn btn-primary btn-raised" data-dismiss="modal"><i class="zmdi zmdi-thumb-up"></i> Ok</button>
+		      	</div>
+		    </div>
+	  	</div>
+	</div>
+	<!--====== Scripts -->
+	<script src="./js/jquery-3.1.1.min.js"></script>
+	<script src="./js/sweetalert2.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/material.min.js"></script>
+	<script src="./js/ripples.min.js"></script>
+	<script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="./js/main.js"></script>
+	<script>
+		$.material.init();
+	</script>
+</body>
+</html>

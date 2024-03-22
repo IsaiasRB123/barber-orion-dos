@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<link rel="stylesheet" href="./css/main.css">
+{{> head}}
+<body>
+	<!-- SideBar -->
+	{{> sidebar}}
+	<!-- Content page-->
+	<section class="full-box dashboard-contentPage">
+		<!-- NavBar -->
+		<section class="full-box dashboard-contentPage">
+    <!-- NavBar -->
+    <nav class="full-box dashboard-Navbar">
+      <ul class="full-box list-unstyled text-right">
+        <li class="pull-left">
+          <a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+        </li>
+        <li>
+          <a href="#!" class="btn-Notifications-area">
+            <i class="zmdi zmdi-notifications-none"></i>
+            <span class="badge">7</span>
+          </a>
+        </li>
+        <li>
+          <a href="#!" class="btn-search">
+            <i class="zmdi zmdi-search"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#!" class="btn-modal-help">
+            <i class="zmdi zmdi-help-outline"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+		<!-- Content page -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="chart-container">
+						<h2 class="chart-title">Productos</h2>
+						<canvas id="productosChart"></canvas>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="chart-container">
+						<h2 class="chart-title">Servicios</h2>
+						<canvas id="serviciosChart"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!--====== Scripts -->
+	<script src="./js/jquery-3.1.1.min.js"></script>
+	<script src="./js/sweetalert2.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/material.min.js"></script>
+	<script src="./js/ripples.min.js"></script>
+	<script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script>
+		$.material.init();
+
+		// Datos para las gráficas
+		const productosData = {
+			labels: ['Shampoo', 'Cera', 'Gafas', 'Manilla', 'Gomina'],
+			datasets: [{
+				label: 'Productos',
+				data: [12, 19, 3, 5, 2],
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.7)',
+					'rgba(54, 162, 235, 0.7)',
+					'rgba(255, 206, 86, 0.7)',
+					'rgba(75, 192, 192, 0.7)',
+					'rgba(153, 102, 255, 0.7)'
+				],
+				borderColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)'
+				],
+				borderWidth: 1
+			}]
+		};
+
+		const serviciosData = {
+			labels: ['Barba', 'Cejas'],
+			datasets: [{
+				label: 'Servicios',
+				data: [10, 5],
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.7)',
+					'rgba(54, 162, 235, 0.7)'
+				],
+				borderColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)'
+				],
+				borderWidth: 1
+			}]
+		};
+
+		// Configuración de las gráficas
+		const chartOptions = {
+			responsive: true,
+			plugins: {
+				legend: {
+					position: 'top',
+				},
+			},
+		};
+
+		// Crear gráficas
+		const ctxProductos = document.getElementById('productosChart').getContext('2d');
+		const productosChart = new Chart(ctxProductos, {
+			type: 'doughnut',
+			data: productosData,
+			options: chartOptions
+		});
+
+		const ctxServicios = document.getElementById('serviciosChart').getContext('2d');
+		const serviciosChart = new Chart(ctxServicios, {
+			type: 'doughnut',
+			data: serviciosData,
+			options: chartOptions
+		});
+
+		const ctxCitas = document.getElementById('citasChart').getContext('2d');
+		const citasChart = new Chart(ctxCitas, {
+			type: 'bar',
+			data: citasData,
+			options: chartOptions
+		});
+	</script>
+
+	<style>
+		.chart-container {
+			border: 1px solid #ddd;
+			border-radius: 10px;
+			padding: 15px;
+			margin-bottom: 20px;
+			background-color: #fff;
+		}
+
+		.chart-title {
+			text-align: center;
+			margin-bottom: 15px;
+		}
+	</style>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Inicio</title>
+  <link rel="stylesheet" href="./css/main2.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  
+  <link rel="stylesheet" href="./css/css.css">
+</head>
+<body>
+  <!-- SideBar -->
+  {{> sidebar}}
+
+  <!-- Content page-->
+  <section class="full-box dashboard-contentPage">
+    <!-- NavBar -->
+    <nav class="full-box dashboard-Navbar">
+      <ul class="full-box list-unstyled text-right">
+        <li class="pull-left">
+          <a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+        </li>
+        <li>
+          <a href="#!" class="btn-Notifications-area">
+            <i class="zmdi zmdi-notifications-none"></i>
+            <span class="badge">7</span>
+          </a>
+        </li>
+        <li>
+          <a href="#!" class="btn-search">
+            <i class="zmdi zmdi-search"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#!" class="btn-modal-help">
+            <i class="zmdi zmdi-help-outline"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Content page -->
+    <div class="container-fluid">
+      <div id="profile">
+        <div id="profile-header">
+          <img src="./assets/img/avatar.jpg" alt="Profile Picture" class="mCS_img_loaded">
+          <h1>PERFIL</h1>
+        </div>
+        <form id="profile-form">
+          <label for="name">Nombre:</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="phone">Teléfono:</label>
+          <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+          <label for="age">Edad:</label>
+          <input type="number" id="age" name="age" min="18" max="100" required>
+
+          <div class="buttons">
+            <button type="button" id="save" style="background-color: rgb(62, 81, 255);">Guardar</button>
+            <button type="button" id="delete">Borrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!--====== Scripts -->
+  <script src="./js/jquery-3.1.1.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+  <script src="./js/material.min.js"></script>
+  <script src="./js/ripples.min.js"></script>
+  <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    $.material.init();
+  </script>
+  <script>
+ document.addEventListener('DOMContentLoaded', function() {
+  const saveButton = document.getElementById('save');
+  const deleteButton = document.getElementById('delete');
+  const profileForm = document.getElementById('profile-form');
+
+  saveButton.addEventListener('click', function() {
+    Swal.fire({
+      title: '¿Guardar cambios?',
+      text: '¿Estás seguro de que deseas guardar los cambios?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#007bff',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Guardar',
+      cancelButtonText: 'Cancelar'
+    }).then(function(result) {
+      if (result.isConfirmed) {
+        // Aquí puedes agregar la lógica para guardar los datos (no implementada en este ejemplo)
+        Swal.fire('¡Guardado!', 'Los cambios se han guardado correctamente.', 'success');
+      }
+    });
+  });
+
+  deleteButton.addEventListener('click', function() {
+    Swal.fire({
+      title: '¿Restaurar formulario?',
+      text: 'Esta acción restaurará los campos del formulario. ¿Estás seguro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#dc3545',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Sí, restaurar',
+      cancelButtonText: 'Cancelar'
+    }).then(function(result) {
+      if (result.isConfirmed) {
+        // Restaurar formulario
+        profileForm.reset();
+        Swal.fire('¡Restaurado!', 'Los campos del formulario han sido restaurados.', 'success');
+      }
+    });
+  });
+});
+
+  </script>
+</body>
+</html>

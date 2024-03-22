@@ -1,0 +1,313 @@
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> BARBERIA-ORION-AGENDAR</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logo.png">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap-clockpicker.js"></script>
+    <link rel="stylesheet" href="assets/css/agenda.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-clockpicker.css">
+    <title>Calendario</title>
+   
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/gijgo.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/animated-headline.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/carrito.css">
+
+</head>
+
+<body>
+    <!--  -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="assets/img/logo/logo2.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -->
+
+    <!--Navbar-->
+    {{> nav}}
+
+    <!-- Navbar-->
+
+    <main>
+        <!--Titulo grande -->
+        <div class="slider-area2">
+            <div class="slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap hero-cap2 pt-70 text-center">
+                                <h2>NUESTROS PRODUCTOS</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Titulo grande -->
+
+
+
+
+       <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-7"><div id="calendar"></div></div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function(){
+        $('#calendar').fullCalendar(
+            {
+                header:{
+                    left:'today, prev,next',
+                    center:'title',
+                    right:'month, basicWeek, agendaWeek, agendaDay'
+
+                },
+                dayClick:function(date,jsEvent,view){
+                    limpiarFormulario();
+                    $('#txtFecha').val(date.format());
+                    $("#ModalEventos").modal();
+
+                },
+               
+                events:'http://localhost/BARBERIA--ORION/BARBERIA-ORION/assets/php/eventos.php',
+                
+                eventClick:function(calEvent,jsEvent,view){
+                    $('#tituloEvento').html(calEvent.title);
+                    
+                    $('#txtDescripcion').val(calEvent.descripcion);
+                    $('#txtID').val(calEvent.id);
+                    $('#txtTitulo').val(calEvent.title);
+                    $('#txtColor').val(calEvent.color);
+
+                    FechaHora = calEvent.start._i.split(" ");
+                    $('#txtFecha').val(FechaHora[0]);
+                    $('#txtHora').val(FechaHora[1]);
+
+                    $("#ModalEventos").modal();
+
+                },
+                editable:true,
+                eventDrop: function(calEvent){
+                    
+                    $('#txtID').val(calEvent.id);
+                    $('#txtTitulo').val(calEvent.title);
+                    $('#txtColor').val(calEvent.color);
+                    $('#txtDescripcion').val(calEvent.descripcion);
+
+                    var fechaHora=calEvent.start.format().split("T");
+                    $('#txtFecha').val(FechaHora[0]);
+                    $('#txtHora').val(FechaHora[1]);
+
+                    RecolectarDatosGUI();
+                    EnviarInformacion('modificar', NuevoEvento);
+
+
+                }
+
+            }
+        );});
+    </script>
+
+    <!-- Modal -->
+<div class="modal fade" id="ModalEventos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tituloEvento"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div id="descripcionEvento"></div>
+          <input type="hidden" name="txtID"  id="txtID">
+          <input type="hidden" id="txtFecha" name="txtFecha" >
+
+          <div class="form row">
+                <div class="form-group col-md-8">
+                    <label for="">Titulo</label><br>
+                     <input type="text"class="form-control"  id="txtTitulo" name="txtTitulo" placeholder="Titulo del evento">
+            
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="">Hora del evento</label><br>
+                    <div class="input-group clockpicker" data-autoclose="true">
+                        <input type="text"class="form-control" value="10:30"  id="txtHora" name="txtHora" >
+                    </div>
+                </div>
+             
+            </div>
+
+          <div class="form-group">
+                <label for="">Descripcion del servicio</label><br>
+                        <input type="checkbox" id="txtDescripcion"  value="barba">
+                        <label for="vehicle"> Barba</label><br>
+                        <input type="checkbox" id="txtDescripcion"  value="corte de pelo">
+                        <label for="vehicle">Corte de pelo</label><br>
+                        <input type="checkbox" id="txtDescripcion"  value="cejas">
+                        <label for="vehicle">Cejas</label><br>
+                        <input type="checkbox" id="txtDescripcion"  value="lavado de pelo">
+                        <label for="vehicle3">lavado de pelo</label><br>
+          </div>
+            <div class="form-group">
+                <label for="">Color</label><br>
+                <input type="color"  value="#ff0000" id="txtColor" class="form-control" name="txtFecha" style="height: 36px;" >
+                
+            </div>
+
+          
+        </div>
+        <div class="modal-footer">
+        <button id="btnAgregar" type="button" class="btn btn-success" >Agregar</button>
+        <button id="btnModificar" type="button" class="btn btn-secondary" >Modificar</button>
+        <button id="btnEliminar" type="button" class="btn btn-danger" >Borrar</button>
+        <button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    $('#btnAgregar').click(function() {
+        RecolectarDatosGUI();
+        EnviarInformacion('agregar', NuevoEvento);
+    });
+
+    $('#btnEliminar').click(function() {
+        RecolectarDatosGUI();
+        EnviarInformacion('eliminar', NuevoEvento);
+    });
+    $('#btnModificar').click(function() {
+        RecolectarDatosGUI();
+        EnviarInformacion('modificar', NuevoEvento);
+    });
+
+    function RecolectarDatosGUI(){
+        NuevoEvento={
+                id: $('#txtID').val(),
+                title:$('#txtTitulo').val(),
+                start:$('#txtFecha').val()+" "+$('#txtHora').val(),
+                color:$('#txtColor').val(),
+                descripcion:$('#txtDescripcion').val(),
+                textColor:"#FFFFFF",
+                end:$('#txtFecha').val()+" "+$('#txtHora').val()
+        };
+    }
+    function EnviarInformacion(accion,objEvento){ 
+        $.ajax(
+            {
+                type:'POST',
+                url:'eventos.php?accion='+accion,
+                data:objEvento,
+                success:function(msg){
+                    if(msg){
+                        $('#CalendarioWeb').fullCalendar('refetchEvents');
+                        $("#ModalEventos").modal('toggle');
+
+                        
+                         }
+                },
+                error:function(){
+                    alert("Hay un error...");
+                }
+            }
+        )
+    }
+
+    $('.clockpicker').clockpicker();
+
+    function limpiarFormulario(){
+                $('#txtID').val('');
+                $('#txtTitulo').val('');
+                $('#txtColor').val('');
+                $('#txtDescripcion').val('')
+    }
+  </script>
+
+    <!-- Carrito -->
+
+    <!--Pie de pagina-->
+    {{>footer}}
+    <!-- Pie de pagina-->
+
+    <!-- Flecha up  -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+    <!-- Todo js -->
+
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="assets/js/Carrito.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="./assets/js/jquery.slicknav.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/slick.min.js"></script>
+    <script src="./assets/js/wow.min.js"></script>
+    <script src="./assets/js/animated.headline.js"></script>
+    <script src="./assets/js/jquery.magnific-popup.js"></script>
+    <script src="./assets/js/gijgo.min.js"></script>
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery.sticky.js"></script>
+    <script src="./assets/js/jquery.counterup.min.js"></script>
+    <script src="./assets/js/waypoints.min.js"></script>
+    <script src="./assets/js/jquery.countdown.min.js"></script>
+    <script src="./assets/js/hover-direction-snake.min.js"></script>
+    <script src="./assets/js/contact.js"></script>
+    <script src="./assets/js/jquery.form.js"></script>
+    <script src="./assets/js/jquery.validate.min.js"></script>
+    <script src="./assets/js/mail-script.js"></script>
+    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="./assets/js/plugins.js"></script>
+    <script src="./assets/js/main.js"></script>
+
+</body>
+</html>

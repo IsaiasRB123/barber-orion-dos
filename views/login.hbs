@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <title>BARBERIA ORION</title>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form id="signup-form" onsubmit="return validateSignUp()">
+                <img src="assets/img/logo/logo2.png" alt="" width="100px" height="100px">
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands
+fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands
+fa-facebook-f"></i></a>
+                </div>
+                <span>Correo electronico</span>
+                <input type="text" id="fullName" placeholder="Nombre Completo" required>
+                <input type="tel" id="phoneNumber" placeholder="Telefono" required>
+                <input type="email" id="email" placeholder="Correo" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <input type="password" id="confirmPassword" placeholder="Confirmar contraseña" required>
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form>
+                <img src="assets/img/logo/logo2.png" alt="" width="100px" height="100px">
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands
+fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands
+fa-facebook-f"></i></a>
+
+                </div>
+                <span>Contraseña</span>
+                <input type="email" placeholder="Correo" required>
+                <input type="password" placeholder="Contraseña" required>
+                <a href="olvidarc.html">Olvido la contraseña?</a>
+                <button>Iniciar sesion</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>BIENVENIDO!</h1>
+                    <a href="index.html">Volver a inicio</a>
+                    <p>Si ya tienes una cuenta inicia sesión</p>
+                    <button class="hidden" id="login">Iniciar sesión</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>BIENVENIDO</h1>
+                    <a href="index.html">Volver a inicio</a>
+                    <p>Si no tienes una cuenta registrate</p>
+                    <button class="hidden" id="register">Registrarse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/login.js"></script>
+</body>
+</html>

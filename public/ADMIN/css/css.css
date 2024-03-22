@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+  }
+  
+  #profile {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+  }
+  
+  #profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  #profile-header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  #profile h1 {
+    margin: 0;
+  }
+  
+  form {
+    display: grid;
+    gap: 10px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"] {
+    width: calc(100% - 20px); /* Ajustar el ancho para compensar el padding */
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+  }
+  
+  .buttons {
+    margin-top: 15px;
+    text-align: center; /* Centrar los botones */
+  }
+  
+  button {
+    padding: 10px 20px; /* Aumentar el espacio alrededor del texto */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  button[type="button"] {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  button[type="reset"] {
+    background-color: #ffc107;
+    color: #fff;
+  }
+  

@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+.fc th{
+    padding: 10px 0px;
+    vertical-align: middle;
+    background: hsl(352, 76%, 43%);
+    font-family: "Montserrat", sans-serif;
+   
+}
+
+.fc-toolbar h2 {
+    font-family: "Montserrat", sans-serif;
+    text-shadow: 3px 3px hsl(352, 76%, 43%);
+
+
+}
+/* inicio botom */
+
+.fc-toolbar button {
+    color: black;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+    background: hsl(352, 76%, 43%);
+}
+
+
+
+/* //fin botom */
+.fc-basic-view .fc-week-number, .fc-basic-view .fc-day-number {
+    font-family: "Montserrat", sans-serif;
+}
+
+.fc-view{
+    border-radius: 10px;
+}

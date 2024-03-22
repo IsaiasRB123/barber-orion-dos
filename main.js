@@ -25,6 +25,10 @@ app.get('/Roles', (req, res) => {
   res.render('admin/Roles');
 });
 
+app.get('/Usuarios', (req, res) => {
+  res.render('admin/Usuarios');
+});
+
 app.get('/Categorias', (req, res) => {
   res.render('admin/Categorias');
 });

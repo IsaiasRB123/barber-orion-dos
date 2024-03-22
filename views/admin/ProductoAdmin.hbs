@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+{{> head}}
+<body>
+	<!-- SideBar -->
+	{{> sidebar}}
+
+	<!-- Content page-->
+	<section class="full-box dashboard-contentPage">
+		<!-- NavBar -->
+		<nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+				<li>
+					<a href="#!" class="btn-Notifications-area">
+						<i class="zmdi zmdi-notifications-none"></i>
+						<span class="badge">7</span>
+					</a>
+				</li>
+				<li>
+					<a href="#!" class="btn-search">
+						<i class="zmdi zmdi-search"></i>
+					</a>
+				</li>
+				<li>
+					<a href="#!" class="btn-modal-help">
+						<i class="zmdi zmdi-help-outline"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- Content page -->
+		<div class="container mt-5">
+			<h2 class="mb-4">Registro de Productos</h2>
+
+			<!-- Formulario para agregar producto -->
+			<form id="addProductForm">
+				<div class="form-group">
+					<label for="productId">ID:</label>
+					<input type="text" class="form-control" id="productId" required>
+				</div>
+				<div class="form-group">
+					<label for="productName">Nombre:</label>
+					<input type="text" class="form-control" id="productName" required>
+				</div>
+				<div class="form-group">
+					<label for="productStock">Stock:</label>
+					<input type="number" class="form-control" id="productStock" required>
+				</div>
+				<div class="form-group">
+					<label for="productCategory">Categoría:</label>
+					<input type="text" class="form-control" id="productCategory" required>
+				</div>
+				<div class="form-group">
+					<label for="productPrice">Precio:</label>
+					<input type="number" class="form-control" id="productPrice" required>
+				</div>
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" id="stockConsumption">
+					<label class="form-check-label" for="stockConsumption">Stock Consumo</label>
+				</div>
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" id="stockSale">
+					<label class="form-check-label" for="stockSale">Stock Venta</label>
+				</div>
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" id="consumption">
+					<label class="form-check-label" for="consumption">Consumo</label>
+				</div>
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" id="sales">
+					<label class="form-check-label" for="sales">Ventas</label>
+				</div>
+				<button type="submit" class="btn btn-primary">Agregar Producto</button>
+			</form>
+
+			<hr>
+
+			<!-- Tabla para mostrar productos -->
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nombre</th>
+						<th>Stock</th>
+						<th>Categoría</th>
+						<th>Precio</th>
+						<th>Stock Consumo</th>
+						<th>Stock Venta</th>
+						<th>Consumo</th>
+						<th>Ventas</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody id="productTable">
+					<!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
+				</tbody>
+			</table>
+		</div>
+
+		<!--====== Scripts -->
+		<script src="./js/jquery-3.1.1.min.js"></script>
+		<script src="./js/sweetalert2.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script src="./js/material.min.js"></script>
+		<script src="./js/ripples.min.js"></script>
+		<script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="./js/main.js"></script>
+		<script>
+			$.material.init();
+		</script>
+		<script>
+			$(document).ready(function () {
+				$('#addProductForm').on('submit', function (e) {
+					e.preventDefault();
+					var productId = $('#productId').val();
+					var productName = $('#productName').val();
+					var productStock = $('#productStock').val();
+					var productCategory = $('#productCategory').val();
+					var productPrice = $('#productPrice').val();
+					var stockConsumption = $('#stockConsumption').prop('checked') ? 'Sí' : 'No';
+					var stockSale = $('#stockSale').prop('checked') ? 'Sí' : 'No';
+					var consumption = $('#consumption').prop('checked') ? 'Sí' : 'No';
+					var sales = $('#sales').prop('checked') ? 'Sí' : 'No';
+					var newRow = '<tr><td>' + productId + '</td><td>' + productName + '</td><td>' + productStock + '</td><td>' + productCategory + '</td><td>' + productPrice + '</td><td>' + stockConsumption + '</td><td>' + stockSale + '</td><td>' + consumption + '</td><td>' + sales + '</td><td><button class="btn btn-primary edit-btn">Editar</button> <button class="btn btn-danger delete-btn">Eliminar</button></td></tr>';
+					$('#productTable').append(newRow);
+					clearForm();
+				});
+
+				$(document).on('click', '.delete-btn', function () {
+					$(this).closest('tr').remove();
+				});
+
+				$(document).on('click', '.edit-btn', function () {
+					var row = $(this).closest('tr');
+					var id = row.find('td:eq(0)').text();
+					var name = row.find('td:eq(1)').text();
+					var stock = row.find('td:eq(2)').text();
+					var category = row.find('td:eq(3)').text();
+					var price = row.find('td:eq(4)').text();
+					var stockCons = row.find('td:eq(5)').text();
+					var stockSal = row.find('td:eq(6)').text();
+					var cons = row.find('td:eq(7)').text();
+					var sales = row.find('td:eq(8)').text();
+
+					$('#productId').val(id);
+					$('#productName').val(name);
+					$('#productStock').val(stock);
+					$('#productCategory').val(category);
+					$('#productPrice').val(price);
+					if (stockCons === 'Sí') $('#stockConsumption').prop('checked', true);
+					if (stockSal === 'Sí') $('#stockSale').prop('checked', true);
+					if (cons === 'Sí') $('#consumption').prop('checked', true);
+					if (sales === 'Sí') $('#sales').prop('checked', true);
+
+					row.remove();
+				});
+
+				// Función para limpiar el formulario después de agregar un producto
+				function clearForm() {
+					$('#productId').val('');
+					$('#productName').val('');
+					$('#productStock').val('');
+					$('#productCategory').val('');
+					$('#productPrice').val('');
+					$('#stockConsumption').prop('checked', false);
+					$('#stockSale').prop('checked', false);
+					$('#consumption').prop('checked', false);
+					$('#sales').prop('checked', false);
+				}
+			});
+		</script>
+	</body>
+</html>

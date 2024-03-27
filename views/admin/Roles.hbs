@@ -130,6 +130,7 @@
 			</ul>
 		</nav>
 		<!-- Content page -->
+<<<<<<< HEAD
 		<div class="container-fluid">
 			<div class="page-header">
 				<h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Roles
@@ -266,4 +267,81 @@
 
 </body>
 
+=======
+		<div class="container mt-5">
+			<h2 class="mb-4">Registro de Roles</h2>
+
+			<!-- Formulario para agregar rol -->
+			<form id="addRoleForm">
+				<div class="form-group">
+					<label for="roleName">Nombre del Rol:</label>
+					<input type="text" class="form-control" id="roleName" required>
+				</div>
+				<div class="form-group">
+					<label for="roleStatus">Estado:</label>
+					<select class="form-control" id="roleStatus" required>
+						<option value="activo">Activo</option>
+						<option value="inactivo">Inactivo</option>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-primary">Agregar Rol</button>
+			</form>
+
+			<hr>
+
+			<!-- Tabla para mostrar roles -->
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Estado</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody id="roleTable">
+					<!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
+				</tbody>
+			</table>
+		</div>
+
+		<!--====== Scripts -->
+		<script src="./js/jquery-3.1.1.min.js"></script>
+		<script src="./js/sweetalert2.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script src="./js/material.min.js"></script>
+		<script src="./js/ripples.min.js"></script>
+		<script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="./js/main.js"></script>
+		<script>
+			$.material.init();
+		</script>
+		<script>
+			$(document).ready(function () {
+				$('#addRoleForm').on('submit', function (e) {
+					e.preventDefault();
+					var roleName = $('#roleName').val();
+					var roleStatus = $('#roleStatus').val();
+					var newRow = '<tr><td>' + roleName + '</td><td>' + roleStatus + '</td><td><button class="btn btn-primary edit-btn">Editar</button> <button class="btn btn-danger delete-btn">Eliminar</button></td></tr>';
+					$('#roleTable').append(newRow);
+					$('#roleName').val('');
+				});
+
+				$(document).on('click', '.delete-btn', function () {
+					$(this).closest('tr').remove();
+				});
+
+				$(document).on('click', '.edit-btn', function () {
+					var row = $(this).closest('tr');
+					var name = row.find('td:eq(0)').text();
+					var status = row.find('td:eq(1)').text();
+
+					$('#roleName').val(name);
+					$('#roleStatus').val(status);
+
+					row.remove();
+				});
+			});
+		</script>
+	</body>
+>>>>>>> 621a4e58cbdb869e7f11a6e02589a15d503af14e
 </html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+    <title>ADMIN-SERVICIOS</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logo.png">
+    {{> head}}
+    <body>
+       <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .container h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .table th {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table tr:hover {
+            background-color: #ddd;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+    
+
+    
+
+      
+
+        .btn-danger:hover {
+            background-color: #da190b;
+        }
+    </style>
+        <!-- SideBar -->
+        {{> sidebar}}
+
+        <!-- Content page-->
+        <section class="full-box dashboard-contentPage">
+            <!-- NavBar -->
+            <nav class="full-box dashboard-Navbar">
+                <ul class="full-box list-unstyled text-right">
+                    <li class="pull-left">
+                        <a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+                    </li>
+                    <li>
+                        <a href="#!" class="btn-Notifications-area">
+                            <i class="zmdi zmdi-notifications-none"></i>
+                            <span class="badge">7</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="btn-search">
+                            <i class="zmdi zmdi-search"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="btn-modal-help">
+                            <i class="zmdi zmdi-help-outline"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Content page -->
+            <div class="container mt-5">
+                <h2>Gestión de Servicios</h2>
+
+                <!-- Formulario para agregar servicio -->
+                <form id="addServiceForm">
+                    <div class="form-group">
+                        <label for="serviceId">ID Servicio:</label>
+                        <input type="text" class="form-control" id="serviceId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceName">Nombre Servicio:</label>
+                        <select class="form-control" id="serviceName" required>
+                            <option value="corte">Corte</option>
+                            <option value="barba">Barba</option>
+                            <option value="cejas">Cejas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="servicePrice">Precio:</label>
+                        <input type="number" class="form-control" id="servicePrice" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceStatus">Estado:</label>
+                        <select class="form-control" id="serviceStatus" required>
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceTime">Tiempo Estimado:</label>
+                        <select class="form-control" id="serviceTime" required>
+                            <option value="10am">30 min</option>
+                            <option value="11am">40 min</option>
+                            <option value="12pm">1 h</option>
+                          
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar Servicio</button>
+                </form>
+
+                <hr>
+
+                <!-- Tabla para mostrar servicios -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID Servicio</th>
+                            <th>Nombre Servicio</th>
+                            <th>Precio</th>
+                            <th>Estado</th>
+                            <th>Tiempo Estimado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="serviceTable">
+                        <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <!--====== Scripts -->
+            <script src="./js/jquery-3.1.1.min.js"></script>
+            <script src="./js/sweetalert2.min.js"></script>
+            <script src="./js/bootstrap.min.js"></script>
+            <script src="./js/material.min.js"></script>
+            <script src="./js/ripples.min.js"></script>
+            <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+            <script src="./js/main2.js"></script>
+            <script>
+                $.material.init();
+            </script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function () {
+        // Función para agregar servicio
+        $('#addServiceForm').on('submit', function (e) {
+            e.preventDefault();
+            var serviceId = $('#serviceId').val();
+            var serviceName = $('#serviceName').val();
+            var servicePrice = $('#servicePrice').val();
+            var serviceStatus = $('#serviceStatus').val();
+            var serviceTime = $('#serviceTime').val();
+
+            var newRow = '<tr>' +
+                '<td>' + serviceId + '</td>' +
+                '<td>' + serviceName + '</td>' +
+                '<td>' + servicePrice + '</td>' +
+                '<td>' + serviceStatus + '</td>' +
+                '<td>' + serviceTime + '</td>' +
+                '<td>' +
+                '<button class="btn btn-info edit-btn">Editar</button> ' +
+                '<button class="btn btn-danger delete-btn">Eliminar</button>' +
+                '</td>' +
+                '</tr>';
+
+            $('#serviceTable').append(newRow);
+            clearForm();
+            showAlert('Servicio agregado correctamente', 'success');
+        });
+
+        // Función para eliminar servicio
+        $(document).on('click', '.delete-btn', function () {
+            $(this).closest('tr').remove();
+            showAlert('Servicio eliminado correctamente', 'success');
+        });
+
+        // Función para editar servicio
+        $(document).on('click', '.edit-btn', function () {
+            var row = $(this).closest('tr');
+            var serviceId = row.find('td:eq(0)').text();
+            var serviceName = row.find('td:eq(1)').text();
+            var servicePrice = row.find('td:eq(2)').text();
+            var serviceStatus = row.find('td:eq(3)').text();
+            var serviceTime = row.find('td:eq(4)').text();
+
+            $('#serviceId').val(serviceId);
+            $('#serviceName').val(serviceName);
+            $('#servicePrice').val(servicePrice);
+            $('#serviceStatus').val(serviceStatus);
+            $('#serviceTime').val(serviceTime);
+
+            row.remove();
+            showAlert('Servicio editado correctamente', 'success');
+        });
+
+        // Función para limpiar el formulario después de agregar un servicio
+        function clearForm() {
+            $('#serviceId').val('');
+            $('#serviceName').val('corte');
+            $('#servicePrice').val('');
+            $('#serviceStatus').val('activo');
+            $('#serviceTime').val('10am');
+        }
+
+        // Función para mostrar alertas con SweetAlert2
+        function showAlert(message, type) {
+            Swal.fire({
+                icon: type,
+                title: message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    });
+</script>
+</body>
+</html>

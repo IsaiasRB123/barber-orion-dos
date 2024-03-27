@@ -6,6 +6,8 @@ const port = 2006;
 // Handlebars
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerPartials(__dirname + '/views/admin');
+
 
 // Servir contenido estático
 app.use(express.static('public'));
@@ -55,23 +57,23 @@ app.get('/Horario', (req, res) => {
   res.render('admin/Horario');
 });
 
-app.get('/Pedidos', (req, res) => {
-  res.render('admin/Pedidos');
+app.get('/pedidos', (req, res) => {
+  res.render('admin/pedidos');
 });
 
-app.get('/Productos', (req, res) => {
-  res.render('admin/Productos');
+app.get('/ProductoAdmin', (req, res) => {
+  res.render('admin/ProductoAdmin');
 });
 
 app.get('/Proveedores', (req, res) => {
   res.render('admin/Proveedores');
 });
 
-app.get('/Servicios.Admin', (req, res) => {
-  res.render('admin/Servicios.Admin');
+app.get('/ServiciosA', (req, res) => {
+  res.render('admin/ServiciosA');
 });
 
-app.get('/admin/Usuarios', (req, res) => {
+app.get('/Usuarios', (req, res) => {
   res.render('admin/Usuarios');
 });
 
@@ -93,11 +95,11 @@ app.get('/servicios', (req, res) => {
 
 
 app.get('/productos', (req, res) => {
-  res.render('Productos');
+  res.render('productos');
 });
 
 app.get('/agendar', (req, res) => {
-  res.render('agenda');
+  res.render('agendar');
 });
 
 app.get('/login', (req, res) => {

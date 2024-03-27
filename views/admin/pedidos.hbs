@@ -1,14 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro de Pedidos</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  {{> head}}  </head>
+	<!-- bootstrap -->
+  <head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="../../public/ADMIN/css/normalize.css">
+  <link rel="stylesheet" href="../../public/ADMIN/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../public/ADMIN/css/bootstrap-material-design.min.css">
+  <link rel="stylesheet" href="../../public/ADMIN/js/bootstrap.min.js">
+  <link rel="stylesheet" href="../../public/ADMIN/js/bootstrap.bundle.min.js">
+  <link rel="stylesheet" href="../../public/ADMIN/js/sweetalert2.min.js">
+  <link rel="stylesheet" href="../../public/ADMIN/js/sweetalert2.all.min.js">
+  <link rel="stylesheet" href="../../public/ADMIN/css/sweetalert2.min.css">
+  <link rel="stylesheet" href="../../public/ADMIN/css/main.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.min.css">
+    <!-- Tu CSS personalizado -->
+    <link rel="stylesheet" href="../../public/ADMIN/css/main.css">
+  </head>
+
+
+  <div class="card mt-100">
+    <div class="card">
+        <div class="container">
+            <div class="container">
+                <div class="container">
+                    <div class="modal fade" id="exampleModalCenter" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div id="myTabContent" class="tab-content">
+                                    <div class="tab-pane fade show active" id="new">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-10 col-md-offset-1">
+                                                    <form action="" class="" id="form-registrar">
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">Producto</div>
+                                                                <input type="text" id="nombre-registro" name="username3" class="form-control">
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">Cantidad</div>
+                                                                <input type="number" id="correo-registro" name="email3" class="form-control">
+                                                                
+                                                            </div>
+                                                        </div>
+														 <div class="form-group">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">Precio unitario</div>
+                                                                <input type="number" id="correo-registro" name="email3" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">Subototal</div>
+                                                                <input type="number" id="telefono-registro" name="password3" class="form-control">
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            
+                                                            <div class="row form-group">
+                                                                <div class="col col-md-3"><label for="SelectLm" class="form-control-label">Estado</label></div>
+                                                                <div class="col-12 col-md-9">
+                                                                    <select name="selectSm" id="SelectLm" class="form-control-sm form-control">
+                                                                        <option value="0">Activo</option>
+                                                                        <option value="1">Inactivo</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button id="alert-registrar" type="submit" class="btn btn-success btn-sm">Registrar</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> head}}
 <body>
-  {{> sidebar}}
-  <!-- Content page-->
+	<!-- SideBar -->
+	{{> sidebar}}
+
+	<!-- Content page-->
 	<section class="full-box dashboard-contentPage">
 		<!-- NavBar -->
 		<nav class="full-box dashboard-Navbar">
@@ -35,87 +125,115 @@
 			</ul>
 		</nav>
 		<!-- Content page -->
-  <section class="full-box dashboard-contentPage">
-    <div class="container-fluid">
-      <div class="container mt-5">
-        <h2>Registro de Pedidos</h2>
+		<div class="container-fluid">
+			<div class="page-header">
+			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Pedidos <small>Admin</small></h1>
+			</div>
 
-        <form id="addOrderForm">
-          <div class="form-group">
-            <label for="orderNumber">Número de pedido:</label>
-            <input type="text" class="form-control" id="orderNumber" required>
-          </div>
-          <div class="form-group">
-            <label for="customerName">Nombre del cliente:</label>
-            <input type="text" class="form-control" id="customerName" required>
-          </div>
-          <div class="form-group">
-            <label for="orderAmount">Monto del pedido:</label>
-            <input type="number" class="form-control" id="orderAmount" required min="0">  </div>
-          <div class="form-group">
-            <label for="orderDate">Fecha del pedido:</label>
-            <input type="date" class="form-control" id="orderDate" required>  </div>
-          <button type="submit" class="btn btn-primary">Agregar Pedido</button>
-        </form>
+			</div>
 
-        <hr>
+			<div class="card">
+				<div class="card-header">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
+                  Registrar pedido
+                </button>
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th># Pedido</th>
-              <th>Cliente</th>
-              <th>Monto</th>
-              <th>Fecha</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="orderTable">
-            </tbody>
-        </table>
-      </div>
+                <!-- modal uno ver -->
+                <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">
+                  Launch demo modal
+                </button> -->
+                
+                <!-- Modal -->
+                <div class="modal fade" id="modu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ver el pedido</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Producto: Papas</p>
+                        <p>Cantidad: 30</p>
+                        <p>Precio unitario: 5000</p>
+                        <p>Subtotal: 15000</p>
+						<p>Estado: Activo</p>
+                      </div>
+                      <div class="modal-footer">
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+      
+                
+                
+               
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    
+                    <tr>
+                      <th>Producto</th>
+                      <th>Cantidad</th>
+                      <th>Correo</th>
+                      <th>Precio unitario</th>
+                      <th>Subtotal</th>
+                      <th>Estado</th>
+                      <th>Acciones</th>
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                       <th>papas</th>
+                      <th>15</th>
+                      <th>joelgmail.com</th>
+                      <th>5500</th>
+                      <th>10000</th>
+                      <th>activo</th>
+                      <td>
+                        
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
+                        <button type="button" class="btn btn-danger" id="alert-eliminar">Eliminar</button>
+                        <a href="usuarioModificar.html"><button type="button" class="btn btn-warning" >Modificar</button></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>manillas</th>
+                      <th>15</th>
+                      <th>joelgmail.com</th>
+                      <th>5500</th>
+                      <th>25000</th>
+                      <th>activo</th>
+                      <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alert-eliminar">Eliminar</button>
+                        <a href="usuarioModificar.html"><button type="button" class="btn btn-warning" >Modificar</button></a>
+                        </td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+			
     </div>
-  </section>
+  </div>
+</div>
+<!-- Bootstrap JS, jQuery, y Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $('#addOrderForm').on('submit', function (e) {
-        e.preventDefault();
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
 
-        var orderNumber = $('#orderNumber').val();
-        var customerName = $('#customerName').val();
-        var orderAmount = $('#orderAmount').val();
-        var orderDate = $('#orderDate').val();
+    <!-- Tu JavaScript personalizado -->
+    <script src="../../public/ADMIN/js/usuarioDas.js"></script>
 
-        var newRow = '<tr>' +
-          '<td>' + orderNumber + '</td>' +
-          '<td>' + customerName + '</td>' +
-          '<td>' + orderAmount + '</td>' +
-          '<td>' + orderDate + '</td>' +
-          '<td><button class="btn btn-danger delete-btn">Eliminar</button></td>' +
-          '</tr>';
-
-        $('#orderTable').append(newRow);
-
-        // Limpiar formulario después de agregar el pedido
-        $('#orderNumber').val('');
-        $('#customerName').val('');
-        $('#orderAmount').val('');
-        $('#orderDate').val('');
-      });
-
-      $(document).on('click', '.delete-btn', function () {
-        $(this).closest('tr').remove();
-      });
-    });
-  </script>
-
-  <script src="./js/jquery-3.1.1.min.js"></script>
-  <script src="./js/sweetalert2.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
-  <script src="./js/material.min.js"></script>
-  <script src="./js/ripples.min.js"></script>
-  <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+		
 </body>
 </html>

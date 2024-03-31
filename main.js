@@ -14,75 +14,79 @@ app.use(express.static('public'));
 app.use(express.static('public/ADMIN'));
 
 app.get('/admin', (req, res) => {
-  res.render('admin/home');
+  res.render('home');
 });
 
 app.get('/admin2', (req, res) => {
-  res.render('admin/admin');
+  res.render('admin');
 });
 
 app.get('/Roles', (req, res) => {
-  res.render('admin/Roles');
+  res.render('Roles');
 });
 
 app.get('/Usuarios', (req, res) => {
-  res.render('admin/Usuarios');
+  res.render('Usuarios');
 });
 
 app.get('/Categorias', (req, res) => {
-  res.render('admin/Categorias');
+  res.render('Categorias');
 });
 
 app.get('/Citas', (req, res) => {
-  res.render('admin/Citas');
+  res.render('Citas');
 });
 
 app.get('/graficas', (req, res) => {
-  res.render('admin/graficas');
+  res.render('graficas');
 });
 
 app.get('/Clientes', (req, res) => {
-  res.render('admin/Clientes');
+  res.render('Clientes');
 });
 
 app.get('/Compras', (req, res) => {
-  res.render('admin/Compras');
+  res.render('Compras');
 });
 
 app.get('/Empleados', (req, res) => {
-  res.render('admin/Empleados');
+  res.render('Empleados');
 });
 
 app.get('/Horario', (req, res) => {
-  res.render('admin/Horario');
+  res.render('Horario');
 });
 
 app.get('/pedidos', (req, res) => {
-  res.render('admin/pedidos');
+  res.render('pedidos');
+});
+
+app.get('/pedidosDetalle', (req, res) => {
+  res.render('PedidosDetalles');
 });
 
 app.get('/ProductoAdmin', (req, res) => {
-  res.render('admin/ProductoAdmin');
+  res.render('ProductoAdmin');
 });
 
 app.get('/Proveedores', (req, res) => {
-  res.render('admin/Proveedores');
+  res.render('Proveedores');
 });
 
 app.get('/ServiciosA', (req, res) => {
-  res.render('admin/ServiciosA');
+  res.render('ServiciosA');
 });
 
 app.get('/Usuarios', (req, res) => {
-  res.render('admin/Usuarios');
+  res.render('Usuarios');
 });
 
 app.get('/Perfil', (req, res) => {
-  res.render('admin/Perfil');
+  res.render('Perfil');
 });
 
 app.get('/Ventas', (req, res) => {
-  res.render('admin/Ventas');
+  res.render('Ventas');
 });
 
 app.get('/', (req, res) => {

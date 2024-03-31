@@ -41,28 +41,22 @@
                                                     <form action="" class="" id="form-registrar">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <div class="input-group-addon">Producto</div>
+                                                                <div class="input-group-addon">Nombre</div>
                                                                 <input type="text" id="nombre-registro" name="username3" class="form-control">
                                                                 
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <div class="input-group-addon">Cantidad</div>
-                                                                <input type="number" id="correo-registro" name="email3" class="form-control">
+                                                                <div class="input-group-addon">Correo</div>
+                                                                <input type="email" id="correo-registro" name="email3" class="form-control">
                                                                 
-                                                            </div>
-                                                        </div>
-														 <div class="form-group">
-                                                            <div class="input-group">
-                                                                <div class="input-group-addon">Precio unitario</div>
-                                                                <input type="number" id="correo-registro" name="email3" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <div class="input-group-addon">Subototal</div>
-                                                                <input type="number" id="telefono-registro" name="password3" class="form-control">
+                                                                <div class="input-group-addon">Telefono</div>
+                                                                <input type="text" id="telefono-registro" name="password3" class="form-control">
                                                                 
                                                             </div>
                                                         </div>
@@ -127,7 +121,7 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Pedidos <small>Admin</small></h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Clientes <small>Admin</small></h1>
 			</div>
 
 			</div>
@@ -135,7 +129,7 @@
 			<div class="card">
 				<div class="card-header">
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
-                  Registrar pedido
+                  Registrar Cliente
                 </button>
 
                 <!-- modal uno ver -->
@@ -148,17 +142,16 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ver el pedido</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ver el registro</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
-                        <p>Producto: Papas</p>
-                        <p>Cantidad: 30</p>
-                        <p>Precio unitario: 5000</p>
-                        <p>Subtotal: 15000</p>
-						<p>Estado: Activo</p>
+                        <p>Nombre: Samuel</p>
+                        <p>Correo: Samuel@gmail.com</p>
+                        <p>Telefono: 3124556789</p>
+                        <p>Estado: Activo</p>
                       </div>
                       <div class="modal-footer">
                         
@@ -177,25 +170,22 @@
                   <thead>
                     
                     <tr>
-                      <th>Producto</th>
-                      <th>Cantidad</th>
+                      <th>Id</th>
+                      <th>Nombre</th>
                       <th>Correo</th>
-                      <th>Precio unitario</th>
-                      <th>Subtotal</th>
+                      <th>Telefono</th>
                       <th>Estado</th>
                       <th>Acciones</th>
-
 
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                       <th>papas</th>
-                      <th>15</th>
-                      <th>joelgmail.com</th>
-                      <th>5500</th>
-                      <th>10000</th>
-                      <th>activo</th>
+                      <td>01</td>
+                      <td>Samuel</td>
+                      <td>Samuel@gmail.com</td>
+                      <td>3124556789</td>
+                      <td>Activo</td>
                       <td>
                         
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
@@ -204,19 +194,41 @@
                       </td>
                     </tr>
                     <tr>
-                      <th>manillas</th>
-                      <th>15</th>
-                      <th>joelgmail.com</th>
-                      <th>5500</th>
-                      <th>25000</th>
-                      <th>activo</th>
+                      <td>02</td>
+                      <td>Lucia</td>
+                      <td>Lucia@gmail.com</td>
+                      <td>3135139595</td>
+                      <td>Activo</td>
                       <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alert-eliminar">Eliminar</button>
                         <a href="usuarioModificar.html"><button type="button" class="btn btn-warning" >Modificar</button></a>
                         </td>
                     </tr>
-                    
+                    <tr>
+                      <td>03</td>
+                      <td>Lauro</td>
+                      <td>Lauro@gmail.com</td>
+                      <td>3145770613</td>
+                      <td>Inactivo</td>
+                      <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alert-eliminar">Eliminar</button>
+                        <a href="usuarioModificar.html"><button type="button" class="btn btn-warning" >Modificar</button></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>04</td>
+                      <td>Hector</td>
+                      <td>Hector@gmail.com</td>
+                      <td>314556768</td>
+                      <td>Activo</td>
+                      <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alert-eliminar">Eliminar</button>
+                        <a href="usuarioModificar.html"><button type="button" class="btn btn-warning" >Modificar</button></a>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
 			
@@ -224,15 +236,25 @@
   </div>
 </div>
 <!-- Bootstrap JS, jQuery, y Popper.js -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+			$.material.init();
+		</script>
+    <script src="./js/jquery-3.1.1.min.js"></script>
+		<script src="./js/sweetalert2.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script src="./js/material.min.js"></script>
+		<script src="./js/ripples.min.js"></script>
+		<script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="./js/main.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
+		<!-- SweetAlert2 JS -->
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
 
-    <!-- Tu JavaScript personalizado -->
-    <script src="../../public/ADMIN/js/usuarioDas.js"></script>
+		<!-- Tu JavaScript personalizado -->
+		<script src="../../public/ADMIN/js/usuarioDas.js"></script>
 
 		
 </body>

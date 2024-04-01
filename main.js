@@ -49,6 +49,10 @@ app.get('/Compras', (req, res) => {
   res.render('Compras');
 });
 
+app.get('/ComprasProductos', (req, res) => {
+  res.render('ComprasProductos');
+});
+
 app.get('/Empleados', (req, res) => {
   res.render('Empleados');
 });
@@ -108,6 +112,14 @@ app.get('/agendar', (req, res) => {
 
 app.get('/login', (req, res) => {
   res.render('login');
+});
+
+app.get('/olvidar', (req, res) => {
+  res.render('olvidarc');
+});
+
+app.get('/recuperar', (req, res) => {
+  res.render('recuperarc');
 });
 
 app.get('*', (req, res) => {

@@ -73,12 +73,20 @@ app.get('/Proveedores', (req, res) => {
   res.render('Proveedores');
 });
 
+app.get('/ProveedoreModifi', (req, res) => {
+  res.render('ProveedoreModifi');
+});
+
 app.get('/ServiciosA', (req, res) => {
   res.render('ServiciosA');
 });
 
 app.get('/Usuarios', (req, res) => {
   res.render('Usuarios');
+});
+
+app.get('/usuarioModificar', (req, res) => {
+  res.render('usuarioModificar');
 });
 
 app.get('/Perfil', (req, res) => {

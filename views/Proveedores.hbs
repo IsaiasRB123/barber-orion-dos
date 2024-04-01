@@ -1,6 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
 {{> head}}
+  <div class="card mt-100">
+    <div class="card">
+        <div class="container">
+            <div class="container">
+                <div class="container">
+                    <div class="modal fade" id="exampleModalCenter" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Registre un proveedor</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                                <div id="myTabContent" class="tab-content">
+                                    <div class="tab-pane fade show active" id="new">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-10 col-md-offset-1">
+                                                    <form action="" class="" id="form-registrar">
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <div class="col col-md-3"><label for="SelectLm" class="form-control-label">Nombre</label></div>
+                              			                        <input type="text" id="nombre-proveedor" name="username3" class="form-control">
+                                                               
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <div class="col col-md-3"><label for="SelectLm" class="form-control-label">Categori producto</label></div>
+                              									<input type="text" id="categoria-proveedor" name="email3" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <div class="col col-md-3"><label for="SelectLm" class="form-control-label">Producto</label></div>
+                                                                <input type="text" id="producto-proveedor" name="password3" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                           <div class="input-group">
+                                                                <div class="col col-md-3"><label for="SelectLm" class="form-control-label">Cantidad</label></div>
+                                                                <input type="number" id="cantidad-proveedor" min="1" step="any" name="cantidad" class="form-control">
+                                                                </div>
+                                                        </div>
+														<div class="form-group">
+                                                           <div class="input-group">
+                                                                <div class="col col-md-3"><label for="SelectLm" class="form-control-label">Precio unitario</label></div>
+                                                                <input type="number" id="unitario-proveedor" min="1" step="any" name="precio" class="form-control">
+                                                                </div>
+                                                        </div>
+                                                        <button id="alert-registrar" type="submit" class="btn btn-success btn-sm">Registrar</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- modal de ver --}}
+<!-- Modal -->
+                <div class="modal fade" id="modu"  aria-labelledby="exampleModalLabel" >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ver el registro</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                          
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Nombre: Adidas  </p>
+                        <p>Categoria producto: Camisa  </p>
+                        <p>Producto: Camisa adidas  </p>
+                        <p>Cantidad: 50 </th>
+                        <p>Precio unitario:  45.000</p>
+                        <p>Precio total: 450.000 </p>
+                      </div>
+                      <div class="modal-footer">
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
 <body>
 	<!-- SideBar -->
 	{{> sidebar}}
@@ -34,210 +127,106 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Users <small>Admin</small></h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Proveedores <small>Admin</small></h1>
 			</div>
-			<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptas reiciendis tempora voluptatum eius porro ipsa quae voluptates officiis sapiente sunt dolorem, velit quos a qui nobis sed, dignissimos possimus!</p>
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-12">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-					  	<li class="active"><a href="#new" data-toggle="tab">New</a></li>
-					  	<li><a href="#list" data-toggle="tab">List</a></li>
-					</ul>
-					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane fade active in" id="new">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-xs-12 col-md-10 col-md-offset-1">
-									    <form action="">
-									    	<div class="form-group label-floating">
-											  <label class="control-label">Name</label>
-											  <input class="form-control" type="text">
-											</div>
-											<div class="form-group label-floating">
-											  <label class="control-label">Last Name</label>
-											  <input class="form-control" type="text">
-											</div>
-											<div class="form-group label-floating">
-											  <label class="control-label">Address</label>
-											  <textarea class="form-control"></textarea>
-											</div>
-											<div class="form-group label-floating">
-											  <label class="control-label">Email</label>
-											  <input class="form-control" type="text">
-											</div>
-											<div class="form-group label-floating">
-											  <label class="control-label">Phone</label>
-											  <input class="form-control" type="text">
-											</div>
-											<div class="form-group">
-										      <label class="control-label">Photo</label>
-										      <div>
-										        <input type="text" readonly="" class="form-control" placeholder="Browse...">
-										        <input type="file" >
-										      </div>
-										    </div>
-										    <p class="text-center">
-										    	<button href="#!" class="btn btn-info btn-raised btn-sm"><i class="zmdi zmdi-floppy"></i> Save</button>
-										    </p>
-									    </form>
-									</div>
-								</div>
-							</div>
-						</div>
-					  	<div class="tab-pane fade" id="list">
-							<div class="table-responsive">
-								<table class="table table-hover text-center">
-									<thead>
-										<tr>
-											<th class="text-center">#</th>
-											<th class="text-center">Name</th>
-											<th class="text-center">Last Name</th>
-											<th class="text-center">Address</th>
-											<th class="text-center">Email</th>
-											<th class="text-center">Phone</th>
-											<th class="text-center">Update</th>
-											<th class="text-center">Delete</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Carlos</td>
-											<td>Alfaro</td>
-											<td>El Salvador</td>
-											<td>carlos@gmail.com</td>
-											<td>+50312345678</td>
-											<td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-											<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>Alicia</td>
-											<td>Melendez</td>
-											<td>El Salvador</td>
-											<td>alicia@gmail.com</td>
-											<td>+50312345678</td>
-											<td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-											<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Sarai</td>
-											<td>Lopez</td>
-											<td>El Salvador</td>
-											<td>sarai@gmail.com</td>
-											<td>+50312345678</td>
-											<td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-											<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>Alba</td>
-											<td>Bonilla</td>
-											<td>El Salvador</td>
-											<td>alba@gmail.com</td>
-											<td>+50312345678</td>
-											<td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-											<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-										</tr>
-									</tbody>
-								</table>
-								<ul class="pagination pagination-sm">
-								  	<li class="disabled"><a href="#!">«</a></li>
-								  	<li class="active"><a href="#!">1</a></li>
-								  	<li><a href="#!">2</a></li>
-								  	<li><a href="#!">3</a></li>
-								  	<li><a href="#!">4</a></li>
-								  	<li><a href="#!">5</a></li>
-								  	<li><a href="#!">»</a></li>
-								</ul>
-							</div>
-					  	</div>
-					</div>
+
+			</div>
+
+			<div class="card">
+				<div class="card-header">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
+                  Registrar usuario
+                </button>
+              <!-- /.card-header -->
+              <div class="container">
+				<div class="row">
+					<div class="col">
+              			<table class="table table-striped table-bordered table-hover text-nowrap">
+							<thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Nombre</th>
+                      <th>Categoria producto</th>
+                      <th>Producto</th>
+                      <th>Cantidad</th>
+                      <th>Precio unitario</th>
+                      <th>Precio total</th>
+                      <th>Acciones</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>01</td>
+                      <td>Adidas</td>
+                      <td>Camisas</td>
+                      <td>Camisa adidas super</td>
+                      <td>50</td>
+                      <td>45.000</td>
+                      <td>45.00000</td>
+                      <td>
+                        
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
+                        <button type="button" class="btn btn-danger" id="alert-eliminar-proveedore">Elimina</button>
+                        <a href="/ProveedoreModifi" type="button" class="btn btn-warning" >Modificar</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>02</td>
+                      <td>Nike</td>
+                      <td>ropa deportiva</td>
+                      <td>sudadera nike azul</td>
+                      <td>20</td>
+                      <td>50.000</td>
+                      <td>150.000</td>
+                      <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alert-eliminar-proveedore">Elimina</button>
+                        <a href="/ProveedoreModifi"><button type="button" class="btn btn-warning" >Modificar</button></a>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>03</td>
+                      <td>New balance</td>
+                      <td>Accesorio</td>
+                      <td>gorra new</td>
+                      <td>5</td>
+                      <td>10000</td>
+                      <td>100000</td>
+                      <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alert-eliminar-proveedore">Elimina</button>
+                        <a href="/ProveedoreModifi"><button type="button" class="btn btn-warning" >Modificar</button></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>04</td>
+                      <td>lacoste</td>
+                      <td>cuidado cabello</td>
+                      <td>shampoo 100ml</td>
+                      <td>35</td>
+                      <td>7.700</td>
+                      <td>177.000</td>
+                      <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alert-eliminar-proveedore">Elimina</button>
+                        <a href="/ProveedoreModifi"><button type="button" class="btn btn-warning" >Modificar</button></a>
+                      </td>
+                    </tr>
+                  </tbody>
+					</table>
+
 				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Notifications area -->
-	<section class="full-box Notifications-area">
-		<div class="full-box Notifications-bg btn-Notifications-area"></div>
-		<div class="full-box Notifications-body">
-			<div class="Notifications-body-title text-titles text-center">
-				Notifications <i class="zmdi zmdi-close btn-Notifications-area"></i>
-			</div>
-			<div class="list-group">
-			  	<div class="list-group-item">
-				    <div class="row-action-primary">
-				      	<i class="zmdi zmdi-alert-triangle"></i>
-				    </div>
-				    <div class="row-content">
-				      	<div class="least-content">17m</div>
-				      	<h4 class="list-group-item-heading">Tile with a label</h4>
-				      	<p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-				    </div>
-			  	</div>
-			  	<div class="list-group-separator"></div>
-			  	<div class="list-group-item">
-				    <div class="row-action-primary">
-				      	<i class="zmdi zmdi-alert-octagon"></i>
-				    </div>
-				    <div class="row-content">
-				      	<div class="least-content">15m</div>
-				      	<h4 class="list-group-item-heading">Tile with a label</h4>
-				      	<p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-				    </div>
-			  	</div>
-			  	<div class="list-group-separator"></div>
-				<div class="list-group-item">
-				    <div class="row-action-primary">
-				      	<i class="zmdi zmdi-help"></i>
-				    </div>
-				    <div class="row-content">
-				      	<div class="least-content">10m</div>
-				      	<h4 class="list-group-item-heading">Tile with a label</h4>
-				      	<p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-				    </div>
-				</div>
-			  	<div class="list-group-separator"></div>
-			  	<div class="list-group-item">
-				    <div class="row-action-primary">
-				      	<i class="zmdi zmdi-info"></i>
-				    </div>
-				    <div class="row-content">
-				      	<div class="least-content">8m</div>
-				      	<h4 class="list-group-item-heading">Tile with a label</h4>
-				      	<p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-				    </div>
-			  	</div>
-			</div>
-
-		</div>
-	</section>
-
-	<!-- Dialog help -->
-	<div class="modal fade" tabindex="-1" role="dialog" id="Dialog-Help">
-	  	<div class="modal-dialog" role="document">
-		    <div class="modal-content">
-			    <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			    	<h4 class="modal-title">Help</h4>
-			    </div>
-			    <div class="modal-body">
-			        <p>
-			        	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt beatae esse velit ipsa sunt incidunt aut voluptas, nihil reiciendis maiores eaque hic vitae saepe voluptatibus. Ratione veritatis a unde autem!
-			        </p>
-			    </div>
-		      	<div class="modal-footer">
-		        	<button type="button" class="btn btn-primary btn-raised" data-dismiss="modal"><i class="zmdi zmdi-thumb-up"></i> Ok</button>
-		      	</div>
-		    </div>
-	  	</div>
-	</div>
-	<!--====== Scripts -->
-	<script>
+			  </div>
+			  
+                  
+               
+			
+    </div>
+  </div>
+</div>
+<!-- Bootstrap JS, jQuery, y Popper.js -->
+    <script>
 			$.material.init();
 		</script>
     <script src="./js/jquery-3.1.1.min.js"></script>
@@ -256,5 +245,7 @@
 
 		<!-- Tu JavaScript personalizado -->
 		<script src="../../public/ADMIN/js/usuarioDas.js"></script>
+
+		
 </body>
 </html>

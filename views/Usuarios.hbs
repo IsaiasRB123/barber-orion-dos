@@ -9,6 +9,12 @@
                     <div class="modal fade" id="exampleModalCenter" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Registre un usuario</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
                                 <div id="myTabContent" class="tab-content">
                                     <div class="tab-pane fade show active" id="new">
                                         <div class="container-fluid">
@@ -17,21 +23,22 @@
                                                     <form action="" class="" id="form-registrar">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <div class="input-group-addon">Nombre</div>
+                                                                <div class="col col-md-3"><label for="SelectLm" class="form-control-label">Nombre</label></div>
                                                                 <input type="text" id="nombre-registro" name="username3" class="form-control">
                                                                 
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <div class="input-group-addon">Correo</div>
+                                                                <div class="col col-md-3"><label for="SelectLm" class="form-control-label">Correo</label></div>
+                                                              
                                                                 <input type="email" id="correo-registro" name="email3" class="form-control">
                                                                 
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <div class="input-group-addon">Telefono</div>
+                                                                <div class="col col-md-3"><label for="SelectLm" class="form-control-label">Telefono</label></div>
                                                                 <input type="text" id="telefono-registro" name="password3" class="form-control">
                                                                 
                                                             </div>
@@ -72,6 +79,32 @@
         </div>
     </div>
 </div>
+
+{{!-- modal de ver --}}
+<!-- Modal -->
+                <div class="modal fade" id="modu"  aria-labelledby="exampleModalLabel" >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ver el registro</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                          
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Nombre: Samuel</p>
+                        <p>Correo: Samuel@gmail.com</p>
+                        <p>Telefono: 3124556789</p>
+                        <p>Rol: Cliente</p>
+                        <p>Estado: Activo</p>
+                      </div>
+                      <div class="modal-footer">
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
 <body>
 	<!-- SideBar -->
 	{{> sidebar}}
@@ -115,45 +148,11 @@
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
                   Registrar usuario
                 </button>
-
-                <!-- modal uno ver -->
-                <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">
-                  Launch demo modal
-                </button> -->
-                
-                <!-- Modal -->
-                <div class="modal fade" id="modu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ver el registro</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <p>Nombre: Samuel</p>
-                        <p>Correo: Samuel@gmail.com</p>
-                        <p>Telefono: 3124556789</p>
-                        <p>Rol: Cliente</p>
-                        <p>Estado: Activo</p>
-                      </div>
-                      <div class="modal-footer">
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-      
-                
-                
-               
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
+                <table class="table table-striped table-bordered table-hover ">  
                   <thead>
-                    
+                    {{!-- table table-hover text-nowrap --}}
                     <tr>
                       <th>Id</th>
                       <th>Nombre</th>
@@ -177,7 +176,7 @@
                         
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
                         <button type="button" class="btn btn-danger" id="alert-eliminar">Eliminar</button>
-                        <a href="usuarioModificar.html"><button type="button" class="btn btn-warning" >Modificar</button></a>
+                        <a href="/usuarioModificar" type="button" class="btn btn-warning" >Modificar</a>
                       </td>
                     </tr>
                     <tr>
@@ -190,7 +189,7 @@
                       <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alert-eliminar">Eliminar</button>
-                        <a href="usuarioModificar.html"><button type="button" class="btn btn-warning" >Modificar</button></a>
+                        <a href="/usuarioModificar"><button type="button" class="btn btn-warning" >Modificar</button></a>
                         </td>
                     </tr>
                     <tr>
@@ -203,7 +202,7 @@
                       <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alert-eliminar">Eliminar</button>
-                        <a href="usuarioModificar.html"><button type="button" class="btn btn-warning" >Modificar</button></a>
+                        <a href="/usuarioModificar"><button type="button" class="btn btn-warning" >Modificar</button></a>
                       </td>
                     </tr>
                     <tr>
@@ -216,7 +215,7 @@
                       <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alert-eliminar">Eliminar</button>
-                        <a href="usuarioModificar.html"><button type="button" class="btn btn-warning" >Modificar</button></a>
+                        <a href="/usuarioModificar"><button type="button" class="btn btn-warning" >Modificar</button></a>
                       </td>
                     </tr>
                   </tbody>

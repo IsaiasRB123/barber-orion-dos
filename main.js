@@ -10,6 +10,7 @@ hbs.registerPartials(__dirname + '/views/admin');
 
 
 // Servir contenido estático
+
 app.use(express.static('public'));
 app.use(express.static('public/ADMIN'));
 
@@ -27,6 +28,10 @@ app.get('/Roles', (req, res) => {
 
 app.get('/Usuarios', (req, res) => {
   res.render('Usuarios');
+});
+
+app.get('/usuarioDas', (req, res) => {
+  res.render('usuarioDas');
 });
 
 app.get('/Categorias', (req, res) => {
@@ -77,12 +82,20 @@ app.get('/Proveedores', (req, res) => {
   res.render('Proveedores');
 });
 
+app.get('/ProveedoreModifi', (req, res) => {
+  res.render('ProveedoreModifi');
+});
+
 app.get('/ServiciosA', (req, res) => {
   res.render('ServiciosA');
 });
 
 app.get('/Usuarios', (req, res) => {
   res.render('Usuarios');
+});
+
+app.get('/usuarioModificar', (req, res) => {
+  res.render('usuarioModificar');
 });
 
 app.get('/Perfil', (req, res) => {

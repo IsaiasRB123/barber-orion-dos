@@ -6,7 +6,6 @@
   <title>Inicio</title>
   <link rel="stylesheet" href="./css/main2.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-  
   <link rel="stylesheet" href="./css/css.css">
 </head>
 <body>
@@ -17,27 +16,7 @@
   <section class="full-box dashboard-contentPage">
     <!-- NavBar -->
     <nav class="full-box dashboard-Navbar">
-      <ul class="full-box list-unstyled text-right">
-        <li class="pull-left">
-          <a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-        </li>
-        <li>
-          <a href="#!" class="btn-Notifications-area">
-            <i class="zmdi zmdi-notifications-none"></i>
-            <span class="badge">7</span>
-          </a>
-        </li>
-        <li>
-          <a href="#!" class="btn-search">
-            <i class="zmdi zmdi-search"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#!" class="btn-modal-help">
-            <i class="zmdi zmdi-help-outline"></i>
-          </a>
-        </li>
-      </ul>
+      <!-- Navbar content here -->
     </nav>
     <!-- Content page -->
     <div class="container-fluid">
@@ -49,15 +28,19 @@
         <form id="profile-form">
           <label for="name">Nombre:</label>
           <input type="text" id="name" name="name" required>
+          <div id="nameError" class="error-message"></div>
 
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" required>
+          <div id="emailError" class="error-message"></div>
 
           <label for="phone">Teléfono:</label>
-          <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+          <input type="tel" id="phone" name="phone" pattern="[0-9]{10,}" required>
+          <div id="phoneError" class="error-message"></div>
 
           <label for="age">Edad:</label>
           <input type="number" id="age" name="age" min="18" max="100" required>
+          <div id="ageError" class="error-message"></div>
 
           <div class="buttons">
             <button type="button" id="save" style="background-color: rgb(62, 81, 255);">Guardar</button>
@@ -67,7 +50,6 @@
       </div>
     </div>
   </section>
-
   <!--====== Scripts -->
   <script src="./js/jquery-3.1.1.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
@@ -77,68 +59,106 @@
   <script src="./js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
-			$.material.init();
-		</script>
-    <script src="./js/jquery-3.1.1.min.js"></script>
-		<script src="./js/sweetalert2.min.js"></script>
-		<script src="./js/bootstrap.min.js"></script>
-		<script src="./js/material.min.js"></script>
-		<script src="./js/ripples.min.js"></script>
-		<script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
-		<script src="./js/main.js"></script>
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const saveButton = document.getElementById('save');
+      const deleteButton = document.getElementById('delete');
+      const profileForm = document.getElementById('profile-form');
 
-		<!-- SweetAlert2 JS -->
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
-
-		<!-- Tu JavaScript personalizado -->
-		<script src="../../public/ADMIN/js/usuarioDas.js"></script>
-  <script>
- document.addEventListener('DOMContentLoaded', function() {
-  const saveButton = document.getElementById('save');
-  const deleteButton = document.getElementById('delete');
-  const profileForm = document.getElementById('profile-form');
-
-  saveButton.addEventListener('click', function() {
-    Swal.fire({
-      title: '¿Guardar cambios?',
-      text: '¿Estás seguro de que deseas guardar los cambios?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#007bff',
-      cancelButtonColor: '#6c757d',
-      confirmButtonText: 'Guardar',
-      cancelButtonText: 'Cancelar'
-    }).then(function(result) {
-      if (result.isConfirmed) {
-        // Aquí puedes agregar la lógica para guardar los datos (no implementada en este ejemplo)
-        Swal.fire('¡Guardado!', 'Los cambios se han guardado correctamente.', 'success');
+      // Función para mostrar mensajes de error
+      function showError(input, message) {
+        const errorDiv = document.getElementById(`${input.id}Error`);
+        errorDiv.textContent = message;
       }
-    });
-  });
 
-  deleteButton.addEventListener('click', function() {
-    Swal.fire({
-      title: '¿Restaurar formulario?',
-      text: 'Esta acción restaurará los campos del formulario. ¿Estás seguro?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#dc3545',
-      cancelButtonColor: '#6c757d',
-      confirmButtonText: 'Sí, restaurar',
-      cancelButtonText: 'Cancelar'
-    }).then(function(result) {
-      if (result.isConfirmed) {
-        // Restaurar formulario
-        profileForm.reset();
-        Swal.fire('¡Restaurado!', 'Los campos del formulario han sido restaurados.', 'success');
+      // Función para eliminar mensajes de error
+      function clearError(input) {
+        const errorDiv = document.getElementById(`${input.id}Error`);
+        errorDiv.textContent = '';
       }
-    });
-  });
-});
 
+      saveButton.addEventListener('click', function() {
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+
+        // Validar email con @
+        if (!emailInput.value.includes('@')) {
+          showError(emailInput, 'El correo electrónico debe contener un "@"');
+          return;
+        }
+
+        // Validar teléfono con mínimo de 10 caracteres
+        if (phoneInput.value.length < 10) {
+          showError(phoneInput, 'El teléfono debe tener al menos 10 caracteres');
+          return;
+        }
+
+        Swal.fire({
+          title: '¿Guardar cambios?',
+          text: '¿Estás seguro de que deseas guardar los cambios?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#007bff',
+          cancelButtonColor: '#6c757d',
+          confirmButtonText: 'Guardar',
+          cancelButtonText: 'Cancelar'
+        }).then(function(result) {
+          if (result.isConfirmed) {
+            // Aquí puedes agregar la lógica para guardar los datos (no implementada en este ejemplo)
+            Swal.fire('¡Guardado!', 'Los cambios se han guardado correctamente.', 'success');
+          }
+        });
+      });
+
+      deleteButton.addEventListener('click', function() {
+        Swal.fire({
+          title: '¿Restaurar formulario?',
+          text: 'Esta acción restaurará los campos del formulario. ¿Estás seguro?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#dc3545',
+          cancelButtonColor: '#6c757d',
+          confirmButtonText: 'Sí, restaurar',
+          cancelButtonText: 'Cancelar'
+        }).then(function(result) {
+          if (result.isConfirmed) {
+            // restaurarear el formulario joel el mejor
+            profileForm.reset();
+            Swal.fire('¡Restaurado!', 'Los campos del formulario han sido restaurados.', 'success');
+          }
+        });
+      });
+
+      
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.addEventListener('input', function(e) {
+          switch (input.id) {
+            case 'email':
+              if (!input.value.includes('@')) {
+                showError(input, 'El correo electrónico debe contener un "@"');
+              } else {
+                clearError(input);
+              }
+              break;
+            case 'phone':
+              if (input.value.length < 10) {
+                showError(input, 'El teléfono debe tener al menos 10 caracteres');
+              } else {
+                clearError(input);
+              }
+              break;
+           
+            default:
+              clearError(input);
+          }
+        });
+      });
+    });
   </script>
+  <style>
+    .error-message {
+      color: red; 
+    }
+  </style>
 </body>
 </html>

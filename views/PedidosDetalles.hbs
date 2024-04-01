@@ -2,6 +2,46 @@
 <html lang="es">
 <!-- bootstrap -->
 {{> head}}
+<!-- Modal -->
+<div class="modal fade" id="trackerModal" tabindex="-1" aria-labelledby="nuevoProyecto" aria-hidden="true">
+  <div class="modal-dialog" style="min-width: 75%;">
+    <!--Con el min-width manejo el ancho del modal -->
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h2 class="modal-title" id="nuevoProyecto">Nuevo Pedido</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="br"></div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <form id="formulario">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="lavel" >Nombre del cliente</label>
+                <input type="text" class="form-control input" name="observaciones" id="Pedidos-nombre">
+              </div>
+              <div class="form-group col-md-6">
+                <label  for="fecha_ini">Fecha</label>
+                <input type="date" class="form-control" name="fecha_ini" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <a type="submit" class="btn btn-primary" href="/pedidos">Registrar</a>
+            </div>
+        </div>
+        </form>
+      </div>
+    </div>
+    <!--.modal-body-->
+    <!--.modal-content-->
+  </div>
+  <!--.modal-dialog-->
+</div>
+<!--.modal-->
 
 <body>
   <!-- SideBar -->
@@ -43,9 +83,9 @@
 
     <div class="card p-3">
       <div class="card-header">
-        <a type="button" class="btn btn-success" href="/pedidos">
+        <button type="button" class="btn-success mb-3" data-toggle="modal" data-target="#trackerModal">
           <i class="fa fa-plus"></i> Registrar Pedido
-        </a>
+        </button>
         <!-- modal uno ver -->
         <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">
                   Launch demo modal
@@ -62,6 +102,7 @@
                     <th>Cantidad</th>
                     <th>Precio Unitario</th>
                     <th>Subtotal</th>
+                    <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -71,6 +112,13 @@
                     <td>15</td>
                     <td>10000</td>
                     <td>150000</td>
+                    <td>
+                      <button type="button" class=" btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#modu">Ver</button>
+                      <button type="button" class=" btn-danger" data-toggle="modal"
+                        data-target="#alert-eliminar">Eliminar</button>
+                      <a href="usuarioModificar.html"><button type="button" class=" btn-warning">Modificar</button></a>
+                    </td>
                   </tr>
                   <tr>
                     <td>3992</td>
@@ -78,6 +126,13 @@
                     <td>15</td>
                     <td>10000</td>
                     <td>150000</td>
+                    <td>
+                      <button type="button" class=" btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#modu">Ver</button>
+                      <button type="button" class=" btn-danger" data-toggle="modal"
+                        data-target="#alert-eliminar">Eliminar</button>
+                      <a href="usuarioModificar.html"><button type="button" class=" btn-warning">Modificar</button></a>
+                    </td>
                   </tr>
                   <tr>
                     <td>3992</td>
@@ -85,6 +140,13 @@
                     <td>15</td>
                     <td>10000</td>
                     <td>150000</td>
+                    <td>
+                      <button type="button" class="btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#modu">Ver</button>
+                      <button type="button" class="btn-danger" data-toggle="modal"
+                        data-target="#alert-eliminar">Eliminar</button>
+                      <a href="usuarioModificar.html"><button type="button" class="btn-warning">Modificar</button></a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -103,6 +165,7 @@
       <script src="./js/ripples.min.js"></script>
       <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="./js/main.js"></script>
+      <script src="./js/validaciones.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>

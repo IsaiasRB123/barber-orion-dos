@@ -80,6 +80,8 @@
     </div>
 </div>
 
+{{!-- modal de Modificar --}}
+
 {{!-- modal de ver --}}
 <!-- Modal -->
                 <div class="modal fade" id="modu"  aria-labelledby="exampleModalLabel" >
@@ -108,7 +110,6 @@
 <body>
 	<!-- SideBar -->
 	{{> sidebar}}
-
 	<!-- Content page-->
 	<section class="full-box dashboard-contentPage">
 		<!-- NavBar -->
@@ -176,7 +177,8 @@
                         
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">Ver</button>
                         <button type="button" class="btn btn-danger" id="alert-eliminar">Eliminar</button>
-                        <a href="/usuarioModificar" type="button" class="btn btn-warning" >Modificar</a>
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modu-modi">Modificar</button>
+                        
                       </td>
                     </tr>
                     <tr>
@@ -243,7 +245,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
 
 		<!-- Tu JavaScript personalizado -->
-		<script src="../../public/ADMIN/js/usuarioDas.js"></script>
+		<script src="./js/usuarioDas.js"></script>
+    
 
 		
 </body>

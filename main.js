@@ -10,6 +10,7 @@ hbs.registerPartials(__dirname + '/views/admin');
 
 
 // Servir contenido estático
+
 app.use(express.static('public'));
 app.use(express.static('public/ADMIN'));
 
@@ -27,6 +28,10 @@ app.get('/Roles', (req, res) => {
 
 app.get('/Usuarios', (req, res) => {
   res.render('Usuarios');
+});
+
+app.get('/usuarioDas', (req, res) => {
+  res.render('usuarioDas');
 });
 
 app.get('/Categorias', (req, res) => {

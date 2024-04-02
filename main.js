@@ -26,6 +26,10 @@ app.get('/Roles', (req, res) => {
   res.render('Roles');
 });
 
+app.get('/RolesModificar', (req, res) => {
+  res.render('RolesModificar');
+});
+
 app.get('/Usuarios', (req, res) => {
   res.render('Usuarios');
 });

@@ -46,6 +46,10 @@ app.get('/Citas', (req, res) => {
   res.render('Citas');
 });
 
+app.get('/CitasModificar', (req, res) => {
+  res.render('CitasModificar');
+});
+
 app.get('/graficas', (req, res) => {
   res.render('graficas');
 });

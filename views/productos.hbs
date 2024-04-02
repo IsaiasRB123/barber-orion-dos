@@ -71,7 +71,34 @@
 
 
 
-        <!-- Contenedor de elementos -->
+     <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Campo de búsqueda con estilo H&M -->
+                <div class="input-group mb-3">
+                    <input type="text" id="filtro" class="form-control" placeholder="Buscar productos" aria-label="Buscar productos" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- Opciones de filtrado con estilo H&M -->
+                <div class="dropdown float-right">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="filtroSelect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Seleccionar
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="filtroSelect">
+                        <a class="dropdown-item" href="#" value="menorPrecio">Menor Precio</a>
+                        <a class="dropdown-item" href="#" value="mayorPrecio">Mayor Precio</a>
+                        <a class="dropdown-item" href="#" value="ordenAlfabetico">Orden Alfabético</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
         <section class="contenedor">
             <div class="contenedor-items">
                 <div class="item">
@@ -150,6 +177,65 @@ fa-bag-shopping"></i> </button>
                 </div>
             </div>
         </section>
+       <script>
+        // Filtrado por nombre del producto
+        document.getElementById('filtro').addEventListener('input', function() {
+            let filtro = this.value.toLowerCase();
+            let items = document.querySelectorAll('.contenedor-items .item');
+            items.forEach(function(item) {
+                let titulo = item.querySelector('.titulo-item').textContent.toLowerCase();
+                if (titulo.includes(filtro)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Filtrado por opciones de selección
+        document.querySelectorAll('#filtroSelect .dropdown-item').forEach(function(item) {
+            item.addEventListener('click', function() {
+                let filtro = this.getAttribute('value');
+                let items = document.querySelectorAll('.contenedor-items .item');
+                items.forEach(function(item) {
+                    item.style.display = 'block';
+                });
+                if (filtro === 'menorPrecio') {
+                    // Ordenar por menor precio
+                    let sortedItems = Array.from(items).sort(function(a, b) {
+                        let precioA = parseFloat(a.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
+                        let precioB = parseFloat(b.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
+                        return precioA - precioB;
+                    });
+                    sortedItems.forEach(function(item) {
+                        document.querySelector('.contenedor-items').appendChild(item);
+                    });
+                } else if (filtro === 'mayorPrecio') {
+                    // Ordenar por mayor precio
+                    let sortedItems = Array.from(items).sort(function(a, b) {
+                        let precioA = parseFloat(a.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
+                        let precioB = parseFloat(b.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
+                        return precioB - precioA;
+                    });
+                    sortedItems.forEach(function(item) {
+                        document.querySelector('.contenedor-items').appendChild(item);
+                    });
+                } else if (filtro === 'ordenAlfabetico') {
+                    // Ordenar alfabéticamente
+                    let sortedItems = Array.from(items).sort(function(a, b) {
+                        let tituloA = a.querySelector('.titulo-item').textContent.toLowerCase();
+                        let tituloB = b.querySelector('.titulo-item').textContent.toLowerCase();
+                        if (tituloA < tituloB) return -1;
+                        if (tituloA > tituloB) return 1;
+                        return 0;
+                    });
+                    sortedItems.forEach(function(item) {
+                        document.querySelector('.contenedor-items').appendChild(item);
+                    });
+                }
+            });
+        });
+    </script>
     </main>
 
     <!-- Carrito -->
@@ -192,4 +278,5 @@ fa-bag-shopping"></i> </button>
     <script src="./assets/js/main.js"></script>
 
 </body>
+
 </html>

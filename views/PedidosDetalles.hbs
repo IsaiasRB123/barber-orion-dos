@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
+<title>BARBERIA-ORION-PEDIDOS</title>
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logo.png">
 <!-- bootstrap -->
 {{> head}}
 <style>
@@ -94,6 +96,30 @@
     box-sizing: border-box;
   }
 
+  .register-btn {
+    background-color: #4CAF50;
+    /* Color de fondo */
+    color: white;
+    /* Color del texto */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    border: none;
+    /* Sin borde */
+    border-radius: 4px;
+    /* Borde redondeado */
+    cursor: pointer;
+    /* Cambio de cursor */
+    font-size: 16px;
+    /* Tamaño del texto */
+    transition: background-color 0.3s;
+    /* Transición suave del color de fondo */
+  }
+
+  .register-btn:hover {
+    background-color: #45a049;
+    /* Cambio de color de fondo al pasar el ratón */
+  }
+
   input[type=submit] {
     background-color: #4CAF50;
     color: white;
@@ -144,7 +170,7 @@
     <!-- Content page -->
     <div class="container-fluid">
       <div class="page-header">
-        <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Pedidos <small>Admin</small></h1>
+        <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Pedidos </h1>
       </div>
 
     </div>
@@ -161,60 +187,75 @@
         <span class="close" id="closeModal">&times;</span>
         <h2>Formulario de Registro</h2>
         <form id="registrationForm" onsubmit="registrarPedido(event)">
-          <label for="nombre">Producto:</label>
+          <label for="nombre">Cliente:</label>
           <input type="text" id="nombre" name="nombre" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required
             title="Por favor, ingresa solo letras">
           <div id="nombreError" class="error-message"></div><br>
-
-          <label for="recibo">#recibo:</label>
-          <input type="text" id="recibo" name="recibo" readonly>
-          <br><br>
-
-          <script>
-            // Generar un número de recibo único
-            var numeroRecibo = generarNumeroRecibo();
-
-            // Asignar el número de recibo al campo de entrada
-            document.getElementById("recibo").value = numeroRecibo;
-
-            // Desactivar la edición del campo de entrada
-            document.getElementById("recibo").readOnly = true;
-
-            // Función para generar un número de recibo único (puedes personalizar esta función según tus necesidades)
-            function generarNumeroRecibo() {
-              // Aquí puedes implementar la lógica para generar un número de recibo único,
-              // por ejemplo, puedes concatenar la fecha actual con un número aleatorio.
-              var fecha = new Date();
-              var numeroAleatorio = Math.floor(Math.random() * 10000);
-              var numeroRecibo = fecha.getFullYear() + "" + (fecha.getMonth() + 1) + "" + fecha.getDate() + "-" + numeroAleatorio;
-              return numeroRecibo;
-            }
-          </script>
+          <form id="registrationForm" onsubmit="registrarPedido(event)">
+            <label for="nombre">Producto:</label>
+            <select id="nombre" name="nombre" required>
+              <option value="" disabled selected>Seleccione un producto</option>
+              <option value="camisa">Camisa</option>
+              <option value="locion">Loción</option>
+              <option value="shampoo">Shampoo</option>
+              <option value="manilla">Manilla</option>
+              <option value="gorra">Gorra</option>
+            </select>
+            <div id="nombreError" class="error-message"></div><br>
+            <label for="monto">Cantidad:</label>
+            <input type="number" id="monto" name="monto" required>
+            <div id="montoError" class="error-message"></div><br>
 
 
-          <label for="monto">Monto total:</label>
-          <input type="number" id="monto" name="monto" required>
-          <div id="montoError" class="error-message"></div><br>
+            <label for="recibo">#recibo:</label>
+            <input type="text" id="recibo" name="recibo" readonly>
+            <br><br>
 
-          <label for="fechaPedido">Fecha de pedido:</label>
-          <input type="date" id="fechaPedido" name="fechaPedido" required>
-          <div id="fechaPedidoError" class="error-message"></div><br>
+            <script>
+              // Generar un número de recibo único
+              var numeroRecibo = generarNumeroRecibo();
 
-          <label for="fechaPago">Fecha de finalización de pago:</label>
-          <input type="date" id="fechaPago" name="fechaPago" required>
-          <div id="fechaPagoError" class="error-message"></div><br>
+              // Asignar el número de recibo al campo de entrada
+              document.getElementById("recibo").value = numeroRecibo;
 
-          <label for="estado">Estado:</label>
-          <select id="estado" name="estado" required>
-            <option value="" disabled selected>Selecciona un estado</option>
-            <option value="Finalizado">Finalizado</option>
-            <option value="No pago">No pago</option>
-            <option value="En proceso">En proceso</option>
-          </select>
-          <div id="estadoError" class="error-message"></div><br>
+              // Desactivar la edición del campo de entrada
+              document.getElementById("recibo").readOnly = true;
 
-          <button type="submit" class="register-btn">Registrar</button>
-        </form>
+              // Función para generar un número de recibo único (puedes personalizar esta función según tus necesidades)
+              function generarNumeroRecibo() {
+                // Aquí puedes implementar la lógica para generar un número de recibo único,
+                // por ejemplo, puedes concatenar la fecha actual con un número aleatorio.
+                var fecha = new Date();
+                var numeroAleatorio = Math.floor(Math.random() * 10000);
+                var numeroRecibo = fecha.getFullYear() + "" + (fecha.getMonth() + 1) + "" + fecha.getDate() + "-" + numeroAleatorio;
+                return numeroRecibo;
+              }
+            </script>
+
+
+            <label for="monto">Monto total:</label>
+            <input type="number" id="monto" name="monto" required>
+            <div id="montoError" class="error-message"></div><br>
+
+            <label for="fechaPedido">Fecha de pedido:</label>
+            <input type="date" id="fechaPedido" name="fechaPedido" required>
+            <div id="fechaPedidoError" class="error-message"></div><br>
+
+            <label for="fechaPago">Fecha de finalización de pago:</label>
+            <input type="date" id="fechaPago" name="fechaPago" required>
+            <div id="fechaPagoError" class="error-message"></div><br>
+
+            <label for="estado">Estado:</label>
+            <select id="estado" name="estado" required>
+              <option value="" disabled selected>Selecciona un estado</option>
+              <option value="Finalizado">Finalizado</option>
+              <option value="No pago">No pago</option>
+              <option value="En proceso">En proceso</option>
+            </select>
+            <div id="estadoError" class="error-message"></div><br>
+
+            <button type="submit" class="register-btn">Registrar</button>
+          </form>
       </div>
     </div>
 
@@ -352,9 +393,9 @@
               <tr>
                 <th>Nombre</th>
                 <th>#Recibo</th>
-                <th>Monto total</th>
                 <th>Fecha-pedido</th>
                 <th>Fecha-pago</th>
+                <th>Monto total</th>
                 <th>Estado</th>
 
                 <th></th>
@@ -363,11 +404,11 @@
             <tbody>
               <tr>
                 <td>Steven Villamizar </td>
-                <td>Camisas</td>
-                <td>Stevenvilla10@gmail.com</td>
-                <td>301177595</td>
-                <td>301177595</td>
-                <td>301177595</td>
+                <td>20240328-7892</td>
+                <td>2024-04-10</td>
+                <td>2024-04-12</td>
+                <td>50.000</td>
+                <td>Finzalizado</td>
                 <td>
                   <button class="Btn-shadow" data-toggle="modal"
                     style="margin-left: 15px;margin-bottom: 15px; float: inline-start;">
@@ -408,11 +449,11 @@
               </tr>
               <tr>
                 <td>Joel tuirango</td>
-                <td>Lociones</td>
-                <td>Joel78@gmail.com</td>
-                <td>3014175589</td>
-                <td>301177595</td>
-                <td>301177595</td>
+                <td>20240401-4521</td>
+                <td>2024-04-15</td>
+                <td>2024-04-18</td>
+                <td>40.000</td>
+                <td>En proceso</td>
                 <td>
                   <button class="Btn-shadow" data-toggle="modal"
                     style="margin-left: 15px;margin-bottom: 15px; float: inline-start;">
@@ -454,11 +495,11 @@
               </tr>
               <tr>
                 <td>Isaias burgos</td>
-                <td>Gorras</td>
-                <td>Isaias406@gmail.com</td>
-                <td>Activo</td>
-                <td>301177595</td>
-                <td>301177595</td>
+                <td>20240405-1234</td>
+                <td>2024-04-20</td>
+                <td>2024-04-22</td>
+                <td>20.000</td>
+                <td>No pago</td>
                 <td>
                   <button class="Btn-shadow" data-toggle="modal"
                     style="margin-left: 15px;margin-bottom: 15px; float: inline-start;">
@@ -499,12 +540,12 @@
               </tr>
               <tr>
                 <td>Jhojan sanchez castrillon</td>
-                <td>sanchezpp@gmail.com</td>
-                <td>34217828</td>
-                <td>Inactivo</td>
-                <td>301177595</td>
-                <td>301177595</td>
-                
+                <td>20240410-9876</td>
+                <td>2024-04-20</td>
+                <td>2024-04-26</td>
+                <td>100.000</td>
+                <td>Finzalizado</td>
+
                 <td>
                   <button class="Btn-shadow" data-toggle="modal"
                     style="margin-left: 15px;margin-bottom: 15px; float: inline-start;">
@@ -530,6 +571,7 @@
                     function mostrarAlerta() {
                       swal("Proveedor eliminado correctamente.", {
                         icon: "success",
+                        timer: 1500
                       });
                     }
                   </script>
@@ -584,100 +626,178 @@
               <thead>
                 <tr>
                   <th>Nombre del cliente</th>
-                  <th>Fecha</th>
+                  <th>Fecha pedido</th>
+                  <td>Fecha pago</td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Jhojan sanchez</td>
                   <td>31/02/2024</td>
+                  <td>20/03/2024</td>
                 </tr>
               </tbody>
+
             </table>
           </div>
         </div>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#trackerModal">
+        <button type="button" class="btn btn-success" id="addProductBtn">
           <i class="fa-light fa-plus"></i>+
         </button>
-      </div>
-      <!-- modal uno ver -->
-      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">
+
+        <div id="productForm" style="display: none;">
+          <h2>Agregar Producto</h2>
+          <form>
+            <label for="productType">Tipo de Producto:</label>
+            <select id="productType" name="productType">
+              <option value="camisa">Camisa</option>
+              <option value="locion">Loción</option>
+              <option value="cera">Cera</option>
+              <option value="gomina">Gomina</option>
+              <option value="manilla">Manilla</option>
+            </select>
+            <br><br>
+            <!-- Agrega aquí los demás campos del formulario para agregar un producto -->
+
+            <div id="productForm">
+              <h2></h2>
+              <form>
+                <!-- Aquí van los campos del formulario -->
+                <button type="submit" class="btn-primary">Agregar</button>
+              </form>
+            </div>
+
+            <!-- JavaScript para manejar el evento de clic en el botón -->
+            <script>
+              document.getElementById("productForm").addEventListener("submit", function (event) {
+                event.preventDefault(); // Evitar que el formulario se envíe
+
+                // Mostrar la alerta de "Producto agregado correctamente" usando SweetAlert
+                Swal.fire({
+                  icon: 'success',
+                  title: '¡Producto agregado!',
+                  text: 'El producto se ha agregado correctamente.'
+                });
+              });
+            </script>
+
+            <script>
+              const addProductBtn = document.getElementById("addProductBtn");
+              const productForm = document.getElementById("productForm");
+
+              addProductBtn.addEventListener("click", function () {
+                if (productForm.style.display === "none") {
+                  productForm.style.display = "block";
+                } else {
+                  productForm.style.display = "none";
+                }
+              });
+            </script>
+
+        </div>
+        <!-- modal uno ver -->
+        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">
                   Launch demo modal
                 </button> -->
-      <!-- /.card-header -->
-      <div class="container border border-dark-3 pt-4">
-        <div class="row">
-          <div class="col">
-            <table class="table table-striped table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th>Producto</th>
-                  <th>Cantidad</th>
-                  <th>Precio</th>
-                  <th>Precio-iva</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Ratón</td>
-                  <td>15</td>
-                  <td>100</td>
-                  <td>100</td>
-                  <td>
-                    <button type="button" class="btn-danger" data-toggle="modal" data-target="#alert-eliminar"
-                      onclick="eliminarPedido()">Eliminar</button>
+        <!-- /.card-header -->
+        <div class="container border border-dark-3 pt-4">
+          <div class="row">
+            <div class="col">
+              <table class="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Iva</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Camisa</td>
+                    <td>15</td>
+                    <td>100</td>
+                    <td>16%</td>
+                    <td>116</td>
+                    <td>
+                      <button class="Btn-delete" data-toggle="modal"
+                        style="margin-left: 15px; margin-bottom: 15px; float: inline-start;" onclick="mostrarAlerta()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon" height="10" width="8.75"
+                          viewBox="0 0 448 512">
+                          <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                          <path fill="#1e3050"
+                            d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                        </svg>
+                      </button>
 
-                    <!-- Script para la función de eliminación del pedido -->
-                    <script>
-                      function eliminarPedido() {
-                        // Mostrar una alerta de SweetAlert
-                        Swal.fire({
-                          icon: 'success',
-                          title: 'Pedido Eliminado',
-                          text: 'Se ha eliminado el pedido correctamente',
-                          confirmButtonText: 'Aceptar'
-                        });
-                      }
-                    </script>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Teclado</td>
-                  <td>34</td>
-                  <td>340</td>
-                  <td>100</td>
-                  <td>
-                    <button type="button" class="btn-danger" data-toggle="modal" data-target="#alert-eliminar"
-                      onclick="eliminarPedido()">Eliminar</button>
+                      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-                    <!-- Script para la función de eliminación del pedido -->
-                    <script>
-                      function eliminarPedido() {
-                        // Mostrar una alerta de SweetAlert
-                        Swal.fire({
-                          icon: 'success',
-                          title: 'Pedido Eliminado',
-                          text: 'Se ha eliminado el pedido correctamente',
-                          confirmButtonText: 'Aceptar'
-                        });
-                      }
-                    </script>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                      <script>
+                        function mostrarAlerta() {
+                          swal("Producto eliminado correctamente.", {
+                            icon: "success",
+                            timer: 1500
+                          });
+                        }
+                      </script>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Cera</td>
+                    <td>34</td>
+                    <td>340</td>
+                    <td>16%</td>
+                    <td>394.4</td>
+                    <td>
+                      <button class="Btn-delete" data-toggle="modal"
+                        style="margin-left: 15px; margin-bottom: 15px; float: inline-start;" onclick="mostrarAlerta()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon" height="10" width="8.75"
+                          viewBox="0 0 448 512">
+                          <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                          <path fill="#1e3050"
+                            d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                        </svg>
+                      </button>
+
+                      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+                      <script>
+                        function mostrarAlerta() {
+                          swal("Producto eliminado correctamente.", {
+                            icon: "success",
+                            timer: 1500
+                          });
+                        }
+                      </script>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="mb-3 mt-3">
-        <h6 class="MontoTotalTitle" style="float: inline-start;">Monto Total: 200.000</h6>
+        <div class="mb-3 mt-3">
+          <h6 class="MontoTotalTitle" style="float: inline-start;">Monto Total: 510.000</h6>
+          <a type="button" class="btn btn-success" style="float: inline-end;" onclick="guardarPedido()">
+            <i class="fa-light fa-plus"></i>Guardar
+          </a>
 
-        <a type="button" class="btn btn-success" style="float: inline-end;" href="/pedidosDetalle">
-          <i class="fa-light fa-plus"></i>Save
-        </a>
+          <!-- Script para la función de guardar el pedido -->
+          <script>
+            function guardarPedido() {
+              // Mostrar una alerta de SweetAlert
+              Swal.fire({
+                icon: 'success',
+                title: 'Guardado Correctamente',
+                text: 'El pedido se ha guardado correctamente',
+                confirmButtonText: 'Aceptar'
+              });
+            }
+          </script>
+        </div>
       </div>
-    </div>
     </div>
     <!-- Bootstrap JS, jQuery, y Popper.js -->
     <script>

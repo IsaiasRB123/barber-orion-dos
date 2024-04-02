@@ -204,8 +204,8 @@ body, html{
 	outline: none;
 }
 .dashboard-sideBar-Menu > li > ul > li > a:hover{
-	border-left: 3px solid #FF5722;
-	color: #FF5722;
+	border-left: 3px solid #113a92;
+	color: #599eaf;
 }
 /*contentPage*/
 .dashboard-contentPage{

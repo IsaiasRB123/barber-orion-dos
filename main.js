@@ -54,6 +54,14 @@ app.get('/ClientesForm', (req, res) => {
   res.render('forms/ClientesForm');
 });
 
+app.get('/ClientesUpdate', (req, res) => {
+  res.render('forms/ClientesUpdate');
+});
+
+app.get('/ClientesShadow', (req, res) => {
+  res.render('forms/ClientesShadow');
+});
+
 app.get('/Compras', (req, res) => {
   res.render('Compras');
 });

@@ -98,6 +98,17 @@ app.get('/ClientesShadow', (req, res) => {
 app.get('/Compras', (req, res) => {
   res.render('Compras');
 });
+app.get('/ComprasForm', (req, res) => {
+  res.render('forms/ComprasForm');
+});
+
+app.get('/ComprasUpdate', (req, res) => {
+  res.render('forms/ComprasUpdate');
+});
+
+app.get('/ComprasShadow', (req, res) => {
+  res.render('forms/ComprasShadow');
+});
 
 app.get('/ComprasProductos', (req, res) => {
   res.render('ComprasProductos');

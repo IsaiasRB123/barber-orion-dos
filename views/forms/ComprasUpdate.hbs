@@ -34,24 +34,43 @@
         </nav>
         <!-- form -->
         <div class="container" style="margin-top: 60px;">
-            <div class="row justify-content-center">
-                <div class="col-md-6 ">
-                    <section class="container-form">
-                        <form class="form-admin" action="#" id="formulario">
-                            <header>Shadow cliente</header>
-                            <h5>Nombre</h5>
-                            <p>Jhojan sanchez Arango</p>
-                            <h5>Telefono</h5>
-                            <p>49322934</p>
-                            <h5>Correo</h5>
-                            <p>janjhooarango@gmail.com</p>
-                            <a type="button" href="/Compras"
-                                style="text-decoration:none;text-align:center;margin-left:145px;position:absolute;padding-top:8px">Cerrar</a>
-                        </form>
-                    </section>
-                </div>
-            </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6 ">
+            <section class="container-form">
+                <header>Update Compra</header>
+                <form class="form-admin" action="#" id="formulario">
+                    <div class="input-box" id="grupo__proveedor">
+                        <label>Proveedor</label>
+                        <input type="text" name="proveedor" id="proveedor">
+                        <p class="formulario__input-error">No se permite símbolos o números en este campo</p>
+                    </div>
+                    <div class="input-box" id="grupo__fecha">
+                        <label>Fecha</label>
+                        <input type="date" name="fecha" id="fecha">
+                        <p class="formulario__input-error">Por favor, introduce una fecha válida</p>
+                    </div>
+                    <div class="input-box" id="grupo__estado">
+                        <label>Estado</label>
+                        <select name="estado" id="estado">
+                            <option value="pendiente">Pendiente</option>
+                            <option value="aprobado">Aprobado</option>
+                            <option value="rechazado">Rechazado</option>
+                        </select>
+                        <p class="formulario__input-error">Selecciona un estado válido</p>
+                    </div>
+                    <div class="input-box" id="grupo__total">
+                        <label>Total</label>
+                        <input type="number" name="total" id="total" min="0" step="0.01">
+                        <p class="formulario__input-error">Ingresa un total válido</p>
+                    </div>
+                    <button type="submit">Actualizar</button>
+                    <a type="button" href="/Compras" style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
+                </form>
+            </section>
         </div>
+    </div>
+</div>
+
         <!-- Bootstrap JS, jQuery, y Popper.js -->
         <script>
             $.material.init();

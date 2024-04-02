@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #cacaca;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+.pass{
+    font-size: 1.5rem;
+    width: 400px;
+    padding: 10px 5px;
+}
+
+.bx{
+    font-size: 30px;
+    transform: translateX(-35px);
+    cursor: pointer;
+}

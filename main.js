@@ -121,52 +121,59 @@ app.get('/ClientesShadow', (req, res) => {
   res.render('forms/clientes/ClientesShadow');
 });
 
+//compras
 app.get('/Compras', (req, res) => {
   res.render('Compras');
 });
 app.get('/ComprasForm', (req, res) => {
-  res.render('forms/ComprasForm');
+  res.render('forms/Compras/ComprasForm');
 });
 
-app.get('/ComprasShadow', (req, res) => {
-  res.render('forms/ComprasShadow');
+app.get('/ComprasV', (req, res) => {
+  res.render('forms/Compras/ComprasV');
 });
 
 app.get('/ComprasProductos', (req, res) => {
   res.render('ComprasProductos');
 });
+//fin compras
 
+//Empleados
 app.get('/Empleados', (req, res) => {
   res.render('Empleados');
 });
 
 app.get('/EmpleadosForm', (req, res) => {
-  res.render('forms/EmpleadosForm');
+  res.render('forms/Empleados/EmpleadosForm');
 });
 
 app.get('/EmpleadosMod', (req, res) => {
-  res.render('forms/EmpleadosMod');
+  res.render('forms/Empleados/EmpleadosMod');
 });
 
 app.get('/EmpleadosVer', (req, res) => {
-  res.render('forms/EmpleadosVer');
+  res.render('forms/Empleados/EmpleadosVer');
 });
 
+//fin empleados
+
+//progrmacion
 app.get('/Horario', (req, res) => {
   res.render('Horario');
 });
 
 app.get('/ProgramFor', (req, res) => {
-  res.render('forms/ProgramFor');
+  res.render('forms/Programacion/ProgramFor');
 });
 
 app.get('/ProgramarAct', (req, res) => {
-  res.render('forms/ProgramarAct');
+  res.render('forms/Programacion/ProgramarAct');
 });
 
 app.get('/ProgramarVis', (req, res) => {
-  res.render('forms/ProgramarVis');
+  res.render('forms/Programacion/ProgramarVis');
 });
+//fin progreamacion
 
 app.get('/pedidos', (req, res) => {
   res.render('pedidos');

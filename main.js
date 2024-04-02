@@ -120,8 +120,32 @@ app.get('/Empleados', (req, res) => {
   res.render('Empleados');
 });
 
+app.get('/EmpleadosForm', (req, res) => {
+  res.render('forms/EmpleadosForm');
+});
+
+app.get('/EmpleadosMod', (req, res) => {
+  res.render('forms/EmpleadosMod');
+});
+
+app.get('/EmpleadosVer', (req, res) => {
+  res.render('forms/EmpleadosVer');
+});
+
 app.get('/Horario', (req, res) => {
   res.render('Horario');
+});
+
+app.get('/ProgramFor', (req, res) => {
+  res.render('forms/ProgramFor');
+});
+
+app.get('/ProgramarAct', (req, res) => {
+  res.render('forms/ProgramarAct');
+});
+
+app.get('/ProgramarVis', (req, res) => {
+  res.render('forms/ProgramarVis');
 });
 
 app.get('/pedidos', (req, res) => {

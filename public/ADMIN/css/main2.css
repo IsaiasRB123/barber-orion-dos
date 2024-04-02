@@ -89,7 +89,7 @@ body, html{
 .dashboard-sideBar{
 	left: 0;
 	z-index: 2;
-	background-color: #000;
+	background-color: #000000;
 	border-right: 1px solid rgba(255, 255, 255, .4);
 	overflow: hidden;
 }
@@ -125,11 +125,10 @@ body, html{
 	padding: 20px 0;
 }
 .dashboard-sideBar-UserInfo figure img{
-	width: 100px;
-	height: 100px;
+	width: 50px;
+	height: 50px;
 	border-radius: 100%;
 	display: block;
-	margin: 0 auto;
 }
 .dashboard-sideBar-UserInfo ul{
 	margin-top: 15px;

@@ -26,6 +26,10 @@ app.get('/Roles', (req, res) => {
   res.render('Roles');
 });
 
+app.get('/RolesModificar', (req, res) => {
+  res.render('RolesModificar');
+});
+
 app.get('/Usuarios', (req, res) => {
   res.render('Usuarios');
 });
@@ -40,6 +44,10 @@ app.get('/Categorias', (req, res) => {
 
 app.get('/Citas', (req, res) => {
   res.render('Citas');
+});
+
+app.get('/CitasModificar', (req, res) => {
+  res.render('CitasModificar');
 });
 
 app.get('/graficas', (req, res) => {

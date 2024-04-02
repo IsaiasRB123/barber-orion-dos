@@ -172,68 +172,77 @@
                             $120.000,00
                         </span>
                     </div>
-                    <button class="btn-pagar">Pagar <i class="fa-solid
+                    <button class="btn-pagar">Hacer pedido <i class="fa-solid
 fa-bag-shopping"></i> </button>
                 </div>
             </div>
         </section>
-       <script>
-        // Filtrado por nombre del producto
-        document.getElementById('filtro').addEventListener('input', function() {
-            let filtro = this.value.toLowerCase();
-            let items = document.querySelectorAll('.contenedor-items .item');
-            items.forEach(function(item) {
-                let titulo = item.querySelector('.titulo-item').textContent.toLowerCase();
-                if (titulo.includes(filtro)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const filtroInput = document.getElementById('filtro');
+            const filtroSelect = document.querySelectorAll('#filtroSelect .dropdown-item');
 
-        // Filtrado por opciones de selección
-        document.querySelectorAll('#filtroSelect .dropdown-item').forEach(function(item) {
-            item.addEventListener('click', function() {
-                let filtro = this.getAttribute('value');
-                let items = document.querySelectorAll('.contenedor-items .item');
-                items.forEach(function(item) {
-                    item.style.display = 'block';
+            filtroInput.addEventListener('input', function () {
+                const filtro = this.value.toLowerCase();
+                const items = document.querySelectorAll('.contenedor-items .item');
+                items.forEach(function (item) {
+                    const titulo = item.querySelector('.titulo-item').textContent.toLowerCase();
+                    if (titulo.includes(filtro)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
                 });
-                if (filtro === 'menorPrecio') {
-                    // Ordenar por menor precio
-                    let sortedItems = Array.from(items).sort(function(a, b) {
-                        let precioA = parseFloat(a.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
-                        let precioB = parseFloat(b.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
-                        return precioA - precioB;
-                    });
-                    sortedItems.forEach(function(item) {
-                        document.querySelector('.contenedor-items').appendChild(item);
-                    });
-                } else if (filtro === 'mayorPrecio') {
-                    // Ordenar por mayor precio
-                    let sortedItems = Array.from(items).sort(function(a, b) {
-                        let precioA = parseFloat(a.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
-                        let precioB = parseFloat(b.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
-                        return precioB - precioA;
-                    });
-                    sortedItems.forEach(function(item) {
-                        document.querySelector('.contenedor-items').appendChild(item);
-                    });
-                } else if (filtro === 'ordenAlfabetico') {
-                    // Ordenar alfabéticamente
-                    let sortedItems = Array.from(items).sort(function(a, b) {
-                        let tituloA = a.querySelector('.titulo-item').textContent.toLowerCase();
-                        let tituloB = b.querySelector('.titulo-item').textContent.toLowerCase();
-                        if (tituloA < tituloB) return -1;
-                        if (tituloA > tituloB) return 1;
-                        return 0;
-                    });
-                    sortedItems.forEach(function(item) {
-                        document.querySelector('.contenedor-items').appendChild(item);
-                    });
-                }
             });
+
+            filtroSelect.forEach(function (item) {
+                item.addEventListener('click', function () {
+                    const filtro = this.getAttribute('value');
+                    const items = document.querySelectorAll('.contenedor-items .item');
+                    items.forEach(function (item) {
+                        item.style.display = 'block';
+                    });
+                    if (filtro === 'menorPrecio') {
+                        ordenarPorPrecio('menor');
+                    } else if (filtro === 'mayorPrecio') {
+                        ordenarPorPrecio('mayor');
+                    } else if (filtro === 'ordenAlfabetico') {
+                        ordenarAlfabeticamente();
+                    }
+                });
+            });
+
+            function ordenarPorPrecio(orden) {
+                const items = document.querySelectorAll('.contenedor-items .item');
+                const sortedItems = Array.from(items).sort(function (a, b) {
+                    const precioA = parseFloat(a.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
+                    const precioB = parseFloat(b.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
+                    if (orden === 'menor') {
+                        return precioA - precioB;
+                    } else {
+                        return precioB - precioA;
+                    }
+                });
+                const contenedor = document.querySelector('.contenedor-items');
+                contenedor.innerHTML = '';
+                sortedItems.forEach(function (item) {
+                    contenedor.appendChild(item);
+                });
+            }
+
+            function ordenarAlfabeticamente() {
+                const items = document.querySelectorAll('.contenedor-items .item');
+                const sortedItems = Array.from(items).sort(function (a, b) {
+                    const tituloA = a.querySelector('.titulo-item').textContent.toLowerCase();
+                    const tituloB = b.querySelector('.titulo-item').textContent.toLowerCase();
+                    return tituloA.localeCompare(tituloB);
+                });
+                const contenedor = document.querySelector('.contenedor-items');
+                contenedor.innerHTML = '';
+                sortedItems.forEach(function (item) {
+                    contenedor.appendChild(item);
+                });
+            }
         });
     </script>
     </main>

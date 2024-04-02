@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+{{> head}}
+
+<body>
+    <!-- SideBar -->
+    {{> sidebar}}
+
+    <!-- Content page-->
+    <section class="full-box dashboard-contentPage">
+        <!-- NavBar -->
+        <nav class="full-box dashboard-Navbar">
+            <ul class="full-box list-unstyled text-right">
+                <li class="pull-left">
+                    <a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+                </li>
+                <li>
+                    <a href="#!" class="btn-Notifications-area">
+                        <i class="zmdi zmdi-notifications-none"></i>
+                        <span class="badge">7</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#!" class="btn-search">
+                        <i class="zmdi zmdi-search"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#!" class="btn-modal-help">
+                        <i class="zmdi zmdi-help-outline"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- form -->
+        <div class="container" style="margin-top: 60px;">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <section class="container-form">
+                        <header>Actualizar programacion empleado</header>
+                        <form class="form-admin" action="#" id="formulario">
+                             <div class="select-box">
+                                        <select value="Rol">
+                                            <option hidden="">Empleado</option>
+                                            <option>Rasta</option>
+                                            <option>Alfre</option>
+                                        </select>
+                                    </div>
+                            <div class="input-box">
+                                <label>Hora Inicio</label>
+                                <input type="time" name="hora_inicio" id="hora_inicio">
+                            </div>
+                            <div class="input-box">
+                                <label>Hora Fin</label>
+                                <input type="time" name="hora_fin" id="hora_fin">
+                            </div>
+                             <div class="select-box">
+                                        <select value="Mes">
+                                            <option hidden="">Mes</option>
+                                            <option>Enero</option>
+                                            <option>Febrero</option>
+                                            <option>Marzo</option>
+                                            <option>Abril</option>
+                                            <option>Mayo</option>
+                                            <option>Junio</option>
+                                            <option>Julio</option>
+                                            <option>Agosto</option>
+                                            <option>Septiembre</option>
+                                            <option>Agosto</option>
+                                            <option>Octubre</option>
+                                            <option>Noviembre</option>
+                                            <option>Diciembre</option>
+                                        </select>
+                                    </div>
+                            <div class="select-box">
+                                        <select value="Rol">
+                                            <option hidden="">Estado</option>
+                                            <option>Activo</option>
+                                            <option>Inactivo</option>
+                                        </select>
+                                    </div>
+                            <button type="submit">Actualizar</button>
+                            <a type="button" href="/Horario" style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS, jQuery, y Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
+
+    <!-- Tu JavaScript personalizado -->
+    <script src="../../public/ADMIN/js/usuarioDas.js"></script>
+</body>
+</html>

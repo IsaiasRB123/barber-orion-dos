@@ -34,47 +34,28 @@
         </nav>
         <!-- form -->
         <div class="container" style="margin-top: 60px;">
-    <div class="row justify-content-center">
-        <div class="col-md-6 ">
-            <section class="container-form">
-                <header>Registrar Compra</header>
-                <form class="form-admin" action="#" id="formulario">
-                    <div class="select-box">
-                        
-                                        <select>
-                                            <option hidden="">Proveedores</option>
-                                            <option>Adidas</option>
-                                            <option>Nike</option>
-                                            <option>Rolex</option>
-                                            <option>Tommy</option>
-                                        </select>
-                                    </div>
-                    <div class="input-box" id="grupo__fecha">
-                        <label>Fecha</label>
-                        <input type="date" name="fecha" id="fecha">
-                        <p class="formulario__input-error">Por favor, introduce una fecha válida</p>
-                    </div>
-                    <div class="select-box">
-                                        <select value="Estado">
-                                            <option hidden="">Estado</option>
-                                            <option>Pendiente</option>
-                                            <option>Realizada</option>
-                                            <option>En proceso</option>
-                                        </select>
-                                    </div>
-                    <div class="input-box" id="grupo__total">
-                        <label>Total</label>
-                        <input type="number" name="total" id="total" min="0" step="0.01">
-                        <p class="formulario__input-error">Ingresa un total válido</p>
-                    </div>
-                    <button type="submit">Registrar</button>
-                    <a type="button" href="/Compras" style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
-                </form>
-            </section>
+            <div class="row justify-content-center">
+                <div class="col-md-6 ">
+                    <section class="container-form">
+                        <form class="form-admin" action="#" id="formulario">
+                            <header>Ver programacion empleados</header>
+                            <h5>Empleado</h5>
+                            <p>Rasta</p>
+                            <h5>Mes</h5>
+                            <p>Abril</p>
+                            <h5>Hora inicio</h5>
+                            <p>08:00 AM</p>
+                            <h5>Hora Fin</h5>
+                            <p>08:00 PM</p>
+                            <h5>Estado</h5>
+                            <p>Activo</p>
+                            <a type="button" href="/Horario"
+                                style="text-decoration:none;text-align:center;margin-left:145px;position:absolute;padding-top:8px">Cerrar</a>
+                        </form>
+                    </section>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
         <!-- Bootstrap JS, jQuery, y Popper.js -->
         <script>
             $.material.init();

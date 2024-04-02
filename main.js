@@ -14,6 +14,8 @@ hbs.registerPartials(__dirname + '/views/admin');
 app.use(express.static('public'));
 app.use(express.static('public/ADMIN'));
 
+
+// admin
 app.get('/admin', (req, res) => {
   res.render('home');
 });
@@ -22,6 +24,8 @@ app.get('/admin2', (req, res) => {
   res.render('admin');
 });
 
+
+// roles
 app.get('/Roles', (req, res) => {
   res.render('Roles');
 });
@@ -38,6 +42,8 @@ app.get('/RolesVer', (req, res) => {
   res.render('forms/RolesVer');
 });
 
+
+// Usuarios
 
 app.get('/Usuarios', (req, res) => {
   res.render('Usuarios');
@@ -83,16 +89,16 @@ app.get('/Clientes', (req, res) => {
   res.render('Clientes');
 });
 
-app.get('/ClientesForm', (req, res) => {
-  res.render('forms/ClientesForm');
+app.get('/ClientesUpdate', (req, res) => {
+  res.render('forms/clientes/ClientesUpdate');
 });
 
-app.get('/ClientesUpdate', (req, res) => {
-  res.render('forms/ClientesUpdate');
+app.get('/ClientesForm', (req, res) => {
+  res.render('forms/clientes/ClientesForm');
 });
 
 app.get('/ClientesShadow', (req, res) => {
-  res.render('forms/ClientesShadow');
+  res.render('forms/clientes/ClientesShadow');
 });
 
 app.get('/Compras', (req, res) => {
@@ -100,10 +106,6 @@ app.get('/Compras', (req, res) => {
 });
 app.get('/ComprasForm', (req, res) => {
   res.render('forms/ComprasForm');
-});
-
-app.get('/ComprasUpdate', (req, res) => {
-  res.render('forms/ComprasUpdate');
 });
 
 app.get('/ComprasShadow', (req, res) => {
@@ -146,6 +148,11 @@ app.get('/ServiciosA', (req, res) => {
   res.render('ServiciosA');
 });
 
+app.get('/ServiciosRegister', (req, res) => {
+  res.render('forms/servicios/serviciosRegister');
+});
+
+
 app.get('/Usuarios', (req, res) => {
   res.render('Usuarios');
 });
@@ -169,7 +176,6 @@ app.get('/', (req, res) => {
 app.get('/servicios', (req, res) => {
   res.render('servicios');
 });
-
 
 app.get('/productos', (req, res) => {
   res.render('productos');

@@ -27,15 +27,32 @@ app.get('/Roles', (req, res) => {
 });
 
 app.get('/RolesModificar', (req, res) => {
-  res.render('RolesModificar');
+  res.render('forms/RolesModificar');
 });
+
+app.get('/RolesRegistrar', (req, res) => {
+  res.render('forms/RolesRegistrar');
+});
+
+app.get('/RolesVer', (req, res) => {
+  res.render('forms/RolesVer');
+});
+
 
 app.get('/Usuarios', (req, res) => {
   res.render('Usuarios');
 });
 
-app.get('/usuarioDas', (req, res) => {
-  res.render('usuarioDas');
+app.get('/UsuariosVer', (req, res) => {
+  res.render('forms/UsuariosVer');
+});
+
+app.get('/UsuariosModificar', (req, res) => {
+  res.render('forms/UsuariosModificar');
+});
+
+app.get('/UsuariosRegistrar', (req, res) => {
+  res.render('forms/UsuariosRegistrar');
 });
 
 app.get('/Categorias', (req, res) => {
@@ -46,8 +63,16 @@ app.get('/Citas', (req, res) => {
   res.render('Citas');
 });
 
+app.get('/CitasVer', (req, res) => {
+  res.render('forms/CitasVer');
+});
+
 app.get('/CitasModificar', (req, res) => {
-  res.render('CitasModificar');
+  res.render('forms/CitasModificar');
+});
+
+app.get('/CitasRegistrar', (req, res) => {
+  res.render('forms/CitasRegistrar');
 });
 
 app.get('/graficas', (req, res) => {

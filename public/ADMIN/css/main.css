@@ -48,7 +48,7 @@ body, html{
 .full-box{
 	margin: 0;
 	padding: 0;
-	width: 100%;
+	width: 50%;
 	box-sizing: border-box;
 }
 .cover{
@@ -92,7 +92,7 @@ body, html{
 .dashboard-sideBar{
 	left: 0;
 	z-index: 2;
-	background-color: #000;
+	background-color: #0c0b46;
 	border-right: 1px solid rgba(255, 255, 255, .4);
 	overflow: hidden;
 }
@@ -128,8 +128,8 @@ body, html{
 	padding: 20px 0;
 }
 .dashboard-sideBar-UserInfo figure img{
-	width: 100px;
-	height: 100px;
+	width: 50px;
+	height: 50px;
 	border-radius: 100%;
 	display: block;
 	margin: 0 auto;
@@ -139,7 +139,7 @@ body, html{
 }
 .dashboard-sideBar-UserInfo ul > li,
 .dashboard-sideBar-UserInfo ul > li > a{
-	display: inline-block;
+	display: inline;
 	color: #fff;
 }
 .dashboard-sideBar-UserInfo ul > li > a{
@@ -149,7 +149,7 @@ body, html{
 	transition: all .3s ease-in-out;
 }
 .dashboard-sideBar-UserInfo ul > li > a:hover{
-	color: #FF5722;
+	color: #0004ff;
 }
 .dashboard-sideBar-Menu{
 	padding-top: 15px;
@@ -847,4 +847,218 @@ body, html{
   
   .svgIcon path {
 	fill: white;
+  }
+
+    /*form-admin*/
+
+  .container-form {
+	position: relative;
+	max-width: 500px;
+	width: 100%;
+	background: #ffffff;
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container-form header {
+	font-size: 1.2rem;
+	color: #000;
+	font-weight: 600;
+	text-align: center;
+  }
+  
+  .container-form .form-admin {
+	margin-top: 15px;
+  }
+  
+  .form-admin .input-box {
+	width: 100%;
+	margin-top: 10px;
+  }
+  
+  .input-box label {
+	color: #000;
+  }
+  
+  .form-admin :where(.input-box input, .select-box) {
+	position: relative;
+	height: 35px;
+	width: 100%;
+	outline: none;
+	font-size: 1rem;
+	color: #000000;
+	margin-top: 5px;
+	border: 1px solid #1900ff;
+	border-radius: 6px;
+	padding: 0 15px;
+	background: #ffffff;
+  }
+  
+  .input-box input:focus {
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-admin .column-form {
+	display: flex;
+	column-gap: 15px;
+  }
+  
+  .form-admin .gender-box {
+	margin-top: 10px;
+  }
+  
+  .form-admin :where(.gender-option, .gender) {
+	display: flex;
+	align-items: center;
+	column-gap: 50px;
+	flex-wrap: wrap;
+  }
+  
+  .form-admin .gender {
+	column-gap: 5px;
+  }
+  
+  .gender input {
+	accent-color: #1900ff;
+  }
+  
+  .form-admin :where(.gender input, .gender label) {
+	cursor: pointer;
+  }
+  
+  .gender label {
+	color: #000;
+  }
+  
+  .address :where(input, .select-box) {
+	margin-top: 10px;
+  }
+  
+  .select-box select {
+	height: 100%;
+	width: 100%;
+	outline: none;
+	border: none;
+	color: #808080;
+	font-size: 1rem;
+	background: #ffffff;
+  }
+  
+  .form-admin button {
+	height: 40px;
+	width: 35%;
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 400;
+	margin-top: 10px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	background: #1900ff;
+  }
+
+  .form-admin a {
+	height: 40px;
+	width: 35%;
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 400;
+	margin-top: 10px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	background: #bb2929;
+  }
+  
+  .form-admin button:hover {
+	background: #182092;
+  }
+
+  .svgIcon-form{
+	width: 20px;
+  }
+
+  .formulario__input-error{
+	font-size: 14px;
+	margin-bottom: 0;
+	display: none;
+	color: #bb2929;
+  }
+
+  .formulario__input-error-activo{
+	display: block;
+  }
+
+  .formulario__mensaje{
+	margin: 15px;
+	height: 45px;
+	line-height: 45px;
+	background-color: #f66f60;
+	padding: 0 15px;
+	border-radius: 3px;
+	display: none;
+  }
+
+  .formulario__mensaje-activo{
+	display: block;
+  }
+
+  .formulario__mensaje p{
+	margin: 0;
+  }
+
+  .input-box-incorrecto label{
+	color: #bb2929;
+	font-weight: 2px;
+  }
+
+  .input-box-incorrecto input{
+	width: 100%;
+	margin-top: 10px;
+	position: relative;
+	height: 35px;
+	width: 100%;
+	outline: none;
+	font-size: 1rem;
+	margin-top: 5px;
+	border: 2px solid #bb2929;
+	border-radius: 6px;
+	padding: 0 15px;
+	background: #ffffff;
+  }
+
+  .input-box-correcto label{
+	color: #3cbd67;
+	font-weight: 2px;
+  }
+
+  .input-box-correcto input{
+	width: 100%;
+	margin-top: 10px;
+	position: relative;
+	height: 35px;
+	width: 100%;
+	outline: none;
+	font-size: 1rem;
+	margin-top: 5px;
+	border: 2px solid #3cbd67;
+	border-radius: 6px;
+	padding: 0 15px;
+	background: #ffffff;
+  }
+
+  .formulario__mensaje-exito{
+	color: #3cbd67;
+	display: none;
+  }
+
+  .formulario__mensaje-exito-activo{
+	display: block;
+  }
+
+  .formulario__mensaje-exito p{
+	margin: 0;
   }

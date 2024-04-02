@@ -50,6 +50,10 @@ app.get('/Clientes', (req, res) => {
   res.render('Clientes');
 });
 
+app.get('/ClientesForm', (req, res) => {
+  res.render('forms/ClientesForm');
+});
+
 app.get('/Compras', (req, res) => {
   res.render('Compras');
 });

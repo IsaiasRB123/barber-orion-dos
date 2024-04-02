@@ -60,6 +60,26 @@ app.get('/UsuariosModificar', (req, res) => {
 app.get('/UsuariosRegistrar', (req, res) => {
   res.render('forms/UsuariosRegistrar');
 });
+//Fin Usuarios
+
+//Servicios
+
+app.get('/ServiciosA', (req, res) => {
+  res.render('ServiciosA');
+});
+
+app.get('/ServiciosRegister', (req, res) => {
+  res.render('forms/servicios/serviciosRegister');
+});
+
+app.get('/ServiciosUpdate', (req, res) => {
+  res.render('forms/servicios/serviciosUpdate');
+});
+
+app.get('/ServiciosShadow', (req, res) => {
+  res.render('forms/servicios/serviciosShadow');
+});
+//Fin Servicios
 
 app.get('/Categorias', (req, res) => {
   res.render('Categorias');
@@ -166,14 +186,6 @@ app.get('/Proveedores', (req, res) => {
 
 app.get('/ProveedoreModifi', (req, res) => {
   res.render('ProveedoreModifi');
-});
-
-app.get('/ServiciosA', (req, res) => {
-  res.render('ServiciosA');
-});
-
-app.get('/ServiciosRegister', (req, res) => {
-  res.render('forms/servicios/serviciosRegister');
 });
 
 

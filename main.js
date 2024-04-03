@@ -162,6 +162,10 @@ app.get('/Horario', (req, res) => {
   res.render('Horario');
 });
 
+app.get('/dias', (req, res) => {
+  res.render('dias');
+});
+
 app.get('/ProgramFor', (req, res) => {
   res.render('forms/Programacion/ProgramFor');
 });

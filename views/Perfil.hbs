@@ -14,7 +14,7 @@
 <body>
   <!-- SideBar -->
   {{> sidebar}}
-
+hh
   <!-- Content page-->
   <section class="full-box dashboard-contentPage">
     <!-- NavBar -->
@@ -52,20 +52,22 @@
                                 <label for="age">Edad:</label>
                                 <input type="number" id="age" name="age" min="18" max="100" required>
                                 <div id="ageError" class="error-message"></div>
-                             </div>        
+                             </div>   
           </div>
           <div class="row">
                             <div class="form-group col-md-6">
-                              <label for="age">Contraseña:</label>
-                              <input type="password" id="pass" class="pass" name="age" min="18" max="100" required>
-                              <i class="bx bx-show-alt"></i>
-                              <div id="ageError" class="error-message"></div>
+                              <label for="passDos">Contraseña</label>
+                              <div style="position:relative;">
+                                <input type="password" id="passDos" name="passDos" required>
+                                <span class="toggle-password bx bx-show-alt" onclick="togglePassword('passDos', this)" ></span>
+                              </div>
                             </div>
                             <div class="form-group col-md-6">
-                              <label for="age">Confirmar contraseña:</label>
-                              <input type="password" id="passDos" class="pass" name="age" min="18" max="100" required>
-                              <i class="bx bx-show-alt"></i>
-                              <div id="ageError" class="error-message"></div>
+                                <label for="confirmPass">Confirmar Contraseña</label>
+                                <div style="position:relative;">
+                                  <input type="password" id="confirmPass" name="confirmPass" required>
+                                  <span class="toggle-password bx bx-show-alt" onclick="togglePassword('confirmPass', this)"></span>
+                                </div>
                             </div>
                             
                             <script src="./js/verContrasena.js"></script>

@@ -2,6 +2,7 @@
 <html lang="es">
 <title>BARBERIA-ORION-PEDIDOS</title>
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logo.png">
+<link rel="stylesheet" href="/public/assets/css/style.css">
 <!-- bootstrap -->
 {{> head}}
 <style>
@@ -168,6 +169,7 @@
       </ul>
     </nav>
     <!-- Content page -->
+    
     <div class="container-fluid">
       <div class="page-header">
         <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Pedidos </h1>
@@ -782,6 +784,7 @@
           <h6 class="MontoTotalTitle" style="float: inline-start;">Monto Total: 510.000</h6>
           <a type="button" class="btn btn-success" style="float: inline-end;" onclick="guardarPedido()">
             <i class="fa-light fa-plus"></i>Guardar
+            
           </a>
 
           <!-- Script para la función de guardar el pedido -->
@@ -798,7 +801,9 @@
           </script>
         </div>
       </div>
+      
     </div>
+ 
     <!-- Bootstrap JS, jQuery, y Popper.js -->
     <script>
       $.material.init();
@@ -810,6 +815,8 @@
     <script src="./js/ripples.min.js"></script>
     <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="./js/main.js"></script>
+    
+
 
 </body>
 

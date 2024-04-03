@@ -48,6 +48,32 @@
 
     <!--Navbar-->
     {{> nav}}
+  <style>
+        .btn1 {
+            width: 50px; /* Tamaño del botón */
+            height: 50px; /* Tamaño del botón */
+            border-radius: 50%; /* Forma redonda */
+            border: none; /* Sin borde */
+            background-color: #ffffff; /* Color de fondo */
+            color: white; /* Color del texto */
+            font-size: 20px; /* Tamaño del texto */
+            cursor: pointer;
+            transition: background-color 0.3s; /* Transición suave al pasar el ratón */
+            display: flex; /* Mostrar contenido como flexbox */
+            justify-content: center; /* Centrar contenido horizontalmente */
+            align-items: center; /* Centrar contenido verticalmente */
+        }
+        .btn1:hover {
+            background-color: #0a2a6e; /* Cambio de color al pasar el ratón */
+        }
+        .icono-ojo {
+            width: 24px; /* Tamaño del ícono */
+            height: 24px; /* Tamaño del ícono */
+            background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 2a6 6 0 100 12 6 6 0 000-12zm0 3a3 3 0 100 6 3 3 0 000-6z" clip-rule="evenodd"/></svg>');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 
     <!-- Navbar-->
 
@@ -71,32 +97,34 @@
 
 
 
-     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <!-- Campo de búsqueda con estilo H&M -->
-                <div class="input-group mb-3">
-                    <input type="text" id="filtro" class="form-control" placeholder="Buscar productos" aria-label="Buscar productos" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Campo de búsqueda con estilo H&M -->
+                    <div class="input-group mb-3">
+                        <input type="text" id="filtro" class="form-control" placeholder="Buscar productos"
+                            aria-label="Buscar productos" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <!-- Opciones de filtrado con estilo H&M -->
-                <div class="dropdown float-right">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="filtroSelect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Seleccionar
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="filtroSelect">
-                        <a class="dropdown-item" href="#" value="menorPrecio">Menor Precio</a>
-                        <a class="dropdown-item" href="#" value="mayorPrecio">Mayor Precio</a>
-                        <a class="dropdown-item" href="#" value="ordenAlfabetico">Orden Alfabético</a>
+                <div class="col-md-6">
+                    <!-- Opciones de filtrado con estilo H&M -->
+                    <div class="dropdown float-right">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="filtroSelect"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Seleccionar
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="filtroSelect">
+                            <a class="dropdown-item" href="#" value="menorPrecio">Menor Precio</a>
+                            <a class="dropdown-item" href="#" value="mayorPrecio">Mayor Precio</a>
+                            <a class="dropdown-item" href="#" value="ordenAlfabetico">Orden Alfabético</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
         <section class="contenedor">
@@ -118,6 +146,9 @@
                     <img src="assets/img/gallery/Aretas de plata.jpg" alt="" class="img-item">
                     <span class="precio-item">$35.000</span>
                     <button class="boton-item">Agregar al Carrito</button>
+                          <button class="btn1">
+        <span class="icono-ojo" aria-hidden="true"></span>
+    </button>
                 </div>
                 <div class="item">
                     <span class="titulo-item">Manilla</span>
@@ -130,7 +161,8 @@
                     <img src="assets/img/gallery/Gorra.png" alt="" class="img-item">
                     <span class="precio-item">$32.000</span>
                     <button class="boton-item">Agregar al Carrito</button>
-                </div>
+                       
+                    </div>
                 <div class="item">
                     <span class="titulo-item">Minoxidil</span>
                     <img src="assets/img/gallery/minoxidil.webp" alt="" class="img-item">
@@ -178,73 +210,73 @@ fa-bag-shopping"></i> </button>
             </div>
         </section>
         <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const filtroInput = document.getElementById('filtro');
-            const filtroSelect = document.querySelectorAll('#filtroSelect .dropdown-item');
+            document.addEventListener('DOMContentLoaded', function () {
+                const filtroInput = document.getElementById('filtro');
+                const filtroSelect = document.querySelectorAll('#filtroSelect .dropdown-item');
 
-            filtroInput.addEventListener('input', function () {
-                const filtro = this.value.toLowerCase();
-                const items = document.querySelectorAll('.contenedor-items .item');
-                items.forEach(function (item) {
-                    const titulo = item.querySelector('.titulo-item').textContent.toLowerCase();
-                    if (titulo.includes(filtro)) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-
-            filtroSelect.forEach(function (item) {
-                item.addEventListener('click', function () {
-                    const filtro = this.getAttribute('value');
+                filtroInput.addEventListener('input', function () {
+                    const filtro = this.value.toLowerCase();
                     const items = document.querySelectorAll('.contenedor-items .item');
                     items.forEach(function (item) {
-                        item.style.display = 'block';
+                        const titulo = item.querySelector('.titulo-item').textContent.toLowerCase();
+                        if (titulo.includes(filtro)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
                     });
-                    if (filtro === 'menorPrecio') {
-                        ordenarPorPrecio('menor');
-                    } else if (filtro === 'mayorPrecio') {
-                        ordenarPorPrecio('mayor');
-                    } else if (filtro === 'ordenAlfabetico') {
-                        ordenarAlfabeticamente();
-                    }
                 });
+
+                filtroSelect.forEach(function (item) {
+                    item.addEventListener('click', function () {
+                        const filtro = this.getAttribute('value');
+                        const items = document.querySelectorAll('.contenedor-items .item');
+                        items.forEach(function (item) {
+                            item.style.display = 'block';
+                        });
+                        if (filtro === 'menorPrecio') {
+                            ordenarPorPrecio('menor');
+                        } else if (filtro === 'mayorPrecio') {
+                            ordenarPorPrecio('mayor');
+                        } else if (filtro === 'ordenAlfabetico') {
+                            ordenarAlfabeticamente();
+                        }
+                    });
+                });
+
+                function ordenarPorPrecio(orden) {
+                    const items = document.querySelectorAll('.contenedor-items .item');
+                    const sortedItems = Array.from(items).sort(function (a, b) {
+                        const precioA = parseFloat(a.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
+                        const precioB = parseFloat(b.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
+                        if (orden === 'menor') {
+                            return precioA - precioB;
+                        } else {
+                            return precioB - precioA;
+                        }
+                    });
+                    const contenedor = document.querySelector('.contenedor-items');
+                    contenedor.innerHTML = '';
+                    sortedItems.forEach(function (item) {
+                        contenedor.appendChild(item);
+                    });
+                }
+
+                function ordenarAlfabeticamente() {
+                    const items = document.querySelectorAll('.contenedor-items .item');
+                    const sortedItems = Array.from(items).sort(function (a, b) {
+                        const tituloA = a.querySelector('.titulo-item').textContent.toLowerCase();
+                        const tituloB = b.querySelector('.titulo-item').textContent.toLowerCase();
+                        return tituloA.localeCompare(tituloB);
+                    });
+                    const contenedor = document.querySelector('.contenedor-items');
+                    contenedor.innerHTML = '';
+                    sortedItems.forEach(function (item) {
+                        contenedor.appendChild(item);
+                    });
+                }
             });
-
-            function ordenarPorPrecio(orden) {
-                const items = document.querySelectorAll('.contenedor-items .item');
-                const sortedItems = Array.from(items).sort(function (a, b) {
-                    const precioA = parseFloat(a.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
-                    const precioB = parseFloat(b.querySelector('.precio-item').textContent.replace('$', '').replace(',', ''));
-                    if (orden === 'menor') {
-                        return precioA - precioB;
-                    } else {
-                        return precioB - precioA;
-                    }
-                });
-                const contenedor = document.querySelector('.contenedor-items');
-                contenedor.innerHTML = '';
-                sortedItems.forEach(function (item) {
-                    contenedor.appendChild(item);
-                });
-            }
-
-            function ordenarAlfabeticamente() {
-                const items = document.querySelectorAll('.contenedor-items .item');
-                const sortedItems = Array.from(items).sort(function (a, b) {
-                    const tituloA = a.querySelector('.titulo-item').textContent.toLowerCase();
-                    const tituloB = b.querySelector('.titulo-item').textContent.toLowerCase();
-                    return tituloA.localeCompare(tituloB);
-                });
-                const contenedor = document.querySelector('.contenedor-items');
-                contenedor.innerHTML = '';
-                sortedItems.forEach(function (item) {
-                    contenedor.appendChild(item);
-                });
-            }
-        });
-    </script>
+        </script>
     </main>
 
     <!-- Carrito -->

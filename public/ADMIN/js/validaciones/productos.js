@@ -33,14 +33,22 @@ function mostrarAlertaAgg() {
 
     // Validar que se haya seleccionado un producto
     if (producto === "Productos") {
-        swal("Error", "Por favor selecciona un producto.", "error");
+        Swal.fire({
+          icon: "error",
+          text: "Por favor selecciona un producto",
+          backdrop: false
+        });
         return;
     }
 
     // Validar que se haya ingresado una cantidad
     if (cantidad === "" || isNaN(cantidad) || parseFloat(cantidad) <= 0) {
-        swal("Error", "Por favor ingresa una cantidad válida.", "error");
-        return;
+        Swal.fire({
+            icon: "error",
+            text: "Por favor ingresa una cantidad valida",
+            backdrop: false
+          });
+          return;
     }
 
     // Aquí puedes hacer lo que quieras con los valores, por ejemplo, mostrarlos en la consola
@@ -49,11 +57,17 @@ function mostrarAlertaAgg() {
     console.log("Precio: " + precio);
 
     // Mostrar alerta de éxito
-    swal("Producto agregado correctamente.", {
+    Swal.fire({
+        position: "top",
         icon: "success",
-        timer: 1500
-    });
+        title: "Producto agregado correctamente",
+        showConfirmButton: false,
+        timer: 1500,
+        backdrop: false
+      });
+      
 }
+
 
 
 

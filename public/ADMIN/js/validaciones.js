@@ -57,7 +57,8 @@ formulario.addEventListener('submit', (e) => {
             icon: "success",
             title: "Cliente registrado correctamente",
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            backdrop: false
         });
     }else{
         document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo')

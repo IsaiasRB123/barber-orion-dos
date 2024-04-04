@@ -1513,3 +1513,11 @@ input:hover {
     box-sizing: border-box; /* Asegura que el tamaño total del input incluya el relleno y el borde */
     font-size: 14px; /* Ajusta el tamaño de la fuente del input según sea necesario */
 }
+
+.custom-swal-bg {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con opacidad */
+}
+
+.swal2-container {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con opacidad */
+}

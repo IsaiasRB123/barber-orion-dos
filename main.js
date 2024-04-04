@@ -212,6 +212,10 @@ app.get('/Ventas', (req, res) => {
   res.render('Ventas');
 });
 
+app.get('/VentasForm', (req, res) => {
+  res.render('forms/ventas/RegistrarVentas');
+});
+
 app.get('/', (req, res) => {
   res.render('index');
 });

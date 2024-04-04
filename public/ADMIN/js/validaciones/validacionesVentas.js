@@ -3,16 +3,14 @@ const inputs = document.querySelectorAll('#formulario input')
 
 const expresiones = {
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    password: /^.{4,12}$/, // 4 a 12 digitos.
-    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    telefono: /^\d{7,14}$/, // 7 a 14 numeros.
+    precio: /^(?:[1-9]|[1-9]\d+)(?:\.\d{1,2})?$/,
     num: /^[1-9]\d*$/,
 }
 
 const campos = {
     nombre: false,
-    correo: false,
-    telefono:false,
+    precio: false,
+    num:false,
 }
 
 const ValidarFormulario = (e) => {
@@ -20,12 +18,26 @@ const ValidarFormulario = (e) => {
         case "nombre":
             ValidarCampo(expresiones.nombre, e.target, 'nombre');
             break;
-        case "telefono":
-            ValidarCampo(expresiones.telefono, e.target, 'telefono');
+        case "fecha_venta":
+            ValidarFecha(e.target, 'fecha_venta');
             break;
-        case "correo":
-            ValidarCampo(expresiones.correo, e.target, 'correo');
+        case "fecha_pago":
+            ValidarFecha(e.target, 'fecha_pago');
             break;
+    }
+}
+
+const ValidarFecha = (input, campo) => {
+    if (input.value.trim() === '') {
+        document.getElementById(`grupo__${campo}`).classList.add('input-box-incorrecto')
+        document.getElementById(`grupo__${campo}`).classList.remove('input-box-correcto')
+        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo')
+        campos[campo] = false;
+    } else {
+        document.getElementById(`grupo__${campo}`).classList.remove('input-box-incorrecto')
+        document.getElementById(`grupo__${campo}`).classList.add('input-box-correcto')
+        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo')
+        campos[campo] = true;
     }
 }
 
@@ -50,13 +62,10 @@ inputs.forEach((input) => {
 
 formulario.addEventListener('submit', (e) => {
     e.preventDefault()
-    if (campos.nombre && campos.telefono && campos.correo) {
+    if (campos.nombre && campos.precio && campos.num) {
         formulario.reset();
-        Swal.fire({
-            position: "top",
+        swal("Venta registrada correctamente.", {
             icon: "success",
-            title: "Cliente registrado correctamente",
-            showConfirmButton: false,
             timer: 1500
         });
     }else{

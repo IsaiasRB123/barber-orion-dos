@@ -1,23 +1,19 @@
-const formulario = document.getElementById('formulario');
-const inputs = document.querySelectorAll('#formulario input')
+const formulario = document.getElementById('formularioRoles');
+const inputs = document.querySelectorAll('#formularioRoles input')
 
 const expresiones = {
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    precio: /^(?:[1-9]|[1-9]\d+)(?:\.\d{1,2})?$/
 }
+
 const campos = {
     nombre: false,
-    num: false,
-    precio: false,
+    
 }
 
 const ValidarFormulario = (e) => {
     switch (e.target.name) {
         case "nombre":
             ValidarCampo(expresiones.nombre, e.target, 'nombre');
-            break;
-        case "precio":
-            ValidarCampo(expresiones.precio, e.target, 'precio');
             break;
     }
 }
@@ -36,6 +32,8 @@ const ValidarCampo = (expresion, input, campo) => {
     }
 }
 
+
+
 inputs.forEach((input) => {
     input.addEventListener('keyup', ValidarFormulario)
     input.addEventListener('blur', ValidarFormulario)
@@ -43,12 +41,12 @@ inputs.forEach((input) => {
 
 formulario.addEventListener('submit', (e) => {
     e.preventDefault()
-    if (campos.nombre && campos.precio) {
+    if (campos.nombre) {
         formulario.reset();
         Swal.fire({
             position: "top",
             icon: "success",
-            title: "Servicio registrado correctamente",
+            title: "Cliente registrado correctamente",
             showConfirmButton: false,
             timer: 1500
         });

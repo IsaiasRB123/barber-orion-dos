@@ -49,33 +49,38 @@
                                 <input type="text" name="nombre" id="nombre">
                                 <p class="formulario__input-error">No se permite simbolos o números en este campo</p>
                             </div>
-                            <div class="input-box" id="grupo__nombre">
+                            <div class="input-box" id="grupo__correo">
                                 <label>*Correo</label>
-                                <input type="text" name="nombre" id="nombre">
+                                <input type="text" name="correo" id="correo">
                                 <p class="formulario__input-error">No se permite simbolos o números en este campo</p>
                             </div>
-                            <div class="input-box" id="grupo__nombre">
+                            <div class="input-box" id="grupo__telefono">
                                 <label>*Telefono</label>
-                                <input type="text" name="nombre" id="nombre">
+                                <input type="text" name="telefono" id="telefono">
                                 <p class="formulario__input-error">No se permite simbolos o números en este campo</p>
                             </div>
                             
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="descripcion" class="form-label">Rol</label>
-                                <select name="selectSm" id="SelectLm" class="form-control-sm form-control">
-                                      <option value="0">Admin</option>
-                                      <option value="1">Cliente</option>
-                                      <option value="2">Empleado</option>
-                                  </select>
+                            <div class="input-box address">
+                                <label>*Rol</label>
+                                <div class="select-box">
+                                        <select>
+                                            <option hidden="" value="20">Admin</option>
+                                            <option value="30">Empleado</option>
+                                            <option value="30">Usuario</option>
+
+                                        </select>
+                                    </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="nombre"  class="form-label">Estado</label>
-                                <select name="selectSm" id="SelectLm" class="form-control-sm form-control">
-                                      <option value="0">Activo</option>
-                                      <option value="1">Inactivo</option>
-                                </select>
+                            <div class="input-box address">
+                                <label>*Estado</label>
+                                <div class="select-box">
+                                        <select>
+                                            <option hidden="" value="20">Activo</option>
+                                            <option value="30">Inactivo</option>
+                                        </select>
+                                    </div>
                             </div>
                            
                         </div>

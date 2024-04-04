@@ -48,30 +48,117 @@
 
     <!--Navbar-->
     {{> nav}}
-  <style>
+    <style>
         .btn1 {
-            width: 50px; /* Tamaño del botón */
-            height: 50px; /* Tamaño del botón */
-            border-radius: 50%; /* Forma redonda */
-            border: none; /* Sin borde */
-            background-color: #ffffff; /* Color de fondo */
-            color: white; /* Color del texto */
-            font-size: 20px; /* Tamaño del texto */
+            width: 30px;
+            /* Tamaño del botón */
+            height: 30px;
+            /* Tamaño del botón */
+            border-radius: 50%;
+            /* Forma redonda */
+            border: none;
+            /* Sin borde */
+            background-color: #000000;
+            /* Color de fondo */
+            color: white;
+            /* Color del texto */
+            font-size: 20px;
+            /* Tamaño del texto */
             cursor: pointer;
-            transition: background-color 0.3s; /* Transición suave al pasar el ratón */
-            display: flex; /* Mostrar contenido como flexbox */
-            justify-content: center; /* Centrar contenido horizontalmente */
-            align-items: center; /* Centrar contenido verticalmente */
+            transition: background-color 0.3s;
+            /* Transición suave al pasar el ratón */
+            display: flex;
+            /* Mostrar contenido como flexbox */
+            justify-content: center;
+            /* Centrar contenido horizontalmente */
+            align-items: center;
+            /* Centrar contenido verticalmente */
         }
+
         .btn1:hover {
-            background-color: #0a2a6e; /* Cambio de color al pasar el ratón */
+            background-color: #0a2a6e;
+            /* Cambio de color al pasar el ratón */
         }
+
         .icono-ojo {
-            width: 24px; /* Tamaño del ícono */
-            height: 24px; /* Tamaño del ícono */
-            background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 2a6 6 0 100 12 6 6 0 000-12zm0 3a3 3 0 100 6 3 3 0 000-6z" clip-rule="evenodd"/></svg>');
+            width: 15px;
+            /* Tamaño del ícono */
+            height: 15px;
+            /* Tamaño del ícono */
             background-repeat: no-repeat;
             background-size: cover;
+        }
+
+        /* Estilos del modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            /* Bordes redondeados */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            /* Tamaño máximo */
+            border-radius: 15px;
+            /* Bordes redondeados */
+        }
+
+        /* Estilos para la descripción y beneficios */
+        .modal-body {
+            position: relative;
+        }
+
+        .descripcion,
+        .beneficios {
+            display: none;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            line-height: 1.4;
+            max-width: 80%;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .descripcion::before,
+        .beneficios::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: calc(50% - 5px);
+            border-style: solid;
+            border-width: 5px 5px 0 5px;
+            border-color: rgba(255, 255, 255, 0.8) transparent transparent transparent;
+        }
+
+        .beneficios {
+            bottom: auto;
+            top: 10px;
+        }
+
+        /* Ajustes de imagen */
+        .img-item {
+            max-width: 100%;
+            /* Ajustar tamaño de la imagen */
+            border-radius: 15px;
+            /* Bordes redondeados */
         }
     </style>
 
@@ -133,60 +220,96 @@
                     <span class="titulo-item">Cera</span>
                     <img src="assets/img/gallery/cera.webp" alt="" class="img-item">
                     <span class="precio-item">$15.000</span>
+                    <button class="btn1">
+                        <span class="fa-solid fa-eye" aria-hidden="true"></span>
+                    </button>
                     <button class="boton-item">Agregar al Carrito</button>
                 </div>
                 <div class="item">
                     <span class="titulo-item">Reloj</span>
                     <img src="assets/img/gallery/Reloj2.webp" alt="" class="img-item">
                     <span class="precio-item">$25.000</span>
+                    <button class="btn1">
+                        <span class="fa-solid fa-eye" aria-hidden="true"></span>
+                    </button>
                     <button class="boton-item">Agregar al Carrito</button>
                 </div>
                 <div class="item">
                     <span class="titulo-item">Areta de plata </span>
                     <img src="assets/img/gallery/Aretas de plata.jpg" alt="" class="img-item">
                     <span class="precio-item">$35.000</span>
+                    <button class="btn1">
+                        <span class="fa-solid fa-eye" aria-hidden="true"></span>
+                    </button>
                     <button class="boton-item">Agregar al Carrito</button>
-                          <button class="btn1">
-        <span class="icono-ojo" aria-hidden="true"></span>
-    </button>
+
                 </div>
                 <div class="item">
                     <span class="titulo-item">Manilla</span>
                     <img src="assets/img/gallery/Manilla.png" alt="" class="img-item">
                     <span class="precio-item">$18.000</span>
+                    <button class="btn1">
+                        <span class="fa-solid fa-eye" aria-hidden="true"></span>
+                    </button>
                     <button class="boton-item">Agregar al Carrito</button>
                 </div>
                 <div class="item">
                     <span class="titulo-item">Gorra boss</span>
                     <img src="assets/img/gallery/Gorra.png" alt="" class="img-item">
                     <span class="precio-item">$32.000</span>
+                    <button class="btn1">
+                        <span class="fa-solid fa-eye" aria-hidden="true"></span>
+                    </button>
                     <button class="boton-item">Agregar al Carrito</button>
-                       
-                    </div>
+
+                </div>
                 <div class="item">
                     <span class="titulo-item">Minoxidil</span>
                     <img src="assets/img/gallery/minoxidil.webp" alt="" class="img-item">
                     <span class="precio-item">$18.000</span>
+                    <button class="btn1">
+                        <span class="fa-solid fa-eye" aria-hidden="true"></span>
+                    </button>
                     <button class="boton-item">Agregar al Carrito</button>
                 </div>
                 <div class="item">
                     <span class="titulo-item">Locion</span>
                     <img src="assets/img/gallery/Locion2.jpg" alt="" class="img-item">
                     <span class="precio-item">$54.000</span>
+                    <button class="btn1">
+                        <span class="fa-solid fa-eye" aria-hidden="true"></span>
+                    </button>
                     <button class="boton-item">Agregar al Carrito</button>
                 </div>
                 <div class="item">
                     <span class="titulo-item">Shampoo</span>
                     <img src="assets/img/gallery/Shampoo.webp" alt="" class="img-item">
                     <span class="precio-item">$32.000</span>
+                    <button class="btn1">
+                        <span class="fa-solid fa-eye" aria-hidden="true"></span>
+                    </button>
                     <button class="boton-item">Agregar al Carrito</button>
                 </div>
+
                 <div class="item">
                     <span class="titulo-item">Gel para afeitar</span>
                     <img src="assets/img/gallery/Gelafeitar.webp" alt="" class="img-item">
                     <span class="precio-item">$42.800</span>
+                    <button class="btn1">
+                        <span class="fa-solid fa-eye" aria-hidden="true"></span>
+                    </button>
                     <button class="boton-item">Agregar al Carrito</button>
+
+                    <!-- Descripción y beneficios ocultos -->
+                    <p class="descripcion-item" style="display: none;">Este gel proporciona un afeitado suave y
+                        confortable, reduciendo la irritación y el enrojecimiento.</p>
+                    <ul class="beneficios-item" style="display: none;">
+                        <li>Reduce la irritación y el enrojecimiento.</li>
+                        <li>Facilita el deslizamiento de la cuchilla para un afeitado más suave.</li>
+                        <li>Fórmula hidratante que deja la piel suave y fresca.</li>
+                    </ul>
                 </div>
+            </div>
             </div>
             <!-- Carrito de Compras -->
             <div class="carrito" id="carrito">
@@ -209,6 +332,22 @@ fa-bag-shopping"></i> </button>
                 </div>
             </div>
         </section>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal-body">
+                    <img src="" alt="" class="img-item">
+                    <h2></h2>
+                    <p class="descripcion" style="display: none;"></p>
+                    <ul class="beneficios" style="display: none;"></ul>
+                </div>
+            </div>
+        </div>
+        <div id="mensajeEmergente">
+    <div class="descripcion"></div>
+    <ul class="beneficios"></ul>
+</div>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const filtroInput = document.getElementById('filtro');
@@ -275,48 +414,117 @@ fa-bag-shopping"></i> </button>
                         contenedor.appendChild(item);
                     });
                 }
+           
+        // Obtener todos los botones de detalles
+        const btnDetalles = document.querySelectorAll('.btn1');
+
+        // Obtener el modal
+        const modal = document.getElementById('myModal');
+
+        // Obtener el elemento que cierra el modal
+        const span = document.getElementsByClassName('close')[0];
+
+        // Agregar un evento de clic al elemento que cierra el modal
+        span.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Cerrar el modal si el usuario hace clic fuera del contenido del modal
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Iterar sobre cada botón de detalle y agregar un evento de clic
+        btnDetalles.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Obtener el contenedor del producto asociado al botón
+                const contenedorProducto = btn.parentElement;
+
+                // Obtener los datos del producto
+                const titulo = contenedorProducto.querySelector('.titulo-item').textContent;
+                const precio = contenedorProducto.querySelector('.precio-item').textContent;
+                const imgSrc = contenedorProducto.querySelector('.img-item').getAttribute('src');
+                const descripcion = contenedorProducto.querySelector('.descripcion-item').textContent;
+                const beneficios = contenedorProducto.querySelector('.beneficios-item').innerHTML;
+
+                // Construir el contenido del modal con los datos del producto
+                const modalContent = `
+                    <img src="${imgSrc}" alt="${titulo}" class="img-item">
+                    <h2>${titulo}</h2>
+                    <p>Precio: ${precio}</p>
+                    <p class="descripcion" style="display: none;">${descripcion}</p>
+                    <ul class="beneficios" style="display: none;">${beneficios}</ul>
+                `;
+
+                // Insertar el contenido en el cuerpo del modal
+                modal.querySelector('.modal-body').innerHTML = modalContent;
+
+                // Obtener referencia a la imagen en el modal
+                const imgModal = modal.querySelector('.img-item');
+
+                // Obtener referencia a la descripción y beneficios en el modal
+                const descripcionModal = modal.querySelector('.descripcion');
+                const beneficiosModal = modal.querySelector('.beneficios');
+
+                // Mostrar la descripción y los beneficios al pasar el cursor sobre la imagen
+                imgModal.addEventListener('mouseover', () => {
+                    descripcionModal.style.display = 'block';
+                    beneficiosModal.style.display = 'block';
+                });
+
+                // Ocultar la descripción y los beneficios al retirar el cursor de la imagen
+                imgModal.addEventListener('mouseout', () => {
+                    descripcionModal.style.display = 'none';
+                    beneficiosModal.style.display = 'none';
+                });
+
+                // Mostrar el modal
+                modal.style.display = 'block';
             });
+        });
+    });
         </script>
-    </main>
 
-    <!-- Carrito -->
+        <!-- Carrito -->
 
-    <!--Pie de pagina-->
-    {{>footer}}
-    <!-- Pie de pagina-->
+        <!--Pie de pagina-->
+        {{>footer}}
+        <!-- Pie de pagina-->
 
-    <!-- Flecha up  -->
-    <div id="back-top">
-        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
-    </div>
+        <!-- Flecha up  -->
+        <div id="back-top">
+            <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+        </div>
 
-    <!-- Todo js -->
+        <!-- Todo js -->
 
-    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="assets/js/Carrito.js"></script>
-    <script src="./assets/js/popper.min.js"></script>
-    <script src="./assets/js/bootstrap.min.js"></script>
-    <script src="./assets/js/jquery.slicknav.min.js"></script>
-    <script src="./assets/js/owl.carousel.min.js"></script>
-    <script src="./assets/js/slick.min.js"></script>
-    <script src="./assets/js/wow.min.js"></script>
-    <script src="./assets/js/animated.headline.js"></script>
-    <script src="./assets/js/jquery.magnific-popup.js"></script>
-    <script src="./assets/js/gijgo.min.js"></script>
-    <script src="./assets/js/jquery.nice-select.min.js"></script>
-    <script src="./assets/js/jquery.sticky.js"></script>
-    <script src="./assets/js/jquery.counterup.min.js"></script>
-    <script src="./assets/js/waypoints.min.js"></script>
-    <script src="./assets/js/jquery.countdown.min.js"></script>
-    <script src="./assets/js/hover-direction-snake.min.js"></script>
-    <script src="./assets/js/contact.js"></script>
-    <script src="./assets/js/jquery.form.js"></script>
-    <script src="./assets/js/jquery.validate.min.js"></script>
-    <script src="./assets/js/mail-script.js"></script>
-    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
-    <script src="./assets/js/plugins.js"></script>
-    <script src="./assets/js/main.js"></script>
+        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="assets/js/Carrito.js"></script>
+        <script src="./assets/js/popper.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+        <script src="./assets/js/jquery.slicknav.min.js"></script>
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script src="./assets/js/slick.min.js"></script>
+        <script src="./assets/js/wow.min.js"></script>
+        <script src="./assets/js/animated.headline.js"></script>
+        <script src="./assets/js/jquery.magnific-popup.js"></script>
+        <script src="./assets/js/gijgo.min.js"></script>
+        <script src="./assets/js/jquery.nice-select.min.js"></script>
+        <script src="./assets/js/jquery.sticky.js"></script>
+        <script src="./assets/js/jquery.counterup.min.js"></script>
+        <script src="./assets/js/waypoints.min.js"></script>
+        <script src="./assets/js/jquery.countdown.min.js"></script>
+        <script src="./assets/js/hover-direction-snake.min.js"></script>
+        <script src="./assets/js/contact.js"></script>
+        <script src="./assets/js/jquery.form.js"></script>
+        <script src="./assets/js/jquery.validate.min.js"></script>
+        <script src="./assets/js/mail-script.js"></script>
+        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+        <script src="./assets/js/plugins.js"></script>
+        <script src="./assets/js/main.js"></script>
 
 </body>
 

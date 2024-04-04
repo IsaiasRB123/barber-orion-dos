@@ -42,8 +42,19 @@ fa-facebook-f"></i></a>
                 </div>
                 <a href="index.html">Volver a inicio</a>
                 <span>Contraseña</span>
-                <input type="email" placeholder="Correo" required>
-                <input type="password" placeholder="Contraseña" required>
+                <form action="" id="formulario">
+                    <div class="input-box" id="grupo__correo">
+                                
+                                <input type="text" name="correo" id="correo" placeholder="Correo">
+                                <p class="formulario__input-error">No se permite simbolos o números en este campo</p>
+                </div>
+                <div class="input-box" id="grupo__correo">
+                                
+                                <input type="password" name="password" id="password" placeholder="Contraseña">
+                                <p class="formulario__input-error">No se permite simbolos o números en este campo</p>
+                </div>
+                </form>
+                
                 <a href="/olvidar">Olvido la contraseña?</a>
                 <button>Iniciar sesion</button>
             </form>
@@ -53,7 +64,7 @@ fa-facebook-f"></i></a>
                 <div class="toggle-panel toggle-left">
                     <h1>BIENVENIDO!</h1>
                     <p>Si ya tienes una cuenta inicia sesión</p>
-                    <a href="index.html" style="color: white;">Volver a inicio</a>
+                    <a href="/views/index.hbs" style="color: white;">Volver a inicio</a>
                     <button class="hidden" id="login">Iniciar sesión</button>
                 </div>
                 <div class="toggle-panel toggle-right">
@@ -64,6 +75,7 @@ fa-facebook-f"></i></a>
             </div>
         </div>
     </div>
+    <script src="./js/validaciones/validacionLogin.js"></script>
     <script src="assets/js/login.js"></script>
 </body>
 </html>

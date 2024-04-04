@@ -5,7 +5,7 @@
 <body>
     <!-- SideBar -->
     {{> sidebar}}
-
+    
     <!-- Content page-->
     <section class="full-box dashboard-contentPage">
         <!-- NavBar -->
@@ -42,32 +42,36 @@
                             <div class="input-box">
                                 <label>Nombre</label>
                                 <input type="text" name="nombre" id="nombre">
+                                <div class="alerta" id="alertaNombre"></div>
                             </div>
                             <div class="input-box">
                                 <label>Correo</label>
                                 <input type="email" name="correo" id="correo">
+                                <div class="alerta" id="alertaCorreo"></div>
                             </div>
                             <div class="input-box">
                                 <label>Teléfono</label>
                                 <input type="tel" name="telefono" id="telefono">
+                                <div class="alerta" id="alertaTelefono"></div>
                             </div>
                             <div class="select-box">
-                                        <select value="Rol">
-                                            <option hidden="">Rol</option>
-                                            <option>Barbero</option>
-                                            <option>Aseador</option>
-                                        </select>
-                                    </div>
+                                <select id="rol" required> <!-- Añadir el atributo required aquí -->
+                                    <option hidden="">Rol</option>
+                                    <option>Barbero</option>
+                                    <option>Aseador</option>
+                                </select>
+                                <div class="alerta" id="alertaRol"></div>
+                            </div>
                             <div class="select-box">
-                                        <select value="Rol">
-                                            <option hidden="">Estado</option>
-                                            <option>Activo</option>
-                                            <option>Inactivo</option>
-                                        </select>
-                                    </div>
-                            <button type="submit">Registrar</button>
+                                <select id="estado" required> <!-- Añadir el atributo required aquí -->
+                                    <option hidden="">Estado</option>
+                                    <option>Activo</option>
+                                    <option>Inactivo</option>
+                                </select>
+                                <div class="alerta" id="alertaEstado"></div>
+                            </div>
+                            <button type="submit" id="btn-registrar">Registrar</button>
                             <a type="button" href="/Empleados" style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
-                        </form>
                     </section>
                 </div>
             </div>
@@ -82,7 +86,13 @@
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
 
-    <!-- Tu JavaScript personalizado -->
-    <script src="../../public/ADMIN/js/usuarioDas.js"></script>
+    <!-- Validaciones JS -->
+    <script src="./js/validaciones/validacionesEmpleados.js"></script>
+
 </body>
+<style>
+    .alerta-roja {
+    color: red;
+}
+</style>
 </html>

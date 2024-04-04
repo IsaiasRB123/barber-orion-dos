@@ -109,6 +109,7 @@ $(document).ready(function () {
                 icon: 'success',
                 title: '¡Registro exitoso!',
                 text: 'El empleado ha sido registrado correctamente.',
+                backdrop: false,
                 allowOutsideClick: true // Permite hacer clic fuera de la alerta para cerrarla
             }).then((result) => {
                 if (result.isConfirmed) {

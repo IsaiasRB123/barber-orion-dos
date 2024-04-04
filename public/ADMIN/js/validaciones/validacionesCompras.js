@@ -105,7 +105,7 @@ function Actualizado(id) {
                 function redireccionar(ruta) {
                     window.location.href = ruta;
                 }
-                redireccionar("/ventas");
+                redireccionar("/Compras");
             }
         });
     }

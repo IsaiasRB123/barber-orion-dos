@@ -234,7 +234,7 @@
   }
   .calendar .goto-today button:hover {
     color: #000000;
-    background-color: #000000;
+    background-color: #ffffff;
   }
   .calendar .goto-today .goto button {
     border: none;

@@ -31,15 +31,15 @@ app.get('/Roles', (req, res) => {
 });
 
 app.get('/RolesModificar', (req, res) => {
-  res.render('forms/RolesModificar');
+  res.render('forms/Roles/RolesModificar');
 });
 
 app.get('/RolesRegistrar', (req, res) => {
-  res.render('forms/RolesRegistrar');
+  res.render('forms/Roles/RolesRegistrar');
 });
 
 app.get('/RolesVer', (req, res) => {
-  res.render('forms/RolesVer');
+  res.render('forms/Roles/RolesVer');
 });
 
 
@@ -49,16 +49,16 @@ app.get('/Usuarios', (req, res) => {
   res.render('Usuarios');
 });
 
-app.get('/UsuariosVer', (req, res) => {
-  res.render('forms/UsuariosVer');
-});
-
 app.get('/UsuariosModificar', (req, res) => {
-  res.render('forms/UsuariosModificar');
+  res.render('forms/Usuarios/UsuariosModificar');
 });
 
 app.get('/UsuariosRegistrar', (req, res) => {
-  res.render('forms/UsuariosRegistrar');
+  res.render('forms/Usuarios/UsuariosRegistrar');
+});
+
+app.get('/UsuariosModificar', (req, res) => {
+  res.render('forms/Usuarios/UsuariosVer');
 });
 //Fin Usuarios
 
@@ -103,15 +103,15 @@ app.get('/Citas', (req, res) => {
 });
 
 app.get('/CitasVer', (req, res) => {
-  res.render('forms/CitasVer');
+  res.render('forms/Citas/CitasVer');
 });
 
 app.get('/CitasModificar', (req, res) => {
-  res.render('forms/CitasModificar');
+  res.render('forms/Citas/CitasModificar');
 });
 
 app.get('/CitasRegistrar', (req, res) => {
-  res.render('forms/CitasRegistrar');
+  res.render('forms/Citas/CitasRegistrar');
 });
 
 app.get('/graficas', (req, res) => {
@@ -209,6 +209,10 @@ app.get('/Proveedores', (req, res) => {
   res.render('Proveedores');
 });
 
+app.get('/ProveedoresUpdate', (req, res) => {
+  res.render('forms/Proveedores/ProveedoresUpdate');
+});
+
 app.get('/ProveedoreModifi', (req, res) => {
   res.render('ProveedoreModifi');
 });
@@ -216,10 +220,6 @@ app.get('/ProveedoreModifi', (req, res) => {
 
 app.get('/Usuarios', (req, res) => {
   res.render('Usuarios');
-});
-
-app.get('/usuarioModificar', (req, res) => {
-  res.render('usuarioModificar');
 });
 
 app.get('/Perfil', (req, res) => {

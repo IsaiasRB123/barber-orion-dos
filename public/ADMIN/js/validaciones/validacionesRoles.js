@@ -31,9 +31,6 @@ const ValidarCampo = (expresion, input, campo) => {
         campos[campo] = false;
     }
 }
-
-
-
 inputs.forEach((input) => {
     input.addEventListener('keyup', ValidarFormulario)
     input.addEventListener('blur', ValidarFormulario)

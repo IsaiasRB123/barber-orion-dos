@@ -146,6 +146,10 @@ app.get('/ComprasV', (req, res) => {
   res.render('forms/Compras/ComprasV');
 });
 
+app.get('/ComprasUpdate', (req, res) => {
+  res.render('forms/Compras/ComprasUpdate');
+});
+
 app.get('/ComprasProductos', (req, res) => {
   res.render('ComprasProductos');
 });

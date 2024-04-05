@@ -93,18 +93,10 @@ function Guardado(id) {
 
 }
 
-<<<<<<< HEAD
-function GuardadoUpdate(id) {
-
-        Swal.fire({
-            icon: "success",
-            text: "Se actualizo correctamente!",
-=======
 function Actualizado(id) {
         Swal.fire({
             icon: "success",
             text: "Se registro correctamente!",
->>>>>>> e321e2c0e7dbd8b11d2f81aa6cd5351acfec5ad5
             confirmButtonColor: "#3085d6",
             confirmButtonText: "Ok!",
             backdrop: false
@@ -113,11 +105,7 @@ function Actualizado(id) {
                 function redireccionar(ruta) {
                     window.location.href = ruta;
                 }
-                redireccionar("/ventas");
+                redireccionar("/Compras");
             }
         });
-<<<<<<< HEAD
-}
-=======
     }
->>>>>>> e321e2c0e7dbd8b11d2f81aa6cd5351acfec5ad5

@@ -59,7 +59,8 @@ $(document).ready(function () {
                 icon: 'success',
                 title: '¡Registro exitoso!',
                 text: 'La programación ha sido registrada correctamente.',
-                allowOutsideClick: true // Permite hacer clic fuera de la alerta para cerrarla
+                allowOutsideClick: true ,// Permite hacer clic fuera de la alerta para cerrarla
+                backdrop: false
             });
         }
     });

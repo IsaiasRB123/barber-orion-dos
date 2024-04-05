@@ -44,16 +44,22 @@
     <!-- Contenido de la página -->
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="chart-container">
             <h2 class="chart-title">Productos</h2>
             <canvas id="productosChart"></canvas>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="chart-container">
             <h2 class="chart-title">Servicios</h2>
             <canvas id="serviciosChart"></canvas>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="chart-container">
+            <h2 class="chart-title">Citas completadas vs Citas canceladas</h2>
+            <canvas id="citasChart"></canvas>
           </div>
         </div>
       </div>
@@ -114,6 +120,23 @@
       }]
     };
 
+    const citasData = {
+      labels: ['Completadas', 'Canceladas'],
+      datasets: [{
+        label: 'Citas',
+        data: [20, 10],
+        backgroundColor: [
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(255, 99, 132, 0.7)'
+        ],
+        borderColor: [
+          'rgba(75, 192, 192, 1)',
+          'rgba(255, 99, 132, 1)'
+        ],
+        borderWidth: 1
+      }]
+    };
+
     // Configuración de las gráficas
     const chartOptions = {
       responsive: true,
@@ -127,7 +150,7 @@
     // Crear gráficas
     const ctxProductos = document.getElementById('productosChart').getContext('2d');
     const productosChart = new Chart(ctxProductos, {
-      type: 'doughnut',
+      type: 'bar', // Tipo de gráfica de barras
       data: productosData,
       options: chartOptions
     });
@@ -136,6 +159,13 @@
     const serviciosChart = new Chart(ctxServicios, {
       type: 'doughnut',
       data: serviciosData,
+      options: chartOptions
+    });
+
+    const ctxCitas = document.getElementById('citasChart').getContext('2d');
+    const citasChart = new Chart(ctxCitas, {
+      type: 'doughnut',
+      data: citasData,
       options: chartOptions
     });
 
@@ -153,6 +183,12 @@
     .chart-title {
       text-align: center;
       margin-bottom: 15px;
+    }
+
+    /* Redimensionar el lienzo de la gráfica para que tengan el mismo tamaño */
+    canvas {
+      max-width: 100%;
+      height: auto;
     }
   </style>
 </body>

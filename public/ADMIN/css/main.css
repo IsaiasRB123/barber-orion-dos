@@ -875,7 +875,7 @@ input:hover {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: rgb(248, 0, 0);
+	background-color: rgb(196, 53, 53);
 	border-radius: 50%;
 	color: white;
 	font-weight: 600;
@@ -894,6 +894,37 @@ input:hover {
 	fill: white;
 }
 /*Fin Buton delete*/
+
+/*Buton Volver*/
+
+.Btn-Volver {
+	width: 45px;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(0, 0, 0);
+	border-radius: 50%;
+	color: white;
+	font-weight: 600;
+	gap: 8px;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	transition-duration: .3s;
+	margin-right: 15px;
+}
+
+.svgIcon-Volver {
+	width: 20px;
+	color: white;
+}
+
+.Btn-Volver:hover{
+	background-color: rgb(54, 54, 54);
+	color: white;
+}
+/*Fin Buton volver*/
 
 /*Buton update*/
 

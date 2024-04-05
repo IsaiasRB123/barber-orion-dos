@@ -212,6 +212,10 @@ app.get('/Proveedores', (req, res) => {
   res.render('Proveedores');
 });
 
+app.get('/ProveedoresUpdate', (req, res) => {
+  res.render('forms/Proveedores/ProveedoresUpdate');
+});
+
 app.get('/ProveedoreModifi', (req, res) => {
   res.render('ProveedoreModifi');
 });

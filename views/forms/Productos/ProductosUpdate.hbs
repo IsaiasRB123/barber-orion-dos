@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<title>BARBERIA-ORION-PEDIDOS</title>
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logo.png">
+<link rel="stylesheet" href="/public/assets/css/style.css">
+<!-- bootstrap -->
+{{> head}}
+
+
+<body>
+    <!-- SideBar -->
+    {{> sidebar}}
+
+    <!-- Content page-->
+    <section class="full-box dashboard-contentPage m-6">
+        <!-- NavBar -->
+        {{> navAdmin}}
+        <!-- Content page -->
+        <div class="container-fluid">
+            <div class="page-header">
+                <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i>Modificar Compra </h1>
+            </div>
+
+        </div>
+
+        <div class="Contenttt">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <form action="" id="formulario">
+                            <div class="flex-container-registro">
+                                <div class="input-wrapper" id="grupo__nombre">
+                                 <label for="fecha_compra">Proveedores</label>
+                                <select >
+                                    <option hidden="">Proveedores</option>
+                                    <option value="nike">Nike</option>
+                                    <option value="adidas">Adidas</option>
+                                </select>
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="fecha_venta">Fecha de Compra</label>
+                                    <input type="date" id="fecha_venta" name="fecha_venta">
+                                </div>
+                                <div class="input-wrapper" id="grupo__nombre">
+                                <label for="fecha_venta">Estado</label>
+                                <select>
+                                    <option hidden="">Estado</option>
+                                    <option>Pendiente</option>
+                                    <option >Cancelado</option>
+                                    <option >Completado</option>
+                                </select>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <h1 class="text-titles">Productos </h1>
+                    <div class="col">
+                        <form action="" id="formulario">
+                            <div class="select-box flex-container-registro">
+                                <select id="productos" onchange="actualizarPrecio()">
+                                    <option hidden="">Productos</option>
+                                    <option value="cera_antioxidante" id="cera_antioxidante">Cera antioxidante</option>
+                                    <option value="minoxidil" id="minoxidil">Minoxidil</option>
+                                    <option value="shampoo_180ml" id="shampoo_180ml">Shampoo 180ml</option>
+                                </select>
+                                <input type="text" id="cantidad" class="email" placeholder="Cantidad">
+                                <input type="text" id="precio" class="email" placeholder="Precio">
+                                <a class="Btn-chek" data-toggle="modal" onclick="mostrarAlertaAgg()"
+                                    style="float: inline-end;margin-right:40px;margin-top:5px">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="10" width="8.75"
+                                        viewBox="0 0 448 512">
+                                        <path fill="#ffffff"
+                                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                                    </svg>
+                                </a>
+                            </div>
+                            <script
+                                src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+                            </script>
+                        </form>
+
+                    </div>
+                </div>
+                <!-- modal uno ver -->
+                <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">
+                  Launch demo modal
+                </button> -->
+                <!-- /.card-header -->
+                <div class="container border border-dark-3 pt-4">
+                    <div class="row">
+                        <div class="col">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio</th>
+                                        <th>Iva</th>
+                                        <th>Subtotal</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Camisa</td>
+                                        <td>15</td>
+                                        <td>100</td>
+                                        <td>16%</td>
+                                        <td>116</td>
+                                        <td>
+                                            <a class="Btn-delete" data-toggle="modal"
+                                                style="margin-left: 15px; margin-bottom: 15px; float: inline-start;"
+                                                onclick="mostrarAlerta()">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon" height="10"
+                                                    width="8.75" viewBox="0 0 448 512">
+                                                    <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                                    <path fill="#1e3050"
+                                                        d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                                                </svg>
+                                            </a>
+
+                                            <script
+                                                src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+                                            <script>
+                                                function mostrarAlerta() {
+                                                    swal("Producto eliminado correctamente.", {
+                                                        icon: "success",
+                                                        timer: 1500
+                                                    });
+                                                }
+                                            </script>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cera</td>
+                                        <td>34</td>
+                                        <td>340</td>
+                                        <td>16%</td>
+                                        <td>394.4</td>
+                                        <td>
+                                            <a class="Btn-delete" data-toggle="modal"
+                                                style="margin-left: 15px; margin-bottom: 15px; float: inline-start;"
+                                                onclick="mostrarAlerta()">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon" height="10"
+                                                    width="8.75" viewBox="0 0 448 512">
+                                                    <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                                    <path fill="#1e3050"
+                                                        d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                                                </svg>
+                                            </a>
+
+                                            <script
+                                                src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+                                            <script>
+                                                function mostrarAlerta() {
+                                                    swal("Producto eliminado correctamente.", {
+                                                        icon: "success",
+                                                        timer: 1500
+                                                    });
+                                                }
+                                            </script>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 mt-3">
+                    <h6 class="MontoTotalTitle" style="float: inline-start;">Monto Total: 510.000</h6>
+                     <a class="Btn" data-toggle="modal" onclick="Actualizado()"
+                                    style="float: inline-end;margin-right:40px;margin-top:5px; color:white">
+                                Modificar Compra<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+						class="bi bi-cash-stack" viewBox="0 0 16 16">
+						<path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+						<path
+							d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2z" />
+					</svg></a>
+                </div>
+                </form>
+
+            </div>
+
+            <!-- Bootstrap JS, jQuery, y Popper.js -->
+            <script>
+                $.material.init();
+            </script>
+            <script src="./js/jquery-3.1.1.min.js"></script>
+            <script src="./js/sweetalert2.min.js"></script>
+            <script src="./js/bootstrap.min.js"></script>
+            <script src="./js/material.min.js"></script>
+            <script src="./js/ripples.min.js"></script>
+            <script src="./js/validaciones/productos.js"></script>
+            <script src="./js/validaciones/validacionesCompras.js"></script>
+            <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+            <script src="./js/main.js"></script>
+
+
+
+</body>
+
+</html>

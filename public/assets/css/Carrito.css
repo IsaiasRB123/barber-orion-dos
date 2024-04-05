@@ -46,8 +46,8 @@
     font-size: 22px;
 }
 
-.contenedor .contenedor-items .item .boton-item{
-    display: block;
+.contenedor .contenedor-items .item .boton-item {
+    display: flex;
     margin: 10px auto;
     border: none;
     background-color: black;
@@ -55,7 +55,9 @@
     padding: 5px 15px;
     border-radius: 5px;
     cursor: pointer;
+    
 }
+
 /* seccion carrito */
 .carrito{
     border: 1px solid #666;

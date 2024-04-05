@@ -1,209 +1,177 @@
 <!DOCTYPE html>
 <html lang="es">
-<title>BARBERIA-ORION-PEDIDOS</title>
-<link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logo.png">
-<link rel="stylesheet" href="/public/assets/css/style.css">
-<!-- bootstrap -->
 {{> head}}
-
 
 <body>
     <!-- SideBar -->
     {{> sidebar}}
 
     <!-- Content page-->
-    <section class="full-box dashboard-contentPage m-6">
+    <section class="full-box dashboard-contentPage">
         <!-- NavBar -->
-        {{> navAdmin}}
-        <!-- Content page -->
-        <div class="container-fluid">
-            <div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
-    <h1 class="text-titles" style="margin: 0;"><i class="zmdi zmdi-account zmdi-hc-fw"></i>Registrar producto</h1>
-    <a href="/Compras" title="Go Back">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
-            <path d="M11 6L5 12M5 12L11 18M5 12H19" stroke="blue" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </a>
-</div>
-            
-        </div>
-
-        <div class="Contenttt">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <form action="" id="formulario">
-                            <div class="flex-container-registro">
-                                <div class="input-wrapper" id="grupo__nombre">
-                                 <label for="fecha_venta">Productos</label>
-                                <select id="productos">
-                                    <option hidden="">Proveedor</option>
-                                    <option value="cera_antioxidante">Nike</option>
-                                    <option value="minoxidil">Adidas</option>
-                                </select>
+        <nav class="full-box dashboard-Navbar">
+            <ul class="full-box list-unstyled text-right">
+                <li class="pull-left">
+                    <a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+                </li>
+                <li>
+                    <a href="#!" class="btn-Notifications-area">
+                        <i class="zmdi zmdi-notifications-none"></i>
+                        <span class="badge">7</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#!" class="btn-search">
+                        <i class="zmdi zmdi-search"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#!" class="btn-modal-help">
+                        <i class="zmdi zmdi-help-outline"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- form -->
+        <div class="container" style="margin-top: 60px;">
+            <div class="row justify-content-center">
+                <div class="col-md-6 ">
+                    <section class="container-form">
+                        <header>Registrar Productos</header>
+                        <form class="form-admin" id="formulario">
+                            <div class="row">
+                                <div class="input-box" id="grupo__nombre">
+                                    <label>*Producto</label>
+                                    <input type="text" name="nombre" id="nombre">
+                                    <p class="formulario__input-error">No se permite simbolos o números en este campo
+                                    </p>
                                 </div>
-                                <div class="input-wrapper">
-                                    <label for="fecha_venta">Cantidad</label>
-                                    <input type="date" id="fecha_venta" name="fecha_venta">
+                                <div class="input-box" id="grupo__stock">
+                                    <label>*Stock </label>
+                                    <input type="text" name="stock" id="stock">
+                                    <p class="formulario__input-error">Ingrese un valor valido</p>
                                 </div>
-                                <div class="input-wrapper" id="grupo__nombre">
-                                <label for="fecha_venta">Precio</label>
-                                <select>
-                                    <label for="fecha_venta">Total</label>
-                                
-                                </select>
+                                <div class="input-box" id="grupo__precio">
+                                    <label>*Precio unitario</label>
+                                    <input type="text" name="precio" id="precio">
+                                    <p class="formulario__input-error">Ingrese un valor valido</p>
                                 </div>
+                                <div class="input-box address">
+                                    <label>*Categoria</label>
+                                    <div class="select-box">
+                                        <select>
+                                            <option value="Accesorios">Accesorios</option>
+                                            <option value="Moda">Moda</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="column-form">
+                                    <div class="input-box" id="grupo__Stock-Consumo">
+                                        <label>*Stock Consumo </label>
+                                        <input type="text" name="Stock-Consumo" id="Stock-Consumo">
+                                        <p class="formulario__input-error">Ingrese un valor valido</p>
+                                    </div>
+                                </div>
+                                <div class="column-form">
+                                    <div class="input-box" id="grupo__Stock-Venta">
+                                        <label>*Stock Venta</label>
+                                        <input type="text" name="Stock-Venta" id="Stock-Venta">
+                                        <p class="formulario__input-error">Ingrese un valor valido</p>
+                                    </div>
+                                </div>
+                                <label for="" style="margin-top: 20px;">Dirigido a:</label>
+                                <label class="switch"> Consumo
+                                    <input checked="" type="checkbox" value="conusmo">
+                                    <div class="slider">
+                                        <div class="circle">
+                                            <svg class="cross" xml:space="preserve"
+                                                style="enable-background:new 0 0 512 512" viewBox="0 0 365.696 365.696"
+                                                y="0" x="0" height="6" width="6"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g>
+                                                    <path data-original="#000000" fill="currentColor"
+                                                        d="M243.188 182.86 356.32 69.726c12.5-12.5 12.5-32.766 0-45.247L341.238 9.398c-12.504-12.503-32.77-12.503-45.25 0L182.86 122.528 69.727 9.374c-12.5-12.5-32.766-12.5-45.247 0L9.375 24.457c-12.5 12.504-12.5 32.77 0 45.25l113.152 113.152L9.398 295.99c-12.503 12.503-12.503 32.769 0 45.25L24.48 356.32c12.5 12.5 32.766 12.5 45.247 0l113.132-113.132L295.99 356.32c12.503 12.5 32.769 12.5 45.25 0l15.081-15.082c12.5-12.504 12.5-32.77 0-45.25zm0 0">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                            <svg class="checkmark" xml:space="preserve"
+                                                style="enable-background:new 0 0 512 512" viewBox="0 0 24 24" y="0"
+                                                x="0" height="10" width="10" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                                <g>
+                                                    <path class="" data-original="#000000" fill="currentColor"
+                                                        d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="switch" style="float: center;"> Ventas
+                                    <input checked="" type="checkbox" value="ventas">
+                                    <div class="slider">
+                                        <div class="circle">
+                                            <svg class="cross" xml:space="preserve"
+                                                style="enable-background:new 0 0 512 512" viewBox="0 0 365.696 365.696"
+                                                y="0" x="0" height="6" width="6"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g>
+                                                    <path data-original="#000000" fill="currentColor"
+                                                        d="M243.188 182.86 356.32 69.726c12.5-12.5 12.5-32.766 0-45.247L341.238 9.398c-12.504-12.503-32.77-12.503-45.25 0L182.86 122.528 69.727 9.374c-12.5-12.5-32.766-12.5-45.247 0L9.375 24.457c-12.5 12.504-12.5 32.77 0 45.25l113.152 113.152L9.398 295.99c-12.503 12.503-12.503 32.769 0 45.25L24.48 356.32c12.5 12.5 32.766 12.5 45.247 0l113.132-113.132L295.99 356.32c12.503 12.5 32.769 12.5 45.25 0l15.081-15.082c12.5-12.504 12.5-32.77 0-45.25zm0 0">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                            <svg class="checkmark" xml:space="preserve"
+                                                style="enable-background:new 0 0 512 512" viewBox="0 0 24 24" y="0"
+                                                x="0" height="10" width="10" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                                <g>
+                                                    <path class="" data-original="#000000" fill="currentColor"
+                                                        d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </label>
                             </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <h1 class="text-titles">Productos </h1>
-                    <div class="col">
-                        <form action="" id="formulario">
-                            <div class="select-box flex-container-registro">
-                                <select id="productos" onchange="actualizarPrecio()">
-                                    <option hidden="">Productos</option>
-                                    <option value="cera_antioxidante" id="cera_antioxidante">Cera antioxidante</option>
-                                    <option value="minoxidil" id="minoxidil">Minoxidil</option>
-                                    <option value="shampoo_180ml" id="shampoo_180ml">Shampoo 180ml</option>
-                                </select>
-                                <input type="text" id="cantidad" class="email" placeholder="Cantidad">
-                                <input type="text" id="precio" class="email" placeholder="Precio">
-                                <a class="Btn-chek" data-toggle="modal" onclick="mostrarAlertaAgg()"
-                                    style="float: inline-end;margin-right:40px;margin-top:5px">
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="10" width="8.75"
-                                        viewBox="0 0 448 512">
-                                        <path fill="#ffffff"
-                                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                            <div class="formulario__mensaje" id="formulario__mensaje">
+                                <p><svg xmlns="http://www.w3.org/2000/svg" class="svgIcon-form"
+                                        viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                        <path
+                                            d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
                                     </svg>
-                                </a>
+                                    <b>Error:</b> Por favor rellena el formulario correctamente
+                                </p>
                             </div>
-                            <script
-                                src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-                            </script>
+
+                            <button type="submit">Registrar</button>
+
+
+                            <a type="button" href="/ProductoAdmin"
+                                style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
+
+
+
                         </form>
-
-                    </div>
+                    </section>
                 </div>
-                <!-- modal uno ver -->
-                <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modu">
-                  Launch demo modal
-                </button> -->
-                <!-- /.card-header -->
-                <div class="container border border-dark-3 pt-4">
-                    <div class="row">
-                        <div class="col">
-                            <table class="table table-striped table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Producto</th>
-                                        <th>Cantidad</th>
-                                        <th>Precio</th>
-                                        <th>Iva</th>
-                                        <th>Subtotal</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Camisa</td>
-                                        <td>15</td>
-                                        <td>100</td>
-                                        <td>16%</td>
-                                        <td>116</td>
-                                        <td>
-                                            <a class="Btn-delete" data-toggle="modal"
-                                                style="margin-left: 15px; margin-bottom: 15px; float: inline-start;"
-                                                onclick="mostrarAlerta()">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon" height="10"
-                                                    width="8.75" viewBox="0 0 448 512">
-                                                    <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                                    <path fill="#1e3050"
-                                                        d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
-                                                </svg>
-                                            </a>
-
-                                            <script
-                                                src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-
-                                            <script>
-                                                function mostrarAlerta() {
-                                                    swal("Producto eliminado correctamente.", {
-                                                        icon: "success",
-                                                        timer: 1500
-                                                    });
-                                                }
-                                            </script>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cera</td>
-                                        <td>34</td>
-                                        <td>340</td>
-                                        <td>16%</td>
-                                        <td>394.4</td>
-                                        <td>
-                                            <a class="Btn-delete" data-toggle="modal"
-                                                style="margin-left: 15px; margin-bottom: 15px; float: inline-start;"
-                                                onclick="mostrarAlerta()">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon" height="10"
-                                                    width="8.75" viewBox="0 0 448 512">
-                                                    <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                                    <path fill="#1e3050"
-                                                        d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
-                                                </svg>
-                                            </a>
-
-                                            <script
-                                                src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-
-                                            <script>
-                                                function mostrarAlerta() {
-                                                    swal("Producto eliminado correctamente.", {
-                                                        icon: "success",
-                                                        timer: 1500
-                                                    });
-                                                }
-                                            </script>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-3 mt-3">
-                    <h6 class="MontoTotalTitle" style="float: inline-start;">Monto Total: 510.000</h6>
-                     <a class="Btn" data-toggle="modal" onclick="Actualizado()"
-                                    style="float: inline-end;margin-right:40px;margin-top:5px; color:white">
-                                Registrar Producto<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-						class="bi bi-cash-stack" viewBox="0 0 16 16">
-						<path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
-						<path
-							d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2z" />
-					</svg>
-                </div>
-                </form>
-
             </div>
-
-
-            <!-- Bootstrap JS, jQuery, y Popper.js -->
-            <script>
-                $.material.init();
-            </script>
-            <script src="./js/jquery-3.1.1.min.js"></script>
-            <script src="./js/sweetalert2.min.js"></script>
-            <script src="./js/bootstrap.min.js"></script>
-            <script src="./js/material.min.js"></script>
-            <script src="./js/ripples.min.js"></script>
-            <script src="./js/validaciones/productos.js"></script>
-            <script src="./js/validaciones/validacionesCompras.js"></script>
-            <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
-            <script src="./js/main.js"></script>
-
-
-
+        </div>
+        <!-- Bootstrap JS, jQuery, y Popper.js -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+        <script>
+            $.material.init();
+        </script>
+        <script src="./js/sweetalert2.min.js"></script>
+        <script src="./js/ripples.min.js"></script>
+        <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="./js/main.js"></script>
+        <script src="./js/validaciones/validacionesProductos.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

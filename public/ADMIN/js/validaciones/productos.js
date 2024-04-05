@@ -58,7 +58,6 @@ function mostrarAlertaAgg() {
 
     // Mostrar alerta de éxito
     Swal.fire({
-        position: "top",
         icon: "success",
         title: "Producto agregado correctamente",
         showConfirmButton: false,
@@ -67,7 +66,3 @@ function mostrarAlertaAgg() {
       });
       
 }
-
-
-
-

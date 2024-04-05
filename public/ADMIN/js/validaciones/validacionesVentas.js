@@ -92,3 +92,21 @@ function Guardado(id) {
     }
 
 }
+
+function GuardadoUpdate(id) {
+
+        Swal.fire({
+            icon: "success",
+            text: "Se actualizo correctamente!",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Ok!",
+            backdrop: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                function redireccionar(ruta) {
+                    window.location.href = ruta;
+                }
+                redireccionar("/ventas");
+            }
+        });
+}

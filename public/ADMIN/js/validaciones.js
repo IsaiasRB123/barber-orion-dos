@@ -53,7 +53,6 @@ formulario.addEventListener('submit', (e) => {
     if (campos.nombre && campos.telefono && campos.correo) {
         formulario.reset();
         Swal.fire({
-            position: "top",
             icon: "success",
             title: "Cliente registrado correctamente",
             showConfirmButton: false,

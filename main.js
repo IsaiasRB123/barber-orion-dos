@@ -81,10 +81,23 @@ app.get('/ServiciosShadow', (req, res) => {
 });
 //Fin Servicios
 
+//categorias
 app.get('/Categorias', (req, res) => {
   res.render('Categorias');
 });
 
+app.get('/CategoriasRegistro', (req, res) => {
+  res.render('forms/categorias/categoriasRegistro');
+});
+
+app.get('/CategoriasModificar', (req, res) => {
+  res.render('forms/categorias/categoriasModificar');
+});
+
+app.get('/CategoriasShowww', (req, res) => {
+  res.render('forms/categorias/categoriasShow');
+});
+//Fin categorias
 app.get('/Citas', (req, res) => {
   res.render('Citas');
 });
@@ -219,6 +232,15 @@ app.get('/Ventas', (req, res) => {
 app.get('/VentasForm', (req, res) => {
   res.render('forms/ventas/RegistrarVentas');
 });
+
+app.get('/VentasUpdate', (req, res) => {
+  res.render('forms/ventas/ModificarVentas');
+});
+
+app.get('/VentasVistas', (req, res) => {
+  res.render('forms/ventas/VentasVistas');
+});
+
 
 app.get('/', (req, res) => {
   res.render('index');

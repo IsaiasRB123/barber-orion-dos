@@ -43,21 +43,68 @@
 
     <!-- Contenido de la página -->
     <div class="container">
+      <!-- Gráficas de barras -->
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="chart-container">
+            <div class="select-box flex-container-registro">
+                                    <select id="productos" onchange="actualizarPrecio()">
+                                        <option hidden="">Mes</option>
+                                        <option value="cera_antioxidante" id="cera_antioxidante">Agosto
+                                        </option>
+                                        <option value="minoxidil" id="minoxidil">Septiembre</option>
+                                        <option value="shampoo_180ml" id="shampoo_180ml">Octubre</option>
+                                    </select>
+            </div>
             <h2 class="chart-title">Productos</h2>
             <canvas id="productosChart"></canvas>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="chart-container">
+            <div class="select-box flex-container-registro">
+                                    <select id="productos" onchange="actualizarPrecio()">
+                                        <option hidden="">Mes</option>
+                                        <option value="cera_antioxidante" id="cera_antioxidante">Mayo
+                                        </option>
+                                        <option value="minoxidil" id="minoxidil">Junio</option>
+                                        <option value="shampoo_180ml" id="shampoo_180ml">Julio</option>
+                                    </select>
+            </div>
             <h2 class="chart-title">Servicios</h2>
+            <canvas id="nuevaChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Otras gráficas -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="chart-container">
+            <div class="select-box flex-container-registro">
+                                    <select id="productos" onchange="actualizarPrecio()">
+                                        <option hidden="">Mes</option>
+                                        <option value="cera_antioxidante" id="cera_antioxidante">Febrero
+                                        </option>
+                                        <option value="minoxidil" id="minoxidil">Marzo</option>
+                                        <option value="shampoo_180ml" id="shampoo_180ml">Abril</option>
+                                    </select>
+            </div>
+            <h2 class="chart-title">Top 5 más vendidos</h2>
             <canvas id="serviciosChart"></canvas>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="chart-container">
+            <div class="select-box flex-container-registro">
+                                    <select id="productos" onchange="actualizarPrecio()">
+                                        <option hidden="">Mes</option>
+                                        <option value="cera_antioxidante" id="cera_antioxidante">Febrero
+                                        </option>
+                                        <option value="minoxidil" id="minoxidil">Marzo</option>
+                                        <option value="shampoo_180ml" id="shampoo_180ml">Abril</option>
+                                    </select>
+            </div>
             <h2 class="chart-title">Citas completadas vs Citas canceladas</h2>
             <canvas id="citasChart"></canvas>
           </div>
@@ -75,6 +122,7 @@
   <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="./js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.3.0/echarts.min.js"></script>
   <script>
     // Inicialización de Material Design
     $.material.init();
@@ -99,41 +147,30 @@
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)'
         ],
-        borderWidth: 1
+        borderWidth: 8
       }]
     };
 
-    const serviciosData = {
-      labels: ['Barba', 'Cejas'],
+    const nuevaData = {
+      labels: ['Corte', 'Barba', 'Tintura', 'Afeitado', 'Peinado'],
       datasets: [{
         label: 'Servicios',
-        data: [10, 5],
+        data: [65, 59, 80, 81, 56],
         backgroundColor: [
           'rgba(255, 99, 132, 0.7)',
-          'rgba(54, 162, 235, 0.7)'
+          'rgba(54, 162, 235, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(153, 102, 255, 0.7)'
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)'
-        ],
-        borderWidth: 1
-      }]
-    };
-
-    const citasData = {
-      labels: ['Completadas', 'Canceladas'],
-      datasets: [{
-        label: 'Citas',
-        data: [20, 10],
-        backgroundColor: [
-          'rgba(75, 192, 192, 0.7)',
-          'rgba(255, 99, 132, 0.7)'
-        ],
-        borderColor: [
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
-          'rgba(255, 99, 132, 1)'
+          'rgba(153, 102, 255, 1)'
         ],
-        borderWidth: 1
+        borderWidth: 8
       }]
     };
 
@@ -155,16 +192,63 @@
       options: chartOptions
     });
 
+    const ctxNueva = document.getElementById('nuevaChart').getContext('2d');
+    const nuevaChart = new Chart(ctxNueva, {
+      type: 'bar', // Tipo de gráfica de barras
+      data: nuevaData,
+      options: chartOptions
+    });
+
+    // Otras gráficas
+    const serviciosData = {
+      labels: ['Manillas', 'Camisas','Cortes','Barba'],
+      datasets: [{
+        label: 'Top 5',
+        data: [4, 5, 6, 9],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(54, 162, 235, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)'
+        ],
+        borderWidth: 8
+      }]
+    };
+
+    const citasData = {
+      labels: ['Completadas', 'Canceladas'],
+      datasets: [{
+        label: 'Citas',
+        data: [20, 10],
+        backgroundColor: [
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(255, 99, 132, 0.7)'
+        ],
+        borderColor: [
+          'rgba(75, 192, 192, 1)',
+          'rgba(255, 99, 132, 1)'
+        ],
+        borderWidth: 8
+      }]
+    };
+
+    // Crear otras gráficas
     const ctxServicios = document.getElementById('serviciosChart').getContext('2d');
     const serviciosChart = new Chart(ctxServicios, {
-      type: 'doughnut',
+      type: 'bar',
       data: serviciosData,
       options: chartOptions
     });
 
     const ctxCitas = document.getElementById('citasChart').getContext('2d');
     const citasChart = new Chart(ctxCitas, {
-      type: 'doughnut',
+      type: 'bar',
       data: citasData,
       options: chartOptions
     });

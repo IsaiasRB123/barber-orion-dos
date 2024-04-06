@@ -57,7 +57,7 @@ app.get('/UsuariosRegistrar', (req, res) => {
   res.render('forms/Usuarios/UsuariosRegistrar');
 });
 
-app.get('/UsuariosModificar', (req, res) => {
+app.get('/UsuariosVer', (req, res) => {
   res.render('forms/Usuarios/UsuariosVer');
 });
 //Fin Usuarios

@@ -9,39 +9,57 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script> 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="assets/js/bootstrap-clockpicker.js"></script>
+    <script src="js/bootstrap-clockpicker.js"></script>
     <link rel="stylesheet" href="assets/css/agenda.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-clockpicker.css">
-    
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logo.png">
 
-    <!-- CSS here -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/slicknav.css">
-    <link rel="stylesheet" href="assets/css/flaticon.css">
-    <link rel="stylesheet" href="assets/css/gijgo.css">
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/animated-headline.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/css/themify-icons.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
-    <link rel="stylesheet" href="assets/css/nice-select.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/Carrito2.css">
-    <script src="assets/js/servicios.js"></script>
+    <link rel="stylesheet" href="assets/css/nfAgendar.css">
+    <link rel="stylesheet" href="css/bootstrap-clockpicker.css">
     <title>Calendario</title>
     </head>
-
 <body>
-    {{> nav}}
-
-    <!-- Navbar-->
+    {{!-- nav --}}
+    <div class="header-area header-transparent pt-20">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-2 col-lg-2 col-md-1">
+                            <div class="logo">
+                                <a href="/admin"><img src="assets/img/logo/logo.png" alt="" width="110px"
+                                        height="110px"></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-10 col-lg-10 col-md-10">
+                            <div class="menu-main d-flex align-items-center justify-content-end">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a class="dos" href="/">Inicio</a></li>
+                                            <li><a class="uno" href="/servicios">Servicios</a></li>
+                                            <li><a class="dos" href="/productos">Productos</a></li>
+                                            <li><a class="uno" href="/agendar">Agendar</a></li>
+                                            <li><a class="dos" href="#Contactanos">Contactenos</a></li>
+                                            <li><a href="/login" class="btn header-btn" id="boton-session">Iniciar sesion</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                {{!-- <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                                    <a href="/login" class="btn header-btn" id="boton-session">Iniciar sesion</a>
+                                </div> --}}
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{!-- nav --}}
+    <br>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col"></div>
@@ -68,7 +86,7 @@
 
                 },
                
-                events:'http://localhost/BARBERIA--ORION/BARBERIA-ORION/assets/php/eventos.php',
+                events:'http://localhost/calendario/eventos.php',
                 
                 eventClick:function(calEvent,jsEvent,view){
                     $('#tituloEvento').html(calEvent.title);
@@ -225,6 +243,119 @@
                 $('#txtDescripcion').val('')
     }
   </script>
+
+  <br>
+  <br>
     
+        <footer id="Contactanos">
+        <!--? Footer Start-->
+        <div class="footer-area section-bg" data-background="assets/img/gallery/footer_bg.png">
+            <div class="container">
+                <div class="footer-top footer-padding">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-xl-3 col-lg-4 col-md-5 col-sm-8">
+                            <div class="single-footer-caption mb-50">
+                                <!-- logo -->
+                                <div class="footer-logo">
+                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt="" width="100px" height="100px"></a>
+                                </div>
+                                <div class="footer-tittle">
+                                    <div class="footer-pera">
+                                        <p class="info1">Reciba actualizaciones y las últimas noticias directamente desde aca.</p>
+                                    </div>
+                                </div>
+                                <div class="footer-number">
+                                    <h4><span class="cc">+57 </span>3197437259</h4>
+                                    <p>Barberiaorion1@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Ubicacion </h4>
+                                    <ul>
+                                        <li><a href="#">Avanzado</a></li>
+                                        <li><a href="#">Gestión</a></li>
+                                        <li><a href="#">Corporativo</a></li>
+                                        <li><a href="#">Cliente</a></li>
+                                        <li><a href="#">Información</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Explorar</h4>
+                                    <ul>
+                                        <li><a href="#">Cookies</a></li>
+                                        <li><a href="#">About</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Proparties</a></li>
+                                        <li><a href="#">Licenses</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {{!-- aqui --}}
+                        </div>
+                        
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Contactanos</h4>
+                                    <div class="footer-pera">
+                                        <p class="info1"></p>
+                                    </div>
+                                </div>
+                                <!-- Form -->
+                                <div class="footer-form">
+                                    <div id="mc_embed_signup">
+                                        <form target="_blank"
+                                            action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                            method="get" class="subscribe_form relative mail_part" novalidate="true">
+                                            <input type="email" name="EMAIL" id="newsletter-form-email"
+                                                placeholder=" Email Address " class="placeholder hide-on-focus"
+                                                onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'Your email address'">
+                                            <div class="form-icon">
+                                                <button type="submit" name="submit" id="newsletter-submit"
+                                                    class="email_icon newsletter-submit button-contactForm">Send</button>
+                                            </div>
+                                            <div class="mt-10 info"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="col-xl-9 col-lg-8">
+                            <div class="footer-copy-right">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                        href="https://colorlib.com" target="_blank"></a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4">
+                            <!-- Footer Social -->
+                            <div class="footer-social f-right">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
 </body>
 </html>

@@ -2,24 +2,21 @@
 .fc th{
     padding: 10px 0px;
     vertical-align: middle;
-    background: hsl(352, 76%, 43%);
+    background: hsl(0, 0%, 0%);
     font-family: "Montserrat", sans-serif;
-   
+    color: white;
 }
 
 .fc-toolbar h2 {
     font-family: "Montserrat", sans-serif;
-    text-shadow: 3px 3px hsl(352, 76%, 43%);
-
-
 }
 /* inicio botom */
 
 .fc-toolbar button {
-    color: black;
+    color: white;
     cursor: pointer;
     font-family: "Montserrat", sans-serif;
-    background: hsl(352, 76%, 43%);
+    background: hsl(0, 0%, 3%);
 }
 
 

@@ -1,0 +1,134 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Oswald:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap");
+
+/* Estilos para el navbar */
+.header-area {
+    background-color: black;
+  }
+  
+  .logo img {
+    max-width: 110px; /* Ajusta el tamaño máximo de la imagen según sea necesario */
+    height: auto;
+    margin-left: 20px;
+  }
+
+  .menu-main {
+    display: flex;
+    justify-content: flex-end; /* Alinea los elementos al final del contenedor */
+  }
+  
+  
+  .menu-main ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .menu-main ul li {
+    display: inline-block;
+    margin-right: 8px; /* Ajusta el espaciado entre los elementos del menú según sea necesario */
+    color: #d19f68 !important;
+    padding: 10px 10px;
+    font-size: 14px;
+    font-weight: 200;
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  
+  .menu-main ul li a {
+    text-decoration: none;
+    color: white;
+    display: block; /* Para poder definir el margen de los enlaces */
+    margin-top: 10px; /* Ajusta la separación entre los enlaces */
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+  }
+
+  
+  
+  .menu-main ul li a:hover {
+    color: red; /* Cambia el color al pasar el mouse por encima */
+  }
+  
+  .header-right-btn {
+    margin-left: auto; /* Alinea el botón a la derecha */
+  }
+  
+  #boton-session {
+    background-color: rgb(50, 72, 196);
+    color: white;
+    padding: 20px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: "Oswald", sans-serif;
+    font-size: 14px;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 14px;
+
+  }
+  
+  #boton-session:hover {
+    background-color: rgb(50, 72, 196); /* Cambia el color al pasar el mouse por encima */
+  }
+  
+/* footer */
+/* Estilos para el footer */
+#Contactanos {
+    background-image: url("../img/gallery/footer_bg.png"); /* Ajusta la ruta de la imagen de fondo */
+    background-size: cover;
+    color: rgb(255, 255, 255);
+    padding: 50px 0;
+    text-decoration: none;
+    text-align: left; /* Alinea los enlaces a la izquierda */
+  }
+  
+  .footer-top .single-footer-caption {
+    margin-bottom: 50px;
+  }
+  
+  .footer-logo img {
+    max-width: 100px; /* Ajusta el tamaño máximo de la imagen del logo */
+    height: auto;
+  }
+  
+  .footer-tittle h4 {
+    color: white; /* Color oscuro para los títulos principales */
+    text-decoration: none;
+    text-align: left; /* Alinea los enlaces a la izquierda */
+  }
+  
+  .cc{
+    color: white;
+  }
+
+  .footer-tittle ul li a {
+    color: #999; /* Color claro para los enlaces */
+    text-decoration: none;
+    text-align: left; /* Alinea los enlaces a la izquierda */
+  }
+
+  .footer-tittle ul {
+    list-style: none; /* Quita las viñetas */
+    text-align: left; /* Alinea los enlaces a la izquierda */
+  }
+
+  .footer-number h4 {
+    color: blue; /* Color azul para el número de teléfono */
+    text-decoration: none;
+  }
+  
+  .footer-bottom {
+    margin-top: 50px;
+    text-decoration: none;
+    text-align: left; /* Alinea los enlaces a la izquierda */
+  }
+  
+  .footer-bottom p {
+    color: #999; /* Color claro para el texto de abajo */
+    text-align: left; /* Alinea los enlaces a la izquierda */
+  }
+  

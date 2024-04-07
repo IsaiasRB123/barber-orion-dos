@@ -9,11 +9,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script> 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="./js/bootstrap-clockpicker.js"></script>
+    <script src="./js/sweetalert.js"></script>
+    <script src="./js/validaciones/agendar.js"></script>
+
+    {{!-- <script src="./js/validaciones.js"></script> --}}
+
+
+    
     <script src="js/bootstrap-clockpicker.js"></script>
     <link rel="stylesheet" href="assets/css/agenda.css">
 
     <link rel="stylesheet" href="assets/css/nfAgendar.css">
     <link rel="stylesheet" href="css/bootstrap-clockpicker.css">
+    <style>
+                .error {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+        }
+
+    </style>
     <title>Calendario</title>
     </head>
 <body>
@@ -130,7 +149,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="tituloEvento"></h5>
+          <h5 class="modal-title" id="tituloEvento">Agendar</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -143,14 +162,17 @@
 
           <div class="form row">
                 <div class="form-group col-md-8">
-                    <label for="">Titulo</label><br>
+                    
+                    <label for="">Titulo del evento</label><br>
                      <input type="text"class="form-control"  id="txtTitulo" name="txtTitulo" placeholder="Titulo del evento">
-            
+                    <div id="mensaje-error-titulo" class="error"></div>
+                   
+  
                 </div>
                 <div class="form-group col-md-4">
                     <label for="">Hora del evento</label><br>
                     <div class="input-group clockpicker" data-autoclose="true">
-                        <input type="text"class="form-control" value="10:30"  id="txtHora" name="txtHora" >
+                        <input type="time"class="form-control" value="10:30"  id="txtHora" name="txtHora" >
                     </div>
                 </div>
              
@@ -158,15 +180,19 @@
 
           <div class="form-group">
                 <label for="">Descripcion del servicio</label><br>
-                        <input type="checkbox" id="txtDescripcion"  value="barba">
-                        <label for="vehicle"> Barba</label><br>
-                        <input type="checkbox" id="txtDescripcion"  value="corte de pelo">
-                        <label for="vehicle">Corte de pelo</label><br>
-                        <input type="checkbox" id="txtDescripcion"  value="cejas">
-                        <label for="vehicle">Cejas</label><br>
-                        <input type="checkbox" id="txtDescripcion"  value="lavado de pelo">
-                        <label for="vehicle3">lavado de pelo</label><br>
+                         <input type="checkbox" id="checkbox1" name="servicio" value="barba">
+                            <label for="checkbox1"> Barba</label><br>
+                            <input type="checkbox" id="checkbox2" name="servicio" value="corte de pelo">
+                            <label for="checkbox2">Corte de pelo</label><br>
+                            <input type="checkbox" id="checkbox3" name="servicio" value="cejas">
+                            <label for="checkbox3">Cejas</label><br>
+                            <input type="checkbox" id="checkbox4" name="servicio" value="lavado de pelo">
+                            <label for="checkbox4">Lavado de pelo</label><br>
+                            <div id="mensaje-error-checkbox" class="error"></div>
+                            
+                            
           </div>
+       
             <div class="form-group">
                 <label for="">Color</label><br>
                 <input type="color"  value="#ff0000" id="txtColor" class="form-control" name="txtFecha" style="height: 36px;" >
@@ -176,15 +202,87 @@
           
         </div>
         <div class="modal-footer">
-        <button id="btnAgregar" type="button" class="btn btn-success" >Agregar</button>
+        {{!-- <button id="btnEnviar">Enviar</button>
+        <button id="btnModificar">Modificar</button> --}}
+        <button id="btnEnviar" type="button" class="btn btn-success" >Agregar</button>
         <button id="btnModificar" type="button" class="btn btn-secondary" >Modificar</button>
-        <button id="btnEliminar" type="button" class="btn btn-danger" >Borrar</button>
-        <button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          
+        <button   type="button" onclick="Eliminar()" class="btn btn-danger" >Borrar</button>
+        <button  type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         </div>
       </div>
     </div>
   </div>
+
+   <script>
+// Función para validar el campo de título del evento
+function validarTitulo() {
+    var titulo = document.getElementById('txtTitulo').value.trim();
+    var mensajeError = document.getElementById('mensaje-error-titulo');
+    
+    if (titulo === '') {
+        mensajeError.textContent = 'Por favor ingresa un título.';
+        return false;
+    } else {
+        mensajeError.textContent = '';
+        return true;
+    }
+}
+
+// Función para validar al menos un checkbox seleccionado
+function validarCheckbox() {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    var mensajeError = document.getElementById('mensaje-error-checkbox');
+    
+    if (checkboxes.length === 0) {
+        mensajeError.textContent = 'Por favor selecciona al menos un servicio.';
+        return false;
+    } else {
+        mensajeError.textContent = '';
+        return true;
+    }
+}
+
+// Escuchador de eventos para validar el campo de título cuando se pierde el foco
+document.getElementById('txtTitulo').addEventListener('blur', validarTitulo);
+
+// Escuchador de eventos para validar los checkbox cuando se pierde el foco
+document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+    checkbox.addEventListener('change', validarCheckbox);
+});
+
+// Función para enviar o modificar el formulario
+function enviarOModificarFormulario() {
+    var esTituloValido = validarTitulo();
+    var esCheckboxValido = validarCheckbox();
+    
+    if (esTituloValido && esCheckboxValido) {
+        // Mostrar alerta de "Creado exitosamente" utilizando SweetAlert
+        Swal.fire({
+            title: '¡Creado exitosamente!',
+            text: 'El formulario se ha enviado con éxito.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        });
+    } else {
+        // Alerta de SweetAlert para indicar que debe completar el formulario correctamente
+        Swal.fire({
+            title: 'Error',
+            text: 'Por favor, completa el formulario correctamente antes de enviar.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+}
+
+// Escuchador de eventos para enviar el formulario cuando se hace clic en el botón "Enviar"
+document.getElementById('btnEnviar').addEventListener('click', enviarOModificarFormulario);
+
+// Escuchador de eventos para modificar el formulario cuando se hace clic en el botón "Modificar"
+document.getElementById('btnModificar').addEventListener('click', enviarOModificarFormulario);
+</script>
+  {{!-- validacion fin --}}
+
+  
 
   <script>
 
@@ -246,6 +344,8 @@
 
   <br>
   <br>
+
+  
     
         <footer id="Contactanos">
         <!--? Footer Start-->

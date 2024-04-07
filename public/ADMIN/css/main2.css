@@ -311,7 +311,7 @@ body, html{
 	max-width: 300px;
 	height: 180px;
 	background-color: #fff;
-	color: rgba(43, 174, 168, 1);
+	color: rgb(0, 0, 0);
 	position: relative;
 	display: inline-block;
 	box-shadow: 0 1px 7px rgba(0, 0, 0, .2);
@@ -321,7 +321,7 @@ body, html{
 }
 .tile:hover > .tile-icon > i,
 .tile:hover > .tile-number{
-	color: rgba(43, 174, 168, 1);
+	color: rgb(63, 63, 63);
 }
 .tile-title,
 .tile-icon,
@@ -332,7 +332,7 @@ body, html{
 	height: 40px;
 	line-height: 40px;
 	font-size: 20px;
-	background-color: rgb(43, 174, 168);
+	background-color: rgb(0, 0, 0);
 	color: #fff;
 	top: 0;
 	left: 0;
@@ -352,7 +352,7 @@ body, html{
 }
 .tile-icon > i,
 .tile-number{
-	color: rgba(43, 174, 168, .4);
+	color: rgba(0, 0, 0, 0.4);
 	transition: all .3s ease-in-out;
 }
 .tile-number{

@@ -242,7 +242,21 @@ app.get('/VentasVistas', (req, res) => {
   res.render('forms/ventas/VentasVistas');
 });
 
+app.get('/Recomendaciones', (req, res) => {
+  res.render('Recomendaciones');
+});
 
+app.get('/RecomendacionesFormulario', (req, res) => {
+  res.render('forms/Recomendaciones/RecomendacionesFormulario');
+});
+
+app.get('/RecomendacionesFormularioModificar', (req, res) => {
+  res.render('forms/Recomendaciones/RecomendacionesFormMod');
+});
+
+app.get('/RecomendacionesVerr', (req, res) => {
+  res.render('forms/Recomendaciones/RecomendacionesVerr');
+});
 
 app.get('/ProductoAdmin', (req, res) => {
   res.render('ProductoAdmin');

@@ -40,54 +40,134 @@
                         <header>Registrar Roles</header>
                         <form class="form-admin" id="formularioRoles">
                             <div class="row">
-                            <div class="input-box" id="grupo__nombre">
-                                <label>*Nombre</label>
-                                <input type="text" name="nombre" id="nombre">
-                                <p class="formulario__input-error">No se permite simbolos o números en este campo</p>
+                                <div class="input-box" id="grupo__nombre">
+                                    <label>*Nombre</label>
+                                    <input type="text" name="nombre" id="nombre">
+                                    <p class="formulario__input-error">No se permite simbolos o números en este campo
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-box address">
-                                <label>*Estado</label>
-                                <div class="select-box">
+                            <div class="row">
+                                <label style="color: black;">*Permisos</label>
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                                        <label class="form-check-label" for="flexCheckDefault1">
+                                            dashboard
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                                        <label class="form-check-label" for="flexCheckDefault1">
+                                            Roles
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                                        <label class="form-check-label" for="flexCheckDefault1">
+                                            Usuarios
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                                        <label class="form-check-label" for="flexCheckDefault1">
+                                            Categorias
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                                        <label class="form-check-label" for="flexCheckDefault1">
+                                            Productos
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                                        <label class="form-check-label" for="flexCheckDefault1">
+                                            Proveedores
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                                        <label class="form-check-label" for="flexCheckDefault1">
+                                            Compras
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                                        <label class="form-check-label" for="flexCheckDefault8">
+                                            Servicios
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                                        <label class="form-check-label" for="flexCheckDefault8">
+                                            Empleados
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                                        <label class="form-check-label" for="flexCheckDefault8">
+                                            Horario Empleados
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                                        <label class="form-check-label" for="flexCheckDefault8">
+                                            Servicio recomendado
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                                        <label class="form-check-label" for="flexCheckDefault8">
+                                            Clientes
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                                        <label class="form-check-label" for="flexCheckDefault8">
+                                            Citas
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                                        <label class="form-check-label" for="flexCheckDefault8">
+                                            Pedidos
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                                        <label class="form-check-label" for="flexCheckDefault8">
+                                            Citas
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-box address">
+                                    <label>*Estado</label>
+                                    <div class="select-box">
                                         <select>
-                                            <option  >Activo</option>
-                                            <option >Inactivo</option>
+                                            <option>Activo</option>
+                                            <option>Inactivo</option>
                                         </select>
                                     </div>
+                                </div>
                             </div>
-                        </div>
-                        
-                            <div class="" >
-                                <label>*Permisos</label><br>
-                                    <div class="gender">
-                                        <input name="gender" id="check-female" type="radio">
-                                        <label for="check-female">Home</label>
-                                    </div>
-                                    <div class="gender">
-                                        <input name="gender" id="check-other" type="radio">
-                                        <label for="check-other">Dashboard</label>
-                                    </div>
-                            </div>
-
-                            
                             <div class="formulario__mensaje" id="formulario__mensaje">
-                                <p><svg xmlns="http://www.w3.org/2000/svg" class="svgIcon-form"
-                                        viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                <p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon-form" viewBox="0 0 512 512">
                                         <path
                                             d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
                                     </svg>
                                     <b>Error:</b> Por favor rellena el formulario correctamente
                                 </p>
                             </div>
-                            
-                                <button type="submit">Registrar</button>
-                            
-                            
-                                <a type="button" href="/Roles" style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
-                            
-                            
-                            
+                            <button type="submit">Registrar</button>
+                            <a type="button" href="/Roles"
+                                style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
                         </form>
                     </section>
                 </div>

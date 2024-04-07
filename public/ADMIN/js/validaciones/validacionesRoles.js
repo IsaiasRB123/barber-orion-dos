@@ -1,14 +1,15 @@
 const formulario = document.getElementById('formularioRoles');
-const inputs = document.querySelectorAll('#formularioRoles input')
+const inputs = document.querySelectorAll('#formularioRoles input');
 
 const expresiones = {
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-}
+};
 
 const campos = {
     nombre: false,
-    
-}
+    // Agrega un campo para contabilizar los checkboxes seleccionados
+    permisos: false
+};
 
 const ValidarFormulario = (e) => {
     switch (e.target.name) {
@@ -16,7 +17,7 @@ const ValidarFormulario = (e) => {
             ValidarCampo(expresiones.nombre, e.target, 'nombre');
             break;
     }
-}
+};
 
 const ValidarCampo = (expresion, input, campo) => {
     if (expresion.test(input.value)) {
@@ -30,27 +31,36 @@ const ValidarCampo = (expresion, input, campo) => {
         document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo')
         campos[campo] = false;
     }
-}
+};
+
+// Agrega eventListeners para validar cambios en los inputs
 inputs.forEach((input) => {
-    input.addEventListener('keyup', ValidarFormulario)
-    input.addEventListener('blur', ValidarFormulario)
-})
+    if (input.type === 'text') {
+        input.addEventListener('keyup', ValidarFormulario);
+        input.addEventListener('blur', ValidarFormulario);
+    } else if (input.type === 'checkbox') {
+        input.addEventListener('change', () => {
+            campos.permisos = document.querySelectorAll('#formularioRoles input[type="checkbox"]:checked').length > 0;
+        });
+    }
+});
 
 formulario.addEventListener('submit', (e) => {
-    e.preventDefault()
-    if (campos.nombre) {
+    e.preventDefault();
+
+    if (campos.nombre && campos.permisos) {
         formulario.reset();
         Swal.fire({
-            position: "top",
             icon: "success",
             title: "Cliente registrado correctamente",
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500, 
+            backdrop: false
         });
-    }else{
-        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo')
+    } else {
+        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
         setTimeout(() => {
-            document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo')
-        },5000)
+            document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
+        }, 5000);
     }
-})
+});

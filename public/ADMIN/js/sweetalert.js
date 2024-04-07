@@ -109,3 +109,16 @@ function Anular(id) {
         }
     })
 }
+
+function mostrarImagen() {
+    const fileInput = document.getElementById('inputGroupFile01');
+    const vistaPrevia = document.getElementById('vistaPrevia');
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        vistaPrevia.innerHTML = '<img src="' + e.target.result + '" class="img-thumbnail" alt="Vista previa de la imagen" width="100px" heigth="100px">';
+    }
+
+    reader.readAsDataURL(file);
+}

@@ -926,6 +926,36 @@ input:hover {
 }
 /*Fin Buton volver*/
 
+/*Buton informe*/
+
+.Btn-descargar {
+	width: 190px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(0, 0, 0);
+	border-radius: 10px;
+	color: white;
+	font-weight: 600;
+	gap: 8px;
+	cursor: pointer;
+	position: relative;
+	transition-duration: .3s;
+	margin-right: 15px;
+}
+
+.svgIcon-Volver {
+	width: 20px;
+	color: white;
+}
+
+.Btn-descargar:hover{
+	background-color: rgb(126, 123, 123);
+	color: white;
+}
+/*Fin Buton informe*/
+
 /*Buton update*/
 
 .Btn-update {

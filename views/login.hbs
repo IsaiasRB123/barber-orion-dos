@@ -5,8 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+    <style>
+        .error-message {
+            display: none;
+            color: red;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+    </style>
     <title>BARBERIA ORION</title>
 </head>
 
@@ -17,10 +26,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
             <form id="signup-form" onsubmit="return validateSignUp()">
                 <img src="assets/img/logo/logo2.png" alt="" width="100px" height="100px">
                 <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands
-fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands
-fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                 </div>
                 <span>Correo electronico</span>
                 <input type="text" id="fullName" placeholder="Nombre Completo" required>
@@ -35,28 +42,22 @@ fa-facebook-f"></i></a>
             <form>
                 <img src="assets/img/logo/logo2.png" alt="" width="100px" height="100px">
                 <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands
-fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands
-fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                 </div>
                 <a href="index.html">Volver a inicio</a>
                 <span>Contraseña</span>
-                <form action="" id="formulario">
-                    <div class="input-box" id="grupo__correo">
-                                
-                                <input type="text" name="correo" id="correo" placeholder="Correo">
-                                <p class="formulario__input-error">No se permite simbolos o números en este campo</p>
-                </div>
-                <div class="input-box" id="grupo__correo">
-                                
-                                <input type="password" name="password" id="password" placeholder="Contraseña">
-                                <p class="formulario__input-error">No se permite simbolos o números en este campo</p>
-                </div>
+                <form id="formulario">
+                    
+                    <input type="text" name="correo" id="correo" placeholder="Correo">
+                    <div id="correo-error" class="error-message"></div>
+                    
+                    <input type="password" name="contrase" id="contrase" placeholder="Contraseña">
+                    <div id="contrase-error" class="error-message"></div>
+                    
+                    <a href="/olvidar">Olvido la contraseña?</a>
+                    <button type="submit">Enviar</button>
                 </form>
-                
-                <a href="/olvidar">Olvido la contraseña?</a>
-                <button>Iniciar sesion</button>
             </form>
         </div>
         <div class="toggle-container">
@@ -75,7 +76,76 @@ fa-facebook-f"></i></a>
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('correo').addEventListener('blur', function () {
+            var correoInput = this;
+            var correoValue = correoInput.value.trim();
+            var correoError = document.getElementById('correo-error');
+            if (!isValidEmail(correoValue)) {
+                correoError.style.display = 'block';
+                correoError.textContent = 'Correo electrónico inválido';
+            } else {
+                correoError.style.display = 'none';
+                correoError.textContent = '';
+            }
+        });
+
+        document.getElementById('contrase').addEventListener('blur', function () {
+            var passwordInput = this;
+            var passwordValue = passwordInput.value.trim();
+            var passwordError = document.getElementById('contrase-error');
+            if (passwordValue.length < 8) {
+                passwordError.style.display = 'block';
+                passwordError.textContent = 'La contraseña debe tener al menos 8 caracteres';
+            } else {
+                passwordError.style.display = 'none';
+                passwordError.textContent = '';
+            }
+        });
+
+        document.getElementById('formulario').addEventListener('submit', function (event) {
+            event.preventDefault(); // Evita que se envíe el formulario
+            var correoInput = document.getElementById('correo');
+            var passwordInput = document.getElementById('contrase');
+            var correoValue = correoInput.value.trim();
+            var passwordValue = passwordInput.value.trim();
+
+            // Validar el correo electrónico y contraseña
+            var correoError = document.getElementById('correo-error');
+            var passwordError = document.getElementById('contrase-error');
+            if (!isValidEmail(correoValue)) {
+                correoError.style.display = 'block';
+                correoError.textContent = 'Correo electrónico inválido';
+                return;
+            } else {
+                correoError.style.display = 'none';
+                correoError.textContent = '';
+            }
+
+            if (passwordValue.length < 8) {
+                passwordError.style.display = 'block';
+                passwordError.textContent = 'La contraseña debe tener al menos 8 caracteres';
+                return;
+            } else {
+                passwordError.style.display = 'none';
+                passwordError.textContent = '';
+            }
+
+            // Si la validación es exitosa, mostrar una alerta usando SweetAlert
+            swal('Formulario enviado', '¡Datos válidos!', 'success');
+        });
+
+        // Función para validar un correo electrónico
+        function isValidEmail(email) {
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
+
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
     <script src="./js/validaciones/validacionLogin.js"></script>
     <script src="assets/js/login.js"></script>
 </body>
+
 </html>

@@ -43,81 +43,78 @@
 
     <!-- Contenido de la página -->
     <div class="container-fluid">
-            <div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
-    <h1 class="text-titles" style="margin: 0;"></i>Graficas</h1>
-    <a class="Btn-descargar" href="/Compras" download="nombre_del_archivo.png" style=" float: inline-start;text-decoration:none;">
-    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="17.5" viewBox="0 0 448 512">
-        <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-        <path fill="#ffffff" d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/>
-    </svg>
-    Descargar informe
-</a>
-</div>
-    <div class="container">
-      <!-- Gráficas de barras -->
-      <div class="row">
-        <div class="col-md-6">
-          <div class="chart-container">
-            <div class="select-box flex-container-registro">
-                                    <select id="productos" onchange="actualizarPrecio()">
-                                        <option hidden="">Mes</option>
-                                        <option value="cera_antioxidante" id="cera_antioxidante">Agosto
-                                        </option>
-                                        <option value="minoxidil" id="minoxidil">Septiembre</option>
-                                        <option value="shampoo_180ml" id="shampoo_180ml">Octubre</option>
-                                    </select>
-            </div>
-            <h2 class="chart-title">Productos</h2>
-            <canvas id="productosChart"></canvas>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="chart-container">
-            <div class="select-box flex-container-registro">
-                                    <select id="productos" onchange="actualizarPrecio()">
-                                        <option hidden="">Mes</option>
-                                        <option value="cera_antioxidante" id="cera_antioxidante">Mayo
-                                        </option>
-                                        <option value="minoxidil" id="minoxidil">Junio</option>
-                                        <option value="shampoo_180ml" id="shampoo_180ml">Julio</option>
-                                    </select>
-            </div>
-            <h2 class="chart-title">Servicios</h2>
-            <canvas id="nuevaChart"></canvas>
-          </div>
-        </div>
+      <div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 class="text-titles" style="margin: 0;"></i>Graficas</h1>
+        <!-- Agregar el enlace para descargar el informe -->
+        <a class="Btn-descargar" href="#" download="informe.xlsx" onclick="exportToExcel()" style="text-decoration: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" height="20" width="17.5" viewBox="0 0 448 512">
+          <path fill="#ffffff" d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/>
+          </svg>
+          Descargar informe
+          </a>
       </div>
-
-      <!-- Otras gráficas -->
-      <div class="row">
-        <div class="col-md-6">
-          <div class="chart-container">
-            <div class="select-box flex-container-registro">
-                                    <select id="productos" onchange="actualizarPrecio()">
-                                        <option hidden="">Mes</option>
-                                        <option value="cera_antioxidante" id="cera_antioxidante">Febrero
-                                        </option>
-                                        <option value="minoxidil" id="minoxidil">Marzo</option>
-                                        <option value="shampoo_180ml" id="shampoo_180ml">Abril</option>
-                                    </select>
+      <div class="container">
+        <!-- Gráficas de barras -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="chart-container">
+              <div class="select-box flex-container-registro">
+                <select id="productos" onchange="actualizarPrecio()">
+                  <option hidden="">Mes</option>
+                  <option value="cera_antioxidante" id="cera_antioxidante">Agosto</option>
+                  <option value="minoxidil" id="minoxidil">Septiembre</option>
+                  <option value="shampoo_180ml" id="shampoo_180ml">Octubre</option>
+                </select>
+              </div>
+              <h2 class="chart-title">Productos</h2>
+              <canvas id="productosChart"></canvas>
             </div>
-            <h2 class="chart-title">Top 5 más vendidos</h2>
-            <canvas id="serviciosChart"></canvas>
+          </div>
+          <div class="col-md-6">
+            <div class="chart-container">
+              <div class="select-box flex-container-registro">
+                <select id="productos" onchange="actualizarPrecio()">
+                  <option hidden="">Mes</option>
+                  <option value="cera_antioxidante" id="cera_antioxidante">Mayo</option>
+                  <option value="minoxidil" id="minoxidil">Junio</option>
+                  <option value="shampoo_180ml" id="shampoo_180ml">Julio</option>
+                </select>
+              </div>
+              <h2 class="chart-title">Servicios</h2>
+              <canvas id="nuevaChart"></canvas>
+            </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="chart-container">
-            <div class="select-box flex-container-registro">
-                                    <select id="productos" onchange="actualizarPrecio()">
-                                        <option hidden="">Mes</option>
-                                        <option value="cera_antioxidante" id="cera_antioxidante">Febrero
-                                        </option>
-                                        <option value="minoxidil" id="minoxidil">Marzo</option>
-                                        <option value="shampoo_180ml" id="shampoo_180ml">Abril</option>
-                                    </select>
+
+        <!-- Otras gráficas -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="chart-container">
+              <div class="select-box flex-container-registro">
+                <select id="productos" onchange="actualizarPrecio()">
+                  <option hidden="">Mes</option>
+                  <option value="cera_antioxidante" id="cera_antioxidante">Febrero</option>
+                  <option value="minoxidil" id="minoxidil">Marzo</option>
+                  <option value="shampoo_180ml" id="shampoo_180ml">Abril</option>
+                </select>
+              </div>
+              <h2 class="chart-title">Top 5 más vendidos</h2>
+              <canvas id="serviciosChart"></canvas>
             </div>
-            <h2 class="chart-title">Citas completadas vs Citas canceladas</h2>
-            <canvas id="citasChart"></canvas>
+          </div>
+          <div class="col-md-6">
+            <div class="chart-container">
+              <div class="select-box flex-container-registro">
+                <select id="productos" onchange="actualizarPrecio()">
+                  <option hidden="">Mes</option>
+                  <option value="cera_antioxidante" id="cera_antioxidante">Febrero</option>
+                  <option value="minoxidil" id="minoxidil">Marzo</option>
+                  <option value="shampoo_180ml" id="shampoo_180ml">Abril</option>
+                </select>
+              </div>
+              <h2 class="chart-title">Citas completadas vs Citas canceladas</h2>
+              <canvas id="citasChart"></canvas>
+            </div>
           </div>
         </div>
       </div>
@@ -264,6 +261,23 @@
       options: chartOptions
     });
 
+    // Función para exportar a Excel
+    function exportToExcel() {
+      const workbook = XLSX.utils.book_new();
+      const worksheetData = [
+        ['Mes', 'Ventas'],
+        ['Enero', 65],
+        ['Febrero', 59],
+        ['Marzo', 80],
+        ['Abril', 81],
+        ['Mayo', 56]
+      ];
+      const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Ventas');
+
+      // Guardar el archivo Excel
+      XLSX.writeFile(workbook, 'informe.xlsx');
+    }
   </script>
 
   <style>

@@ -41,21 +41,50 @@ inputs.forEach((input) => {
     input.addEventListener('blur', ValidarFormulario)
 })
 
-formulario.addEventListener('submit', (e) => {
-    e.preventDefault()
-    if (campos.nombre && campos.precio) {
-        formulario.reset();
+formulario.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById('nombre').value;
+    const precio = document.getElementById('precio').value;
+    const tiempo = document.getElementById('tiempo').value;
+    const estado = true;
+
+    const data = {
+        nombre: nombre,
+        precio: precio,
+        tiempo: tiempo,
+        estado:estado
+    };
+
+    try {
+        const response = await fetch('http://localhost:5235/api/Servicio', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la solicitud');
+        }
+
         Swal.fire({
             icon: "success",
             title: "Servicio registrado correctamente",
             showConfirmButton: false,
             timer: 1500,
-            backdrop:false
+            backdrop: false
         });
-    }else{
-        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo')
+
+        formulario.reset();
+
+    } catch (error) {
+        console.error('Error al enviar la solicitud:', error);
+        // Aquí podrías mostrar un mensaje de error al usuario
+        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
         setTimeout(() => {
-            document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo')
-        },5000)
+            document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
+        }, 5000);
     }
-})
+});

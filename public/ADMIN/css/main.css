@@ -893,6 +893,7 @@ input:hover {
 .svgIcon path {
 	fill: white;
 }
+
 /*Fin Buton delete*/
 
 /*Buton Volver*/
@@ -920,10 +921,11 @@ input:hover {
 	color: white;
 }
 
-.Btn-Volver:hover{
+.Btn-Volver:hover {
 	background-color: rgb(54, 54, 54);
 	color: white;
 }
+
 /*Fin Buton volver*/
 
 /*Buton informe*/
@@ -950,10 +952,11 @@ input:hover {
 	color: white;
 }
 
-.Btn-descargar:hover{
+.Btn-descargar:hover {
 	background-color: rgb(126, 123, 123);
 	color: white;
 }
+
 /*Fin Buton informe*/
 
 /*Buton update*/
@@ -1012,6 +1015,7 @@ input:hover {
 .svgIcon path {
 	fill: white;
 }
+
 /*Fin Buton shadow*/
 
 /* Button download */
@@ -1060,7 +1064,7 @@ input:hover {
 	transition-duration: .3s;
 }
 
-.Btn-chek:hover{
+.Btn-chek:hover {
 	background-color: rgb(42, 206, 105);
 }
 
@@ -1227,6 +1231,24 @@ input:hover {
 	margin: 0;
 }
 
+.formulario__mensaje_exito {
+	margin: 15px;
+	height: 45px;
+	line-height: 45px;
+	background-color: #60f660;
+	padding: 0 15px;
+	border-radius: 3px;
+	display: none;
+}
+
+.formulario__mensaje_exito-activo {
+	display: block;
+}
+
+.formulario__mensaje_exito p {
+	margin: 0;
+}
+
 .input-box-incorrecto label {
 	color: #bb2929;
 	font-weight: 2px;
@@ -1280,15 +1302,15 @@ input:hover {
 	margin: 0;
 }
 
-.flex-container-registro label{
+.flex-container-registro label {
 	color: #000;
 }
 
-.flex-container-registro-2 label{
+.flex-container-registro-2 label {
 	color: #000;
 }
 
-.flex-container-registro input{
+.flex-container-registro input {
 	position: relative;
 	height: 35px;
 	width: 30%;
@@ -1301,7 +1323,7 @@ input:hover {
 	background: #ffffff;
 }
 
-.flex-container-registro-2 input{
+.flex-container-registro-2 input {
 	position: relative;
 	height: 35px;
 	width: 30%;
@@ -1314,7 +1336,7 @@ input:hover {
 	background: #ffffff;
 }
 
-.flex-container-registro select{
+.flex-container-registro select {
 	height: 35px;
 	width: 30%;
 	font-size: 1rem;
@@ -1418,58 +1440,69 @@ input:hover {
 }
 
 .flex-container-registro {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 .flex-container-registro-2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 	width: 930px;
 }
 
 .input-wrapper {
-    flex: 1;
+	flex: 1;
 }
 
 .input-wrapper label {
-    display: block;
-    margin-bottom: 5px;
+	display: block;
+	margin-bottom: 5px;
 }
 
 .input-wrapper input {
-    display: block;
+	display: block;
 }
 
 .input-wrapper select {
-    display: block;
+	display: block;
 }
 
 .input-wrapper input {
-    display: block;
-	height:35px;
-    width: 98%; /* Ajusta el ancho del input al 100% del contenedor */
-    padding: 8px; /* Ajusta el relleno (padding) del input según sea necesario */
-    box-sizing: border-box; /* Asegura que el tamaño total del input incluya el relleno y el borde */
-    font-size: 14px; /* Ajusta el tamaño de la fuente del input según sea necesario */
+	display: block;
+	height: 35px;
+	width: 98%;
+	/* Ajusta el ancho del input al 100% del contenedor */
+	padding: 8px;
+	/* Ajusta el relleno (padding) del input según sea necesario */
+	box-sizing: border-box;
+	/* Asegura que el tamaño total del input incluya el relleno y el borde */
+	font-size: 14px;
+	/* Ajusta el tamaño de la fuente del input según sea necesario */
 }
+
 .input-wrapper select {
-    display: block;
-	height:35px;
-    width: 98%; /* Ajusta el ancho del input al 100% del contenedor */
-    padding: 8px; /* Ajusta el relleno (padding) del input según sea necesario */
-    box-sizing: border-box; /* Asegura que el tamaño total del input incluya el relleno y el borde */
-    font-size: 14px; /* Ajusta el tamaño de la fuente del input según sea necesario */
+	display: block;
+	height: 35px;
+	width: 98%;
+	/* Ajusta el ancho del input al 100% del contenedor */
+	padding: 8px;
+	/* Ajusta el relleno (padding) del input según sea necesario */
+	box-sizing: border-box;
+	/* Asegura que el tamaño total del input incluya el relleno y el borde */
+	font-size: 14px;
+	/* Ajusta el tamaño de la fuente del input según sea necesario */
 }
 
 .custom-swal-bg {
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con opacidad */
+	background-color: rgba(0, 0, 0, 0.5);
+	/* Fondo oscuro con opacidad */
 }
 
 .swal2-container {
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con opacidad */
+	background-color: rgba(0, 0, 0, 0.5);
+	/* Fondo oscuro con opacidad */
 }
 
 .Btn-exit {
@@ -1551,38 +1584,38 @@ input:hover {
 	--effect-transition: all .2s ease-in-out;
 	margin-top: 5px;
 	margin-left: 15px;
-  }
-  
-  .switch input {
+}
+
+.switch input {
 	display: none;
-  }
-  
-  .switch {
+}
+
+.switch {
 	display: inline-block;
-  }
-  
-  .switch svg {
+}
+
+.switch svg {
 	-webkit-transition: var(--icon-transition);
 	-o-transition: var(--icon-transition);
 	transition: var(--icon-transition);
 	position: absolute;
 	height: auto;
-  }
-  
-  .switch .checkmark {
+}
+
+.switch .checkmark {
 	width: var(--icon-checkmark-size);
 	color: var(--icon-checkmark-color);
 	-webkit-transform: scale(0);
 	-ms-transform: scale(0);
 	transform: scale(0);
-  }
-  
-  .switch .cross {
+}
+
+.switch .cross {
 	width: var(--icon-cross-size);
 	color: var(--icon-cross-color);
-  }
-  
-  .slider {
+}
+
+.slider {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	width: var(--switch-width);
@@ -1600,9 +1633,9 @@ input:hover {
 	-o-transition: var(--switch-transition);
 	transition: var(--switch-transition);
 	cursor: pointer;
-  }
-  
-  .circle {
+}
+
+.circle {
 	width: var(--circle-diameter);
 	height: var(--circle-diameter);
 	background: var(--circle-bg);
@@ -1624,9 +1657,9 @@ input:hover {
 	z-index: 1;
 	position: absolute;
 	left: var(--switch-offset);
-  }
-  
-  .slider::before {
+}
+
+.slider::before {
 	content: "";
 	position: absolute;
 	width: var(--effect-width);
@@ -1637,32 +1670,58 @@ input:hover {
 	-webkit-transition: var(--effect-transition);
 	-o-transition: var(--effect-transition);
 	transition: var(--effect-transition);
-  }
-  
-  /* actions */
-  
-  .switch input:checked+.slider {
+}
+
+/* actions */
+
+.switch input:checked+.slider {
 	background: var(--switch-checked-bg);
-  }
-  
-  .switch input:checked+.slider .checkmark {
+}
+
+.switch input:checked+.slider .checkmark {
 	-webkit-transform: scale(1);
 	-ms-transform: scale(1);
 	transform: scale(1);
-  }
-  
-  .switch input:checked+.slider .cross {
+}
+
+.switch input:checked+.slider .cross {
 	-webkit-transform: scale(0);
 	-ms-transform: scale(0);
 	transform: scale(0);
-  }
-  
-  .switch input:checked+.slider::before {
+}
+
+.switch input:checked+.slider::before {
 	left: calc(100% - var(--effect-width) - (var(--effect-width) / 2) - var(--switch-offset));
-  }
-  
-  .switch input:checked+.slider .circle {
+}
+
+.switch input:checked+.slider .circle {
 	left: calc(100% - var(--circle-diameter) - var(--switch-offset));
 	-webkit-box-shadow: var(--circle-checked-shadow);
 	box-shadow: var(--circle-checked-shadow);
-  }
+}
+
+.BotoncerrarAdmin {
+	text-decoration: none;
+	text-align: center;
+	margin-left: 150px;
+	position: absolute;
+	padding-top: 5px;
+	color: white;
+	background-color: #bb2929;
+	width: 130px;
+	height: 40px;
+	border-radius: 10px
+}
+
+.BotoncerrarAdmin:hover{
+	text-decoration: none;
+	text-align: center;
+	margin-left: 150px;
+	position: absolute;
+	padding-top: 5px;
+	color: white;
+	background-color: #aa2020;
+	width: 130px;
+	height: 40px;
+	border-radius: 10px
+}

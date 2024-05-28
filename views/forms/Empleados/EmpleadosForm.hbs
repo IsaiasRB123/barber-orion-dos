@@ -39,48 +39,43 @@
                     <section class="container-form">
                         <header>Registrar Empleado</header>
                         <form class="form-admin" action="#" id="formulario">
-                            <div class="input-box">
+                            <div class="input-box" id="grupo__nombre">
                                 <label>Nombre</label>
                                 <input type="text" name="nombre" id="nombre">
-                                <div class="alerta" id="alertaNombre"></div>
+                                <div class="formulario__input-error">Nombre no válido</div>
                             </div>
-                            <div class="input-box">
+                            <div class="input-box" id="grupo__correo">
                                 <label>Correo</label>
                                 <input type="email" name="correo" id="correo">
-                                <div class="alerta" id="alertaCorreo"></div>
+                                <div class="formulario__input-error">Correo no válido</div>
                             </div>
-                            <div class="input-box">
+                            <div class="input-box" id="grupo__telefono">
                                 <label>Teléfono</label>
                                 <input type="tel" name="telefono" id="telefono">
-                                <div class="alerta" id="alertaTelefono"></div>
+                                <div class="formulario__input-error">Teléfono no válido</div>
                             </div>
-                            <div class="select-box">
-                                <select id="rol" required> <!-- Añadir el atributo required aquí -->
-                                    <option hidden="">Rol</option>
-                                    <option>Barbero</option>
-                                    <option>Aseador</option>
-                                </select>
-                                <div class="alerta" id="alertaRol"></div>
+                            <div class="input-box" id="grupo__rol">
+                                <label>Rol</label>
+                                <input type="text" name="rol" id="rol">
+                                <div class="formulario__input-error">Rol no válido</div>
                             </div>
-                            <div class="select-box">
-                                <select id="estado" required> <!-- Añadir el atributo required aquí -->
-                                    <option hidden="">Estado</option>
-                                    <option>Activo</option>
-                                    <option>Inactivo</option>
-                                </select>
-                                <div class="alerta" id="alertaEstado"></div>
+                            <div class="input-box" id="grupo__estado">
+                                <label>Estado</label>
+                                <input type="text" name="estado" id="estado">
+                                <div class="formulario__input-error">Estado no válido</div>
                             </div>
                             <button type="submit" id="btn-registrar">Registrar</button>
                             <a type="button" href="/Empleados" style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
+                        </form>
                     </section>
                 </div>
             </div>
         </div>
     </section>
 
-     <!-- Bootstrap JS, jQuery, y Popper.js -->
+    <!-- Bootstrap JS, jQuery, y Popper.js -->
     <script>
-      $.material.init();
+        $.material.init();
     </script>
     <script src="./js/jquery-3.1.1.min.js"></script>
     <script src="./js/sweetalert2.min.js"></script>
@@ -96,11 +91,19 @@
 
     <!-- Validaciones JS -->
     <script src="./js/validaciones/validacionesEmpleados.js"></script>
-
 </body>
+
 <style>
-    .alerta-roja {
-    color: red;
-}
+    .formulario__input-error {
+        color: red;
+        display: none;
+    }
+    .input-box-incorrecto {
+        border-color: red;
+    }
+    .input-box-correcto {
+        border-color: green;
+    }
 </style>
+
 </html>

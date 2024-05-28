@@ -37,70 +37,102 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <section class="container-form">
-                        <header>Modificar Empleado</header>
+                        <header>Editar Empleado</header>
                         <form class="form-admin" action="#" id="formulario">
                             <div class="input-box">
                                 <label>Nombre</label>
-                                <input type="text" name="nombre" id="nombre">
-                                <div class="alerta" id="alertaNombre"></div>
+                                <input type="text" name="nombre" id="nombre" required>
                             </div>
                             <div class="input-box">
                                 <label>Correo</label>
-                                <input type="email" name="correo" id="correo">
-                                <div class="alerta" id="alertaCorreo"></div>
+                                <input type="email" name="correo" id="correo" required>
                             </div>
                             <div class="input-box">
                                 <label>Teléfono</label>
-                                <input type="tel" name="telefono" id="telefono">
-                                <div class="alerta" id="alertaTelefono"></div>
+                                <input type="tel" name="telefono" id="telefono" required>
                             </div>
-                            <div class="select-box">
-                                <select id="rol" required> <!-- Añadir el atributo required aquí -->
-                                    <option hidden="">Rol</option>
-                                    <option>Barbero</option>
-                                    <option>Aseador</option>
-                                </select>
-                                <div class="alerta" id="alertaRol"></div>
+                            <div class="input-box">
+                                <label>Rol</label>
+                                <input type="text" name="rol" id="rol" required>
                             </div>
-                            <div class="select-box">
-                                <select id="estado" required> <!-- Añadir el atributo required aquí -->
-                                    <option hidden="">Estado</option>
-                                    <option>Activo</option>
-                                    <option>Inactivo</option>
-                                </select>
-                                <div class="alerta" id="alertaEstado"></div>
+                            <div class="input-box">
+                                <label>Estado</label>
+                                <input type="text" name="estado" id="estado" required>
                             </div>
-                            <button type="submit" id="btn-registrar">Modificar</button>
+                            <button type="submit" id="btn-editar">Editar</button>
                             <a type="button" href="/Empleados" style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
+                        </form>
                     </section>
                 </div>
             </div>
         </div>
     </section>
 
-     <!-- Bootstrap JS, jQuery, y Popper.js -->
-    <script>
-      $.material.init();
-    </script>
-    <script src="./js/jquery-3.1.1.min.js"></script>
-    <script src="./js/sweetalert2.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/material.min.js"></script>
-    <script src="./js/ripples.min.js"></script>
-    <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="./js/main.js"></script>
-    <script src="./js/sweetalert.js"></script>
+    <!-- Bootstrap JS, jQuery, y Popper.js -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
-    <!-- Validaciones JS -->
-    <script src="./js/validaciones/validacionesEmpleados.js"></script>
+    <!-- Axios para las llamadas HTTP -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Script para cargar los datos del empleado a editar -->
+    <script>
+        // Función para cargar los datos del empleado a editar
+        function cargarEmpleado(id) {
+            axios.get(`http://localhost:5211/api/empleado/${id}`)
+                .then(response => {
+                    const empleado = response.data;
+
+                    document.getElementById('nombre').value = empleado.nombre;
+                    document.getElementById('correo').value = empleado.correo;
+                    document.getElementById('telefono').value = empleado.telefono;
+                    document.getElementById('rol').value = empleado.rol;
+                    document.getElementById('estado').value = empleado.estado ? 'Activo' : 'Inactivo';
+                })
+                .catch(error => {
+                    console.error('Error al cargar el empleado:', error);
+                });
+        }
+
+        // Obtener el ID del empleado de la URL y cargar sus datos
+        const urlParams = new URLSearchParams(window.location.search);
+        const idEmpleado = urlParams.get('id');
+        cargarEmpleado(idEmpleado);
+    </script>
+
+    <!-- Script para agregar evento click a los botones de editar en la tabla -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const botonesEditar = document.querySelectorAll('.btn-editar-empleado');
+
+            botonesEditar.forEach(boton => {
+                boton.addEventListener('click', function() {
+                    const idEmpleado = this.dataset.idEmpleado;
+                    cargarEmpleado(idEmpleado);
+                });
+            });
+        });
+    </script>
+    <script>
+        function editarEmpleado() {
+            // Obtener el ID del empleado de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const idEmpleado = urlParams.get('id');
+            
+            // Redireccionar a la página de edición con el ID del empleado en la URL
+            window.location.href = `EmpleadosMod?id=${idEmpleado}`;
+        }
+
+    </script>
+    <script src="./js/validaciones/validacionesEmpleados2.js"></script>
 
 </body>
+
 <style>
     .alerta-roja {
-    color: red;
-}
+        color: red;
+    }
 </style>
+
 </html>

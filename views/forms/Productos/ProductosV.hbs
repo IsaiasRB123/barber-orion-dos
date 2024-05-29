@@ -30,17 +30,17 @@
                 </li>
                 <li>
                     <a href="#!" class="btn-modal-help">
-                        <i class="zmdi zmdi-help-outline"></i></a>
+                        <i class="zmdi zmdi-help-outline"></i>
+                    </a>
                 </li>
             </ul>
         </nav>
-
-        <!-- Form -->
+        <!-- form -->
         <div class="container" style="margin-top: 60px;">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <section class="container-form" id="detalleProducto">
-                        <!-- Aquí se mostrarán los detalles del producto -->
+                    <section class="container-form" id="detalleServicio">
+                        <!-- Aquí se mostrarán los detalles del servicio -->
                     </section>
                 </div>
             </div>
@@ -56,63 +56,49 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
 
     <!-- Tu JavaScript personalizado -->
-    
+    <script src="../../public/ADMIN/js/usuarioDas.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // URL de la API
-            const apiUrl = 'http://localhost:5062/api/Producto';
+            const apiUrl = 'http://localhost:5062/api/producto';
 
-            // Función para mostrar los detalles del producto
-            function mostrarDetalleProducto(producto) {
-                const detalleProducto = document.getElementById('detalleProducto');
-                detalleProducto.innerHTML = `
-                    <header>Ver detalle producto</header>
-                    <h5>Id</h5>
-                    <p>${producto.id}</p>
+            // Función para mostrar los detalles del servicio
+            function mostrarDetalleEmpleado(empleado) {
+                const detalleEmpleado = document.getElementById('detalleServicio');
+                detalleEmpleado.innerHTML = `
+                    <header>Ver detalle empleado</header>
+                    <h5>ID</h5>
+                    <p>${empleado.id}</p>
                     <h5>Nombre</h5>
-                    <p>${producto.nombre}</p>
-                    <h5>Imagen</h5>
-                    <p><img src="${producto.imagen}" alt="Imagen del producto" style="max-width: 100%; height: auto;"></p>
-                    <h5>Cantidad</h5>
-                    <p>${producto.cantidad}</p>
+                    <p>${empleado.nombre}</p>
+                    <h5>Producto</h5>
+                    <p>${empleado.producto}</p>
                     <h5>Precio</h5>
-                    <p>${producto.precio}</p>
-                    <h5>Iva</h5>
-                    <p>${producto.iva}</p>
+                    <p>${empleado.precio}</p>
+                    <h5>Cantidad</h5>
+                    <p>${empleado.cantidad}</p>
+                    <h5>IVA</h5>
+                    <p>${empleado.iva}</p>
+                    <h5>Estado</h5>
+                    <p>${empleado.estado ? 'Activo' : 'Inactivo'}</p>
                     <a type="button" href="/ProductoAdmin" class="BotoncerrarAdmin">Cerrar</a>
                 `;
             }
 
-            // Obtener el ID del producto de la URL
+            // Obtener el ID del empleado de la URL
             const urlParams = new URLSearchParams(window.location.search);
-            const idProducto = urlParams.get('id');
+            const id = urlParams.get('id');
 
-            console.log('ID del producto obtenido de la URL:', idProducto);
-
-            if (idProducto) {
-                // Llamada a la API para obtener los detalles del producto con el ID específico
-                axios.get(`${apiUrl}/${id}`)
-                    .then(response => {
-                        const producto = response.data;
-                        mostrarDetalleProducto(producto);
-                    })
-                    .catch(error => {
-                        console.error('Error al obtener los detalles del producto:', error);
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'Hubo un problema al obtener los detalles del producto.',
-                            icon: 'error'
-                        });
-                    });
-            } else {
-                console.error('No se proporcionó un ID de producto en la URL.');
-                Swal.fire({
-                    title: 'Error',
-                    text: 'No se encontró un ID de producto en la URL.',
-                    icon: 'error'
+            // Llamada a la API para obtener los detalles del empleado con el ID específico
+            axios.get(`${apiUrl}/${id}`)
+                .then(response => {
+                    const empleado = response.data;
+                    mostrarDetalleEmpleado(empleado);
+                })
+                .catch(error => {
+                    console.error('Error al obtener los detalles del empleado:', error);
                 });
-            }
         });
     </script>
 </body>

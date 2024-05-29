@@ -1,72 +1,80 @@
-const formulario = document.getElementById('formulario');
 document.addEventListener('DOMContentLoaded', () => {
-    const empleadoSelect = document.getElementById('empleado');
-    const horaInicioInput = document.getElementById('horaInicio');
-    const horaFinInput = document.getElementById('horaFin');
     const formulario = document.getElementById('formulario');
-    const registrosGuardados = [];
+    const inputs = document.querySelectorAll('#formulario input');
 
-    // Obtener empleados
-    fetch('http://localhost:5211/api/empleado')
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(empleado => {
-                const option = document.createElement('option');
-                option.value = empleado.id;
-                option.textContent = empleado.nombre;
-                empleadoSelect.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error al obtener los empleados:', error));
+    const expresiones = {
+        empleado: /^[0-9]+$/, // IDs numéricos para empleados
+        mes: /^(0[1-9]|1[0-2])$/, // Mes en formato MM (01 a 12)
+        hora: /^([01]\d|2[0-3]):?([0-5]\d)$/, // Formato de hora HH:mm
+        estado: /^(Activo|Inactivo)$/ // Solo puede ser Activo o Inactivo
+    };
 
-    // Función para validar campos
-    function validarCampo(input, mensajeError) {
-        if (input.value.trim() === '') {
-            input.parentElement.classList.add('input-box-incorrecto');
-            input.nextElementSibling.textContent = mensajeError;
-            return false;
-        } else {
-            input.parentElement.classList.remove('input-box-incorrecto');
-            input.nextElementSibling.textContent = '';
-            return true;
+    const campos = {
+        empleado: false,
+        mes: false,
+        horaInicio: false,
+        horaFin: false,
+        estado: false
+    };
+
+    const validarFormulario = (e) => {
+        switch (e.target.name) {
+            case "empleado":
+                validarCampo(expresiones.empleado, e.target, 'empleado');
+                break;
+            case "mes":
+                validarCampo(expresiones.mes, e.target, 'mes');
+                break;
+            case "horaInicio":
+                validarCampo(expresiones.hora, e.target, 'horaInicio');
+                break;
+            case "horaFin":
+                validarCampo(expresiones.hora, e.target, 'horaFin');
+                break;
+            case "estado":
+                validarCampo(expresiones.estado, e.target, 'estado');
+                break;
         }
     }
 
-    // Validaciones en tiempo real
-    horaInicioInput.addEventListener('input', () => {
-        validarCampo(horaInicioInput, 'Por favor, ingrese la hora de inicio.');
+    const validarCampo = (expresion, input, campo) => {
+        if (expresion.test(input.value)) {
+            document.getElementById(`grupo__${campo}`).classList.remove('input-box-incorrecto');
+            document.getElementById(`grupo__${campo}`).classList.add('input-box-correcto');
+            document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
+            campos[campo] = true;
+        } else {
+            document.getElementById(`grupo__${campo}`).classList.add('input-box-incorrecto');
+            document.getElementById(`grupo__${campo}`).classList.remove('input-box-correcto');
+            document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
+            campos[campo] = false;
+        }
+    }
+
+    inputs.forEach((input) => {
+        input.addEventListener('keyup', validarFormulario);
+        input.addEventListener('blur', validarFormulario);
     });
 
-    horaFinInput.addEventListener('input', () => {
-        validarCampo(horaFinInput, 'Por favor, ingrese la hora de fin.');
-    });
-
-    // Validación del campo select
-    empleadoSelect.addEventListener('change', () => {
-        validarCampo(empleadoSelect, 'Por favor, seleccione un empleado.');
-    });
-
-    // Función para manejar el envío del formulario
-    formulario.addEventListener('submit', async function (e) {
+    formulario.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Validar todos los campos
-        const camposValidos = validarCampo(horaInicioInput, 'Por favor, ingrese la hora de inicio.') &&
-                              validarCampo(horaFinInput, 'Por favor, ingrese la hora de fin.') &&
-                              validarCampo(empleadoSelect, 'Por favor, seleccione un empleado.');
+        const empleado = document.getElementById('empleado').value;
+        const mes = document.getElementById('mes').value;
+        const horaInicio = document.getElementById('horaInicio').value;
+        const horaFin = document.getElementById('horaFin').value;
+        const estado = document.getElementById('estado').value;
 
-        if (camposValidos) {
-            // Construir objeto con los datos del formulario
+        if (campos.empleado && campos.mes && campos.horaInicio && campos.horaFin && campos.estado) {
             const data = {
-                empleadoId: empleadoSelect.value,
-                mes: document.getElementById('mes').value,
-                horaInicio: horaInicioInput.value,
-                horaFin: horaFinInput.value,
-                estado: document.getElementById('estado').value
+                empleadoId: empleado,
+                mes: mes,
+                horaInicio: horaInicio,
+                horaFin: horaFin,
+                estado: estado === 'Activo'
             };
 
             try {
-                // Enviar datos al servidor
                 const response = await fetch('http://localhost:5211/api/programEmpleado', {
                     method: 'POST',
                     headers: {
@@ -79,30 +87,50 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error('Error en la solicitud');
                 }
 
-                // Guardar el registro localmente
-                registrosGuardados.push(data);
-                localStorage.setItem('registros', JSON.stringify(registrosGuardados));
-
-                // Mostrar mensaje de éxito
                 Swal.fire({
-                    icon: 'success',
-                    title: '¡Registro exitoso!',
-                    text: 'La programación ha sido registrada correctamente.',
-                    allowOutsideClick: true,
+                    icon: "success",
+                    title: "Programación registrada correctamente",
+                    showConfirmButton: false,
+                    timer: 1500,
                     backdrop: false
                 });
 
-                // Resetear formulario
                 formulario.reset();
+
+                // Restablecer los campos a false
+                campos.empleado = false;
+                campos.mes = false;
+                campos.horaInicio = false;
+                campos.horaFin = false;
+                campos.estado = false;
+
             } catch (error) {
                 console.error('Error al enviar la solicitud:', error);
                 // Mostrar mensaje de error
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Hubo un error al registrar la programación. Por favor, inténtelo de nuevo.'
-                });
+                document.getElementById('formulario_mensaje').classList.add('formulario__mensaje-activo');
+                setTimeout(() => {
+                    document.getElementById('formulario_mensaje').classList.remove('formulario__mensaje-activo');
+                }, 5000);
             }
+        } else {
+            document.getElementById('formulario_mensaje').classList.add('formulario__mensaje-activo');
+            setTimeout(() => {
+                document.getElementById('formulario_mensaje').classList.remove('formulario__mensaje-activo');
+            }, 5000);
         }
     });
+
+    // Obtener empleados
+    fetch('http://localhost:5211/api/empleado')
+        .then(response => response.json())
+        .then(data => {
+            const empleadoSelect = document.getElementById('empleado');
+            data.forEach(empleado => {
+                const option = document.createElement('option');
+                option.value = empleado.id;
+                option.textContent = empleado.nombre;
+                empleadoSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error al obtener los empleados:', error));
 });

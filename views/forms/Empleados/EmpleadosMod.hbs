@@ -80,7 +80,7 @@
     <script>
         // Función para cargar los datos del empleado a editar
         function cargarEmpleado(id) {
-            axios.get(`http://localhost:5211/api/empleado/${id}`)
+            axios.get(`http://localhost:5106/api/empleado/${id}`)
                 .then(response => {
                     const empleado = response.data;
 
@@ -125,7 +125,7 @@
         }
 
     </script>
-    <script src="./js/validaciones/validacionesEmpleados2.js"></script>
+    <script src="./js/validaciones/validacionesEmpleados.js"></script>
 
 </body>
 

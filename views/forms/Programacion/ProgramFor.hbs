@@ -5,7 +5,7 @@
 <body>
     <!-- SideBar -->
     {{> sidebar}}
-
+    
     <!-- Content page-->
     <section class="full-box dashboard-contentPage">
         <!-- NavBar -->
@@ -37,51 +37,34 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <section class="container-form">
-                        <header>Registrar programacion empleado</header>
+                        <header>Registrar programacion Empleado</header>
                         <form class="form-admin" action="#" id="formulario">
-                            <div class="select-box">
-                                <select value="Rol">
-                                    <option hidden="">Empleado</option>
-                                    <option>Rasta</option>
-                                    <option>Alfre</option>
-                                </select>
+                            <div class="input-box" id="grupo__empleado">
+                                <label>Empleado</label>
+                                <input type="text" name="empleado" id="empleado">
+                                <div class="formulario__input-error">empleado no válido</div>
                             </div>
-                            <div class="input-box">
-                                <label>Hora Inicio</label>
-                                <input type="time" name="hora_inicio" id="hora_inicio">
-                                <div class="alerta" id="alertaHoraInicio"></div>
+                            <div class="input-box" id="grupo__mes">
+                                <label>mes</label>
+                                <input type="text" name="mes" id="mes">
+                                <div class="formulario__input-error">mes no válido</div>
                             </div>
-                            <div class="input-box">
-                                <label>Hora Fin</label>
-                                <input type="time" name="hora_fin" id="hora_fin">
-                                <div class="alerta" id="alertaHoraFin"></div>
+                            <div class="input-box" id="grupo__horaInicio">
+                                <label>Hora inicio</label>
+                                <input type="tel" name="horaInicio" id="horaInicio">
+                                <div class="formulario__input-error">hora inicio no válido</div>
                             </div>
-                            <div class="select-box">
-                                <select value="Mes" id="mes">
-                                    <option hidden="">Mes</option>
-                                    <option>Enero</option>
-                                    <option>Febrero</option>
-                                    <option>Marzo</option>
-                                    <option>Abril</option>
-                                    <option>Mayo</option>
-                                    <option>Junio</option>
-                                    <option>Julio</option>
-                                    <option>Agosto</option>
-                                    <option>Septiembre</option>
-                                    <option>Agosto</option>
-                                    <option>Octubre</option>
-                                    <option>Noviembre</option>
-                                    <option>Diciembre</option>
-                                </select>
+                            <div class="input-box" id="grupo__Horafin">
+                                <label>Hora fin</label>
+                                <input type="text" name="Horafin" id="Horafin">
+                                <div class="formulario__input-error">Hora fin no válido</div>
                             </div>
-                            <div class="select-box">
-                                <select value="Rol" id="estado">
-                                    <option hidden="">Estado</option>
-                                    <option>Activo</option>
-                                    <option>Inactivo</option>
-                                </select>
+                            <div class="input-box" id="grupo__estado">
+                                <label>Estado</label>
+                                <input type="text" name="estado" id="estado">
+                                <div class="formulario__input-error">Estado no válido</div>
                             </div>
-                            <button type="submit">Registrar</button>
+                            <button type="submit" id="btn-registrar">Registrar</button>
                             <a type="button" href="/Horario" style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
                         </form>
                     </section>
@@ -91,21 +74,36 @@
     </section>
 
     <!-- Bootstrap JS, jQuery, y Popper.js -->
+    <script>
+        $.material.init();
+    </script>
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/sweetalert2.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/material.min.js"></script>
+    <script src="./js/ripples.min.js"></script>
+    <script src="./js/jquery.mCustomScHora finlbar.concat.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/sweetalert.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
-
-    <!-- Tu JavaScript personalizado -->
-    <script src="../../public/ADMIN/js/usuarioDas.js"></script>
-
+    <!-- Validaciones JS -->
     <script src="./js/validaciones/validacionesProgramacion.js"></script>
 </body>
+
 <style>
-    .alerta-roja {
-    color: red;
-}
+    .formulario__input-error {
+        color: red;
+        display: none;
+    }
+    .input-box-incorrecto {
+        border-color: red;
+    }
+    .input-box-correcto {
+        border-color: green;
+    }
 </style>
+
 </html>

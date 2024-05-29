@@ -1,67 +1,108 @@
-$(document).ready(function () {
-    // Validaciones en tiempo real al escribir
-    $('#hora_inicio').on('input', function () {
-        var horaInicio = $(this).val();
-        if (horaInicio === '') {
-            $('#alertaHoraInicio').text('Por favor, ingrese la hora de inicio.');
-            $('#alertaHoraInicio').addClass('alerta-roja');
-        } else {
-            $('#alertaHoraInicio').text('');
-            $('#alertaHoraInicio').removeClass('alerta-roja');
-        }
-    });
+const formulario = document.getElementById('formulario');
+document.addEventListener('DOMContentLoaded', () => {
+    const empleadoSelect = document.getElementById('empleado');
+    const horaInicioInput = document.getElementById('horaInicio');
+    const horaFinInput = document.getElementById('horaFin');
+    const formulario = document.getElementById('formulario');
+    const registrosGuardados = [];
 
-    $('#hora_fin').on('input', function () {
-        var horaFin = $(this).val();
-        if (horaFin === '') {
-            $('#alertaHoraFin').text('Por favor, ingrese la hora de fin.');
-            $('#alertaHoraFin').addClass('alerta-roja');
-        } else {
-            $('#alertaHoraFin').text('');
-            $('#alertaHoraFin').removeClass('alerta-roja');
-        }
-    });
-
-    // Validaciones al enviar el formulario
-    $('#formulario').submit(function (e) {
-        e.preventDefault(); // Prevenir el comportamiento por defecto del botón de enviar
-
-        // Obtener valores de los campos
-        var horaInicio = $('#hora_inicio').val();
-        var horaFin = $('#hora_fin').val();
-        var mes = $('#mes').val();
-        var estado = $('#estado').val();
-
-        // Validar campos
-        var validacionCorrecta = true;
-
-        if (horaInicio === '') {
-            $('#alertaHoraInicio').text('Por favor, ingrese la hora de inicio.');
-            $('#alertaHoraInicio').addClass('alerta-roja');
-            validacionCorrecta = false;
-        } else {
-            $('#alertaHoraInicio').text('');
-            $('#alertaHoraInicio').removeClass('alerta-roja');
-        }
-
-        if (horaFin === '') {
-            $('#alertaHoraFin').text('Por favor, ingrese la hora de fin.');
-            $('#alertaHoraFin').addClass('alerta-roja');
-            validacionCorrecta = false;
-        } else {
-            $('#alertaHoraFin').text('');
-            $('#alertaHoraFin').removeClass('alerta-roja');
-        }
-
-        // Si todas las validaciones son correctas, mostrar mensaje de éxito
-        if (validacionCorrecta) {
-            Swal.fire({
-                icon: 'success',
-                title: '¡Registro exitoso!',
-                text: 'La programación ha sido registrada correctamente.',
-                allowOutsideClick: true ,// Permite hacer clic fuera de la alerta para cerrarla
-                backdrop: false
+    // Obtener empleados
+    fetch('http://localhost:5211/api/empleado')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(empleado => {
+                const option = document.createElement('option');
+                option.value = empleado.id;
+                option.textContent = empleado.nombre;
+                empleadoSelect.appendChild(option);
             });
+        })
+        .catch(error => console.error('Error al obtener los empleados:', error));
+
+    // Función para validar campos
+    function validarCampo(input, mensajeError) {
+        if (input.value.trim() === '') {
+            input.parentElement.classList.add('input-box-incorrecto');
+            input.nextElementSibling.textContent = mensajeError;
+            return false;
+        } else {
+            input.parentElement.classList.remove('input-box-incorrecto');
+            input.nextElementSibling.textContent = '';
+            return true;
+        }
+    }
+
+    // Validaciones en tiempo real
+    horaInicioInput.addEventListener('input', () => {
+        validarCampo(horaInicioInput, 'Por favor, ingrese la hora de inicio.');
+    });
+
+    horaFinInput.addEventListener('input', () => {
+        validarCampo(horaFinInput, 'Por favor, ingrese la hora de fin.');
+    });
+
+    // Validación del campo select
+    empleadoSelect.addEventListener('change', () => {
+        validarCampo(empleadoSelect, 'Por favor, seleccione un empleado.');
+    });
+
+    // Función para manejar el envío del formulario
+    formulario.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Validar todos los campos
+        const camposValidos = validarCampo(horaInicioInput, 'Por favor, ingrese la hora de inicio.') &&
+                              validarCampo(horaFinInput, 'Por favor, ingrese la hora de fin.') &&
+                              validarCampo(empleadoSelect, 'Por favor, seleccione un empleado.');
+
+        if (camposValidos) {
+            // Construir objeto con los datos del formulario
+            const data = {
+                empleadoId: empleadoSelect.value,
+                mes: document.getElementById('mes').value,
+                horaInicio: horaInicioInput.value,
+                horaFin: horaFinInput.value,
+                estado: document.getElementById('estado').value
+            };
+
+            try {
+                // Enviar datos al servidor
+                const response = await fetch('http://localhost:5211/api/programEmpleado', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud');
+                }
+
+                // Guardar el registro localmente
+                registrosGuardados.push(data);
+                localStorage.setItem('registros', JSON.stringify(registrosGuardados));
+
+                // Mostrar mensaje de éxito
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Registro exitoso!',
+                    text: 'La programación ha sido registrada correctamente.',
+                    allowOutsideClick: true,
+                    backdrop: false
+                });
+
+                // Resetear formulario
+                formulario.reset();
+            } catch (error) {
+                console.error('Error al enviar la solicitud:', error);
+                // Mostrar mensaje de error
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un error al registrar la programación. Por favor, inténtelo de nuevo.'
+                });
+            }
         }
     });
 });

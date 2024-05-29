@@ -1,7 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const app = express();
-const port = 2006;
+const port = 6666;
 
 // Handlebars
 app.set('view engine', 'hbs');

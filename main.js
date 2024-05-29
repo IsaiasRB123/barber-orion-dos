@@ -3,6 +3,7 @@ const hbs = require('hbs');
 const app = express();
 const port = 666;
 
+
 // Handlebars
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');

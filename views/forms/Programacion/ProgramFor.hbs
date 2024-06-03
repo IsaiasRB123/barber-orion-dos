@@ -37,35 +37,38 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <section class="container-form">
-                        <header>Registrar programacion Empleado</header>
+                        <header>Registrar Programación Empleado</header>
                         <form class="form-admin" action="#" id="formulario">
                             <div class="input-box" id="grupo__empleado">
-                                <label>Empleado</label>
-                                <input type="text" name="empleado" id="empleado">
-                                <div class="formulario__input-error">empleado no válido</div>
+                                <label for="empleado">Empleado</label>
+                                <div class="select-box">
+                                    <select name="empleado" id="empleado">
+                                        <!-- Opciones de empleado se añadirán aquí dinámicamente -->
+                                    </select>
+                                </div>
                             </div>
                             <div class="input-box" id="grupo__mes">
-                                <label>mes</label>
+                                <label for="mes">Mes</label>
                                 <input type="text" name="mes" id="mes">
-                                <div class="formulario__input-error">mes no válido</div>
+                                <div class="formulario__input-error">Mes no válido</div>
                             </div>
                             <div class="input-box" id="grupo__horaInicio">
-                                <label>Hora inicio</label>
-                                <input type="tel" name="horaInicio" id="horaInicio">
-                                <div class="formulario__input-error">hora inicio no válido</div>
+                                <label for="horaInicio">Hora inicio</label>
+                                <input type="time" name="horaInicio" id="horaInicio">
+                                <div class="formulario__input-error">Hora inicio no válida</div>
                             </div>
-                            <div class="input-box" id="grupo__Horafin">
-                                <label>Hora fin</label>
-                                <input type="text" name="Horafin" id="Horafin">
-                                <div class="formulario__input-error">Hora fin no válido</div>
+                            <div class="input-box" id="grupo__horaFin">
+                                <label for="horaFin">Hora fin</label>
+                                <input type="time" name="horaFin" id="horaFin">
+                                <div class="formulario__input-error">Hora fin no válida</div>
                             </div>
                             <div class="input-box" id="grupo__estado">
-                                <label>Estado</label>
+                                <label for="estado">Estado</label>
                                 <input type="text" name="estado" id="estado">
                                 <div class="formulario__input-error">Estado no válido</div>
                             </div>
                             <button type="submit" id="btn-registrar">Registrar</button>
-                            <a type="button" href="/Horario" style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
+                            <a type="button" href="/Horario"  style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
                         </form>
                     </section>
                 </div>
@@ -74,15 +77,12 @@
     </section>
 
     <!-- Bootstrap JS, jQuery, y Popper.js -->
-    <script>
-        $.material.init();
-    </script>
     <script src="./js/jquery-3.1.1.min.js"></script>
     <script src="./js/sweetalert2.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/material.min.js"></script>
     <script src="./js/ripples.min.js"></script>
-    <script src="./js/jquery.mCustomScHora finlbar.concat.min.js"></script>
+    <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/sweetalert.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -103,6 +103,13 @@
     }
     .input-box-correcto {
         border-color: green;
+    }
+    .formulario__mensaje {
+        color: red;
+        display: none;
+    }
+    .formulario__mensaje-activo {
+        display: block;
     }
 </style>
 

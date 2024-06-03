@@ -5,7 +5,7 @@
 <body>
     <!-- SideBar -->
     {{> sidebar}}
-    
+
     <!-- Content page-->
     <section class="full-box dashboard-contentPage">
         <!-- NavBar -->
@@ -65,14 +65,14 @@
                                 <div class="formulario__input-error">Estado no válido</div>
                             </div>
                             <button type="submit" id="btn-registrar">Registrar</button>
-                            <a type="button" href="/Empleados" style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
+                            <a type="button" href="/Empleados"
+                                style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
                         </form>
                     </section>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Bootstrap JS, jQuery, y Popper.js -->
     <script>
         $.material.init();
@@ -98,9 +98,11 @@
         color: red;
         display: none;
     }
+
     .input-box-incorrecto {
         border-color: red;
     }
+
     .input-box-correcto {
         border-color: green;
     }

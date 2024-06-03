@@ -37,51 +37,46 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <section class="container-form">
-                        <header>Actualizar programacion empleado</header>
+                        <header>Editar Programación de Empleado</header>
                         <form class="form-admin" action="#" id="formulario">
-                            <div class="select-box">
-                                <select value="Rol">
-                                    <option hidden="">Empleado</option>
-                                    <option>Rasta</option>
-                                    <option>Alfre</option>
-                                </select>
+                             <div class="input-box" id="grupo__empleado">
+                                <label for="empleado">Empleado</label>
+                                <div class="select-box">
+                                    <select name="empleado" id="empleado" required>
+                                         <p class="formulario__input-error">Por favor seleccione un empleado</p>
+                                        <!-- Opciones de empleado se añadirán aquí dinámicamente -->
+                                    </select>
+                                </div>
                             </div>
-                            <div class="input-box">
+                            <div class="input-box" id="grupo__mes">
+                                <label>Mes</label>
+                                <input type="text" name="mes" id="mes" required>
+                                <p class="formulario__input-error">Por favor ingrese un mes válido</p>
+                            </div>
+                            <div class="input-box" id="grupo__horaInicio">
                                 <label>Hora Inicio</label>
-                                <input type="time" name="hora_inicio" id="hora_inicio">
-                                <div class="alerta" id="alertaHoraInicio"></div>
+                                <input type="text" name="horaInicio" id="horaInicio" required>
+                                <p class="formulario__input-error">Por favor ingrese una hora válida</p>
                             </div>
-                            <div class="input-box">
+                            <div class="input-box" id="grupo__horaFin">
                                 <label>Hora Fin</label>
-                                <input type="time" name="hora_fin" id="hora_fin">
-                                <div class="alerta" id="alertaHoraFin"></div>
+                                <input type="text" name="horaFin" id="horaFin" required>
+                                <p class="formulario__input-error">Por favor ingrese una hora válida</p>
                             </div>
-                            <div class="select-box">
-                                <select value="Mes" id="mes">
-                                    <option hidden="">Mes</option>
-                                    <option>Enero</option>
-                                    <option>Febrero</option>
-                                    <option>Marzo</option>
-                                    <option>Abril</option>
-                                    <option>Mayo</option>
-                                    <option>Junio</option>
-                                    <option>Julio</option>
-                                    <option>Agosto</option>
-                                    <option>Septiembre</option>
-                                    <option>Agosto</option>
-                                    <option>Octubre</option>
-                                    <option>Noviembre</option>
-                                    <option>Diciembre</option>
-                                </select>
+                            <div class="input-box" id="grupo__estado">
+                                <label>Estado</label>
+                                <input type="text" name="estado" id="estado" required>
+                                <p class="formulario__input-error">Por favor ingrese un estado válido</p>
                             </div>
-                            <div class="select-box">
-                                <select value="Rol" id="estado">
-                                    <option hidden="">Estado</option>
-                                    <option>Activo</option>
-                                    <option>Inactivo</option>
-                                </select>
+                            <div class="formulario__mensaje" id="formulario__mensaje">
+                                <p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon-form" viewBox="0 0 512 512">
+                                        <path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+                                    </svg>
+                                    <b>Error:</b> Por favor rellena el formulario correctamente
+                                </p>
                             </div>
-                            <button type="submit">Actualizar</button>
+                            <button type="button" id="btn-editar">Actualizar</button>
                             <a type="button" href="/Horario" style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
                         </form>
                     </section>
@@ -90,22 +85,116 @@
         </div>
     </section>
 
-    <!-- Bootstrap JS, jQuery, y Popper.js -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // URL de la API
+            const apiUrl = 'http://localhost:5211/api/programEmpleado';
+            let idProgramacion;
 
-    <!-- SweetAlert2 JS -->
+            // Función para cargar los datos de la programación a editar
+            function cargarProgramacion(id) {
+                axios.get(`${apiUrl}/${id}`)
+                    .then(response => {
+                        const programacion = response.data;
+                        idProgramacion = programacion.id;
+                        document.getElementById('empleado').value = programacion.empleadoId;
+                        document.getElementById('mes').value = programacion.mes;
+                        document.getElementById('horaInicio').value = programacion.horaInicio.slice(11, 16); // Extraer solo la hora
+                        document.getElementById('horaFin').value = programacion.horaFin.slice(11, 16); // Extraer solo la hora
+                        document.getElementById('estado').value = programacion.estado ? 'Activo' : 'Inactivo';
+                    })
+                    .catch(error => {
+                        console.error('Error al cargar la programación:', error);
+                    });
+            }
+
+            // Obtener el ID de la programación de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            if (id) {
+                cargarProgramacion(id);
+            }
+
+            // Cargar la lista de empleados
+            function cargarEmpleados() {
+                axios.get('http://localhost:5211/api/empleado')
+                    .then(response => {
+                        const empleados = response.data;
+                        const empleadoSelect = document.getElementById('empleado');
+                        empleados.forEach(empleado => {
+                            const option = document.createElement('option');
+                            option.value = empleado.id;
+                            option.textContent = empleado.nombre;
+                            empleadoSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error al cargar los empleados:', error);
+                    });
+            }
+
+            cargarEmpleados();
+
+            // Agregar evento click al botón de editar
+            document.getElementById('btn-editar').addEventListener('click', function(event) {
+                event.preventDefault(); // Evitar el envío automático del formulario
+
+                // Obtener los valores editados del formulario
+                const programacionActualizada = {
+                    id: idProgramacion,
+                    empleadoId: parseInt(document.getElementById('empleado').value),
+                    mes: document.getElementById('mes').value.toLowerCase(), // Convertir el mes a minúsculas
+                    horaInicio: new Date().toISOString().slice(0,10) + "T" + document.getElementById('horaInicio').value + ":00",
+                    horaFin: new Date().toISOString().slice(0,10) + "T" + document.getElementById('horaFin').value + ":00",
+                    estado: document.getElementById('estado').value.toLowerCase() === 'activo'
+                };
+
+                // Enviar los datos actualizados al servidor
+                axios.put(`${apiUrl}/${idProgramacion}`, programacionActualizada)
+                    .then(response => {
+                        Swal.fire({
+                            title: 'Programación actualizada correctamente',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                            backdrop: false
+                        }).then(() => {
+                            // Redireccionar a la lista de programaciones
+                            window.location.href = '/Horario';
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error al actualizar la programación:', error);
+                        Swal.fire({
+                            title: 'Error al actualizar la programación',
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                            backdrop: false
+                        });
+                    });
+            });
+        });
+    </script>
+
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/sweetalert2.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/material.min.js"></script>
+    <script src="./js/ripples.min.js"></script>
+    <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/validaciones/validacionesProgramacion.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
 
-    <!-- Tu JavaScript personalizado -->
-    <script src="../../public/ADMIN/js/usuarioDas.js"></script>
-
-    <script src="./js/validaciones/validacionesProgramacion.js"></script>
 </body>
+
 <style>
     .alerta-roja {
-    color: red;
-}
+        color: red;
+    }
 </style>
+
 </html>

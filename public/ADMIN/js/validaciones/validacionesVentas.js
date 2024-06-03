@@ -1,88 +1,70 @@
+
 const formulario = document.getElementById('formulario');
-const inputs = document.querySelectorAll('#formulario input')
+const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    precio: /^(?:[1-9]|[1-9]\d+)(?:\.\d{1,2})?$/,
-    num: /^[1-9]\d*$/,
+    // Aquí podrías agregar las expresiones regulares para validar los campos
 }
 
 const campos = {
-    nombre: false,
-    precio: false,
-    num: false,
-    fecha_venta: false,
-    fecha_pago:false
+    nombre: true,
 }
 
-const ValidarFormulario = (e) => {
-    switch (e.target.name) {
-        case "nombre":
-            ValidarCampo(expresiones.nombre, e.target, 'nombre');
-            break;
-        case "fecha_venta":
-            ValidarFecha(e.target, 'fecha_venta');
-            break;
-        case "fecha_pago":
-            ValidarFecha(e.target, 'fecha_pago');
-            break;
-    }
+function generarPrecioAleatorio(min, max) {
+    const precio = Math.random() * (max - min) + min;
+    return Math.round(precio * 100) / 100;
 }
 
-const ValidarFecha = (input, campo) => {
-    if (input.value.trim() === '') {
-        document.getElementById(`grupo__${campo}`).classList.add('input-box-incorrecto')
-        document.getElementById(`grupo__${campo}`).classList.remove('input-box-correcto')
-        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo')
-        campos[campo] = false;
-    } else {
-        document.getElementById(`grupo__${campo}`).classList.remove('input-box-incorrecto')
-        document.getElementById(`grupo__${campo}`).classList.add('input-box-correcto')
-        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo')
-        campos[campo] = true;
-    }
-}
-
-const ValidarCampo = (expresion, input, campo) => {
-    if (expresion.test(input.value)) {
-        document.getElementById(`grupo__${campo}`).classList.remove('input-box-incorrecto')
-        document.getElementById(`grupo__${campo}`).classList.add('input-box-correcto')
-        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo')
-        campos[campo] = true;
-    } else {
-        document.getElementById(`grupo__${campo}`).classList.add('input-box-incorrecto')
-        document.getElementById(`grupo__${campo}`).classList.remove('input-box-correcto')
-        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo')
-        campos[campo] = false;
-    }
-}
-
-inputs.forEach((input) => {
-    input.addEventListener('keyup', ValidarFormulario)
-    input.addEventListener('blur', ValidarFormulario)
-})
-
-formulario.addEventListener('submit', (e) => {
-    e.preventDefault()
-
-})
-
-function Guardado(id) {
+const GuardarVenta = async (e) => {
     if (campos.nombre) {
-        Swal.fire({
-            icon: "success",
-            text: "Se registro correctamente!",
-            confirmButtonColor: "#3085d6",
-            confirmButtonText: "Ok!",
-            backdrop: false
-        }).then((result) => {
-            if (result.isConfirmed) {
-                function redireccionar(ruta) {
-                    window.location.href = ruta;
-                }
-                redireccionar("/ventas");
+        const nombre = document.getElementById('nombre').value;
+        const recibo = Math.floor(100000 + Math.random() * 900000);
+        const fecha_venta = new Date().toISOString(); // Aseguramos el formato correcto de la fecha
+        const montoTotal = generarPrecioAleatorio(1000, 1000000);
+        const estado = true;
+
+        const data = {
+            clienteId: parseInt(nombre), // Aseguramos que clienteId sea un número
+            recibo: recibo.toString(), // Aseguramos que el recibo sea una cadena
+            fechaVenta: fecha_venta,
+            montoTotal: montoTotal,
+            estado: estado
+        };
+
+        console.log('Datos a enviar:', data); // Verifica los datos antes de enviarlos
+
+        try {
+            const response = await fetch('http://localhost:5235/api/Venta', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('Error en la solicitud:', errorData);
+                throw new Error('Error en la solicitud: ' + (errorData.message || 'No se pudo completar la solicitud'));
             }
-        });
+
+            Swal.fire({
+                icon: "success",
+                title: "Venta registrada correctamente",
+                showConfirmButton: false,
+                timer: 1500,
+                backdrop: false
+            }).then(() => {
+                window.location.href = '/Ventas';
+            });
+        } catch (error) {
+            console.error('Error al guardar la venta:', error);
+            Swal.fire({
+                icon: "error",
+                text: "Llena todos los campos para realizar el registro",
+                backdrop: false
+            });
+        }
     } else {
         Swal.fire({
             icon: "error",
@@ -90,22 +72,5 @@ function Guardado(id) {
             backdrop: false
         });
     }
-
 }
 
-
-function GuardadoUpdate(id) {
-        Swal.fire({
-            icon: "success",
-            text: "Se registro correctamente!",
-            confirmButtonColor: "#3085d6",
-            confirmButtonText: "Ok!",
-            backdrop: false
-        }).then((result) => {
-            if (result.isConfirmed) {
-                function redireccionar(ruta) {
-                    window.location.href = ruta;
-                }
-                redireccionar("/ventas");
-            }
-        });}

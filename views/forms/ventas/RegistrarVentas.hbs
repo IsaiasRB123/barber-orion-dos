@@ -27,15 +27,15 @@
                     </svg>Registrar Venta
                 </h1>
                 <a class="Btn-Volver" href="/ventas" style=" float: inline-start;text-decoration:none;">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome -
+                    <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome -
                         https://fontawesome.com License - https://fontawesome.com/license/free
                         Copyright 2024 Fonticons, Inc.-->
-                                                <path fill="#ffffff" d="M9.4
+                        <path fill="#ffffff" d="M9.4
                         233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3
                         0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3
                         32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8
                         0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-                                            </svg>
+                    </svg>
                 </a>
             </div>
             <div class="Contenttt">
@@ -46,40 +46,34 @@
                                 <div class="flex-container-registro-2">
                                     <div class="input-wrapper" id="grupo__nombre">
                                         <label for="nombre">Nombre del cliente:</label>
-                                        <input type="text" id="nombre" name="nombre" placeholder="Nombre del cliente">
-                                        <p class="formulario__input-error">Por favor solo ingrese letras</p>
+                                        <div class="select-box flex-container-registro">
+                                            <select id="nombre" style="height: 40px;">
+                                                <option hidden="">Seleccione un cliente</option>
+                                            </select>
+                                        </div>
+                                        <p class="formulario__input-error">Por favor selecciona un cliente</p>
                                     </div>
                                 </div>
                         </div>
                     </div>
                     <div class="row">
-                        <h1 class="text-titles">Productos </h1>
+                        <h1 class="text-titles">Productos</h1>
                         <div class="col">
-                            <form action="" id="formulario">
-                                <div class="select-box flex-container-registro">
-                                    <select id="productos" onchange="actualizarPrecio()">
-                                        <option hidden="">Productos</option>
-                                        <option value="cera_antioxidante" id="cera_antioxidante">Cera antioxidante
-                                        </option>
-                                        <option value="minoxidil" id="minoxidil">Minoxidil</option>
-                                        <option value="shampoo_180ml" id="shampoo_180ml">Shampoo 180ml</option>
-                                    </select>
-                                    <input type="text" id="cantidad" class="email" placeholder="Cantidad">
-                                    <input type="text" id="precio" class="email" placeholder="Precio">
-                                    <a class="Btn-chek" data-toggle="modal" onclick="mostrarAlertaAgg()"
-                                        style="float: inline-end;margin-right:40px;margin-top:5px">
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="10" width="8.75"
-                                            viewBox="0 0 448 512">
-                                            <path fill="#ffffff"
-                                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <script
-                                    src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-                                </script>
-                            </form>
-
+                            <div class="select-box flex-container-registro">
+                                <select id="productos" onchange="actualizarPrecio()">
+                                    <option hidden="">Seleccione un producto</option>
+                                </select>
+                                <input type="text" id="cantidad" class="email" placeholder="Cantidad">
+                                <input type="text" id="precio" class="email" placeholder="Precio">
+                                <a class="Btn-chek" data-toggle="modal" onclick="renderProductoVentas()"
+                                    style="float: inline-end; margin-right: 40px; margin-top: 5px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="10" width="8.75"
+                                        viewBox="0 0 448 512">
+                                        <path fill="#ffffff"
+                                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <!-- modal uno ver -->
@@ -103,49 +97,7 @@
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Camisa</td>
-                                            <td>15</td>
-                                            <td>10000</td>
-                                            <td>150000</td>
-                                            <td>16%</td>
-                                            <td>24000</td>
-                                            <td>174000</td>
-                                            <td>
-                                                <a class="Btn-delete8" data-toggle="modal"
-                                                    style="margin-left: 15px; margin-bottom: 15px; float: inline-start;"
-                                                    onclick="Eliminar()">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon" height="10"
-                                                        width="8.75" viewBox="0 0 448 512">
-                                                        <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                                        <path fill="#1e3050"
-                                                            d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
-                                                    </svg>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cera</td>
-                                            <td>10</td>
-                                            <td>30000</td>
-                                            <td>300000</td>
-                                            <td>16%</td>
-                                            <td>48000</td>
-                                            <td>348000</td>
-                                            <td>
-                                                <a class="Btn-delete8" data-toggle="modal"
-                                                    style="margin-left: 15px; margin-bottom: 15px; float: inline-start;"
-                                                    onclick="Eliminar()">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon" height="10"
-                                                        width="8.75" viewBox="0 0 448 512">
-                                                        <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                                        <path fill="#1e3050"
-                                                            d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
-                                                    </svg>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                    <tbody id="ProductosVentas">
                                     </tbody>
                                 </table>
                             </div>
@@ -153,7 +105,7 @@
                     </div>
                     <div class="mb-3 mt-3">
                         <h6 class="MontoTotalTitle" style="float: inline-start;">Monto Total: 510.000</h6>
-                        <a class="Btn" data-toggle="modal" onclick="Guardado()"
+                        <a class="Btn" data-toggle="modal" onclick="GuardarVenta()"
                             style="float: inline-end;margin-right:40px;margin-top:5px; color:white">
                             Registrar Venta<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                 fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
@@ -180,9 +132,33 @@
                 <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
                 <script src="./js/main.js"></script>
                 <script src="./js/sweetalert.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        // Hacer una solicitud GET a la API de clientes utilizando Axios
+                        axios.get('http://localhost:5235/api/Cliente')
+                            .then(function (response) {
+                                let clientes = response.data;
+                                let selectClientes = document.getElementById('nombre');
 
+                                // Limpiar el select actual
 
+                                // Iterar sobre la lista de clientes y agregar opciones al select
 
+                                clientes.forEach(function (cliente) {
+                                    if (cliente.estado == true) {
+                                        var option = document.createElement('option');
+                                        option.value = cliente.idCliente;
+                                        option.textContent = cliente.nombre;
+                                        selectClientes.appendChild(option);
+                                    }
+                                });
+                            })
+                            .catch(function (error) {
+                                console.error('Error al obtener la lista de clientes:', error);
+                            });
+                    });
+                </script>
 </body>
 
 </html>

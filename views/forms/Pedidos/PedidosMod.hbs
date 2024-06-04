@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  {{> head}}
+  <style>
+    .container-form {
+      max-width: auto;
+      margin: auto;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  {{> sidebar}}
+
+  <!-- Content page-->
+  <section class="full-box dashboard-contentPage">
+    <!-- NavBar -->
+    <nav class="full-box dashboard-Navbar">
+      <!-- Navbar content -->
+    </nav>
+    <!-- Formulario de edición de pedidos -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <section class="container-form">
+            <header>Modificar Pedido</header>
+            <form class="form-admin" id="formularioEditarPedido">
+              <input type="hidden" name="id" id="id">
+              <div class="input-box">
+                <label>Fecha de Pedido</label>
+                <input type="date" name="fecha_pedido" id="fecha_pedido">
+                <div class="error-message" id="error-fecha_pedido" style="display: none;">La fecha de pedido no puede estar en el futuro</div>
+              </div>
+              <div class="input-box">
+                <label>Estado</label>
+                <select name="estado" id="estado">
+                  <option value="1">Completado</option>
+                  <option value="0">Pendiente</option>
+                </select>
+              </div>
+              <div class="input-box">
+                <label>Total</label>
+                <input type="number" name="total" id="total" step="0.01">
+              </div>
+              <div class="input-box">
+                <label>ID Cliente</label>
+                <input type="number" name="idcliente" id="idcliente">
+              </div>
+              <div class="formulario__mensaje" id="formulario__mensaje" style="display: none;">
+                <p>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon-form" viewBox="0 0 512 512"></svg>
+                  ERROR
+                </p>
+              </div>
+              <button type="submit">Actualizar</button>
+              <a href="/PedidosAdmin">Cerrar</a>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap JS, jQuery, y Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        function obtenerPedido(id) {
+          axios.get(`http://localhost:5062/api/pedido/${id}`)
+            .then(response => {
+              const pedido = response.data;
+              document.getElementById('id').value = pedido.id;
+              document.getElementById('fecha_pedido').value = pedido.fecha_pedido.split('T')[0]; // Extraer solo la parte de la fecha
+              document.getElementById('estado').value = pedido.estado;
+              document.getElementById('total').value = pedido.total;
+              document.getElementById('idcliente').value = pedido.idcliente;
+            })
+            .catch(error => {
+              console.error('Error al obtener datos del pedido:', error);
+            });
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const idPedido = urlParams.get('id');
+
+        if (!idPedido) {
+          console.error('ID del pedido no proporcionado en la URL');
+        } else {
+          obtenerPedido(idPedido);
+        }
+
+        document.getElementById('formularioEditarPedido').addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          const id = document.getElementById('id').value;
+          const fecha_pedido = document.getElementById('fecha_pedido').value;
+          const estado = document.getElementById('estado').value;
+          const total = document.getElementById('total').value;
+          const idcliente = document.getElementById('idcliente').value;
+
+          // Validación adicional de campos
+          if (!id || !fecha_pedido || !estado || !total || !idcliente) {
+            console.error('Todos los campos son obligatorios');
+            return;
+          }
+
+          // Validación de la fecha de pedido
+          const fechaActual = new Date().toISOString().split('T')[0];
+          if (fecha_pedido > fechaActual) {
+            document.getElementById('error-fecha_pedido').style.display = 'block';
+            return;
+          }
+
+          const pedidoData = {
+            id: id,
+            fecha_pedido: fecha_pedido,
+            estado: estado,
+            total: total,
+            idcliente: idcliente
+          };
+
+          console.log("Datos enviados:", pedidoData);
+
+          axios.put(`http://localhost:5062/api/pedido/${id}`, pedidoData)
+            .then(response => {
+              console.log('Pedido actualizado:', response.data);
+              Swal.fire({
+                title: '¡Actualizado!',
+                text: 'El pedido ha sido actualizado con éxito.',
+                icon: 'success'
+              }).then(() => {
+                window.location.href = '/PedidosAdmin';
+              });
+            })
+            .catch(error => {
+              console.error('Error al actualizar pedido:', error);
+              console.error('Respuesta del servidor:', error.response.data);
+              document.getElementById('formulario__mensaje').style.display = 'block';
+            });
+        });
+      });
+    </script>
+  </section>
+</body>
+
+</html>

@@ -206,6 +206,23 @@ app.get('/pedidosDetalle', (req, res) => {
 });
 
 
+//pedidos
+app.get('/Pedidos', (req, res) => {
+  res.render('Pedidos');
+});
+
+app.get('/PedidosForm', (req, res) => {
+  res.render('forms/Pedidos/PedidosForm');
+});
+
+app.get('/PedidosMod', (req, res) => {
+  res.render('forms/Pedidos/PedidosMod');
+});
+
+app.get('/PedidosVer', (req, res) => {
+  res.render('forms/Pedidos/PedidosVer');
+});
+
 app.get('/Proveedores', (req, res) => {
   res.render('Proveedores');
 });
@@ -313,3 +330,5 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
   console.log(`La aplicación de ejemplo está escuchando en el puerto ${port}`);
 });
+
+

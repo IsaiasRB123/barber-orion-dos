@@ -4,21 +4,15 @@
 <head>
   {{> head}}
   <style>
-    /* No se requieren cambios en el CSS */
     .container-form {
       max-width: auto;
-      margin:  auto ;
+      margin: auto;
       padding: 10px;
       border: 1px solid #ddd;
       border-radius: 15px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       background-color: #fff;
     }
-
-
-
-
-  
   </style>
 </head>
 
@@ -42,7 +36,7 @@
               <input type="hidden" name="id" id="id">
               <div class="input-box">
                 <label>Nombre del Producto</label>
-                <input type="text" name="nombre" id="nombre">
+                <input type="text" name="productos" id="productos">
               </div>
               <div class="input-box">
                 <label>Imagen del Producto</label>
@@ -58,17 +52,17 @@
               </div>
               <div class="input-box">
                 <label>IVA</label>
-                <input type="number" name="iva" id="iva">
+                <input type="number" name="iva" id="iva" step="0.01">
               </div>
-              <!-- Agregado: Campo de categoría -->
               <div class="input-box">
-                <label>Categoría del Producto</label>
-                <input type="text" name="categoria" id="categoria">
+                <label>Categoría</label>
+                <select name="categoriaproducto" id="categoria">
+                  <!-- Aquí cargarás las opciones de categorías desde la base de datos -->
+                </select>
               </div>
-              <!-- Fin de agregado -->
               <div class="formulario__mensaje" id="formulario__mensaje" style="display: none;">
-                <p><svg xmlns="http://www.w3.org/2000/svg" class="svgIcon-form" viewBox="0 0 512 512">
-                  </svg>
+                <p>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon-form" viewBox="0 0 512 512"></svg>
                   ERROR
                 </p>
               </div>
@@ -85,18 +79,37 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
       $(document).ready(function () {
+        function cargarCategorias() {
+          $.ajax({
+            url: 'http://localhost:5062/api/categoriaproducto',
+            type: 'GET',
+            success: function (categorias) {
+              categorias.forEach(function (categoria) {
+                $('#categoria').append(`<option value="${categoria.id}">${categoria.nombre}</option>`);
+              });
+            },
+            error: function (error) {
+              console.error('Error al cargar las categorías:', error);
+            }
+          });
+        }
+
+        cargarCategorias();
+
         function obtenerProducto(id) {
           $.ajax({
             url: `http://localhost:5062/api/producto/${id}`,
             type: 'GET',
             success: function (producto) {
-              $('#nombre').val(producto.productos);
+              $('#id').val(producto.id);
+              $('#productos').val(producto.productos);
               $('#imagen').val(producto.imagen);
               $('#precio').val(producto.precio);
               $('#cantidad').val(producto.cantidad);
               $('#iva').val(producto.iva);
-              $('#categoria').val(producto.categoria);
+              $('#categoria').val(producto.categoriaproductoId); // Usar categoriaproductoId en lugar de categoriaproducto
             },
+
             error: function (error) {
               console.error('Error al obtener datos del producto:', error);
             }
@@ -115,14 +128,39 @@
 
         $('#formularioEditarProducto').submit(function (event) {
           event.preventDefault();
+
+          const id = $('#id').val();
+          const productos = $('#productos').val();
+          const imagen = $('#imagen').val();
+          const precio = parseFloat($('#precio').val());
+          const cantidad = parseInt($('#cantidad').val());
+          const iva = parseFloat($('#iva').val());
+          const categoria = $('#categoria').val(); // Obtener la categoría seleccionada
+
+          if (!id || !productos || !imagen || !precio || !cantidad || !iva || !categoria) {
+            console.error('Todos los campos son obligatorios');
+            return;
+          }
+
+          // Verifica que categoria no sea null antes de enviar la solicitud
+          if (!categoria) {
+            console.error('La categoría es obligatoria');
+            return;
+          }
+
           const productoData = {
-            nombre: $('#nombre').val(),
-            imagen: $('#imagen').val(),
-            precio: $('#precio').val(),
-            cantidad: $('#cantidad').val(),
-            iva: $('#iva').val(),
-            categoria: $('#categoria').val()
+            id: id,
+            productos: productos,
+            imagen: imagen,
+            precio: precio,
+            cantidad: cantidad,
+            iva: iva,
+            categoriaproductoId: categoria,
+            categoria: categoria,
+            categoriaproducto: null,
           };
+
+          console.log("Datos enviados:", JSON.stringify(productoData));
 
           $.ajax({
             url: `http://localhost:5062/api/producto/${id}`,
@@ -140,6 +178,7 @@
             },
             error: function (error) {
               console.error('Error al actualizar producto:', error);
+              console.error('Respuesta del servidor:', error.responseText);
               $('#formulario__mensaje').css('display', 'block');
             }
           });

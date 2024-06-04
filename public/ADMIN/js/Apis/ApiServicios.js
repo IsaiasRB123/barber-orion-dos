@@ -86,6 +86,9 @@ function eliminarServicio(idServicio) {
                       });
                     console.log('Servicio eliminado exitosamente:', response.data);
                     // Se recarga la página para mostrar los cambios actualizados
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
 
                 })
                 .catch(error => {

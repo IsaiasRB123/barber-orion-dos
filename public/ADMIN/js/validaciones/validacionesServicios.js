@@ -75,6 +75,9 @@ formulario.addEventListener('submit', async (e) => {
             showConfirmButton: false,
             timer: 1500,
             backdrop: false
+        }).then(() => {
+            // Redireccionar a la lista de servicios
+            window.location.href = '/ServiciosA';
         });
 
         formulario.reset();
@@ -87,4 +90,90 @@ formulario.addEventListener('submit', async (e) => {
             document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
         }, 5000);
     }
+});
+
+document.addEventListener('DOMContentLoaded', async function () {
+    // URL de la API
+    const apiUrl = 'http://localhost:5235/api/Servicio';
+
+    // Función para mostrar los detalles del servicio
+    async function mostrarDetalleServicio(id) {
+        try {
+            const response = await fetch(`${apiUrl}/${id}`);
+
+            if (!response.ok) throw new Error('Error en la respuesta de la API');
+
+            const servicio = await response.json();
+
+            // Asignar el ID del servicio a una variable global para usarlo más tarde
+            idDelServicio = servicio.idServicio;
+
+            // Rellenar los campos con los datos del servicio
+            document.getElementById('nombre').value = servicio.nombre;
+            document.getElementById('precio').value = servicio.precio;
+            document.getElementById('tiempo').value = servicio.tiempo;
+            document.getElementById('estado').value = servicio.estado ? "true" : "false";
+
+        } catch (error) {
+            console.error('Error al obtener los detalles del servicio:', error);
+        }
+    }
+
+    // Obtener el ID del servicio de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const idServicio = urlParams.get('id');
+
+    // Llamada a la función para mostrar los detalles del servicio con el ID específico
+    await mostrarDetalleServicio(idServicio);
+
+    // Escuchar el evento click del botón "Actualizar"
+    document.getElementById('btn-editar').addEventListener('click', function (event) {
+        event.preventDefault(); // Evitar el envío automático del formulario
+
+        // Obtener los valores editados del formulario
+        const servicioActualizado = {
+            idServicio: idDelServicio,
+            nombre: document.getElementById('nombre').value,
+            precio: document.getElementById('precio').value,
+            tiempo: document.getElementById('tiempo').value,
+            estado: document.getElementById('estado').value === "true" ? true : false
+        };
+
+        // Enviar los datos actualizados al servidor utilizando axios
+        axios.put(`${apiUrl}/${idServicio}`, servicioActualizado)
+            .then(response => {
+                // Manejar la respuesta del servidor
+                if (response.data.success) {
+                    Swal.fire({
+                        title: 'Error al actualizar el Servicio',
+                        text: response.data.message,
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        backdrop: false
+                    });
+                } else {
+                    // Manejar el caso en que el servidor devuelva un error
+                    Swal.fire({
+                        title: 'Servicio actualizado correctamente',
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                        backdrop: false
+                    }).then(() => {
+                        // Redireccionar a la lista de servicios
+                        window.location.href = '/ServiciosA';
+                    });
+                }
+            })
+            .catch(error => {
+                // Manejar el error en caso de fallo en la solicitud HTTP
+                console.error('Error al actualizar el Servicio:', error);
+                Swal.fire({
+                    title: 'Error al actualizar el Servicio',
+                    text: 'Hubo un problema al intentar actualizar el Servicio. Por favor, intenta de nuevo más tarde.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    backdrop: false
+                });
+            });
+    });
 });

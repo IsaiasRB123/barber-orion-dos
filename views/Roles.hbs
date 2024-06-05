@@ -134,7 +134,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // URL de la API
-            const apiUrl = 'http://localhost:5087/api/Role';
+            const apiUrl = 'http://localhost:5276/api/RoleDos';
 
 
             // Función para renderizar los servicios en el tbody
@@ -149,7 +149,7 @@
 
                     tr.innerHTML = `
                                 <td>${roles.nombre}</td>
-                                <td>${roles.estado}</td>
+                                <td>${roles.estado? 'Activo':'Inactivo'}</td>
                                 <td>${roles.permisos}</td>
                 <td>
                   <a class="Btn-shadow" href="/RolesVer"

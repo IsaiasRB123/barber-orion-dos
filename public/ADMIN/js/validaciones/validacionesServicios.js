@@ -141,6 +141,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // Enviar los datos actualizados al servidor utilizando axios
         axios.put(`${apiUrl}/${idServicio}`, servicioActualizado)
+        console.log(servicioActualizado)
             .then(response => {
                 // Manejar la respuesta del servidor
                 if (response.data.success) {

@@ -11,7 +11,7 @@ function eliminarEmpleado(id) {
         backdrop: false
     }).then((result) => {
         if (result.isConfirmed) {
-            axios.delete(`http://localhost:5211/api/empleado/${id}`)
+            axios.delete(`http://localhost:5106/api/empleado/${id}`)
                 .then(response => {
                     Swal.fire({
                         title: '¡Eliminado!',
@@ -39,6 +39,7 @@ function renderEmpleados(empleados) {
     tbody.innerHTML = ''; // Limpiar el contenido anterior
 
     empleados.forEach(empleado => {
+        const estado = empleado.estado ? 'Activo' : 'Inactivo';
         const tr = document.createElement('tr');
 
         tr.innerHTML = `
@@ -47,7 +48,7 @@ function renderEmpleados(empleados) {
         <td>${empleado.correo}</td>
         <td>${empleado.telefono}</td>
         <td>${empleado.rol}</td>
-        <td>${empleado.estado}</td>
+        <td>${estado}</td>
         <td>
           <a class="Btn-shadow" href="/EmpleadosVer?id=${empleado.id}" style="margin-left: 15px; margin-bottom: 15px; float: inline-start;">
             <svg xmlns="http://www.w3.org/2000/svg" height="10" class="svgIcon" width="11.25" viewBox="0 0 576 512">
@@ -77,7 +78,7 @@ function renderEmpleados(empleados) {
 
 // Función para obtener los empleados desde el servidor
 function obtenerEmpleados() {
-    const apiUrl = 'http://localhost:5211/api/empleado';
+    const apiUrl = 'http://localhost:5106/api/empleado';
 
     axios.get(apiUrl)
         .then(response => {
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded', obtenerEmpleados);
 
 
 function cargarEmpleado(id) {
-    axios.get(`http://localhost:5211/api/empleado/${id}`)
+    axios.get(`http://localhost:5106/api/empleado/${id}`)
         .then(response => {
             const empleado = response.data;
 

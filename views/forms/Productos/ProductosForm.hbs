@@ -54,15 +54,13 @@
                         <header>Registrar Productos</header>
                         <form class="form-admin" id="formulario">
                             <div class="row">
-                                <div class="input-box" id="grupo__id">
-                                    <label for="id">*ID</label>
-                                    <input type="text" name="id" id="id" required>
+                                <div class="input-box" id="grupo__productos">
+                                    <label for="productos">*Producto</label>
+                                    <input type="text" name="productos" id="productos" required>
+                                    <p class="formulario__input-error">No se permite símbolos o números en este campo
+                                    </p>
                                 </div>
-                                <div class="input-box" id="grupo__producto">
-                                    <label for="producto">*Producto</label>
-                                    <input type="text" name="producto" id="producto" required>
-                                    <p class="formulario__input-error">No se permite símbolos o números en este campo</p>
-                                </div>
+
                                 <div class="input-box" id="grupo__imagen">
                                     <label for="imagen">*Imagen</label>
                                     <input type="text" name="imagen" id="imagen" required>
@@ -126,30 +124,26 @@
             $('#formulario').submit(function (event) {
                 event.preventDefault();
 
-                const id = $('#id').val();
-                const producto = $('#producto').val();
+                const productos = $('#productos').val();
                 const imagen = $('#imagen').val();
                 const precio = parseFloat($('#precio').val());
                 const cantidad = parseInt($('#cantidad').val());
                 const iva = parseFloat($('#iva').val());
                 const categoria = $('#categoria').val();
 
-                if (!id || !producto || !imagen || !precio || !cantidad || !iva || !categoria) {
+                if (!productos || !imagen || !precio || !cantidad || !iva || !categoria) {
                     console.error('Todos los campos son obligatorios');
                     return;
                 }
 
                 const nuevoProducto = {
-                    id: id,
-                    producto: producto,
+                    productos: productos,
                     imagen: imagen,
                     precio: precio,
                     cantidad: cantidad,
                     iva: iva,
                     categoria: categoria,
-                    categoriaproducto: {
-                        nombre: producto  // Ajustar según el modelo
-                    }
+                    categoriaproducto:null,
                 };
 
                 console.log("Datos enviados:", JSON.stringify(nuevoProducto));
@@ -163,7 +157,8 @@
                         Swal.fire({
                             title: '¡Éxito!',
                             text: 'El producto ha sido registrado exitosamente.',
-                            icon: 'success'
+                            icon: 'success',
+                            backdrop: false
                         }).then(() => {
                             // Limpiar el formulario después del registro
                             $('#formulario')[0].reset();
@@ -175,7 +170,8 @@
                         Swal.fire({
                             title: 'Error',
                             text: 'Hubo un error al intentar registrar el producto.',
-                            icon: 'error'
+                            icon: 'error',
+                            backdrop: false
                         });
                     }
                 });

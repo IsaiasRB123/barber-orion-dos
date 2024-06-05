@@ -36,7 +36,7 @@
               <input type="hidden" name="id" id="id">
               <div class="input-box">
                 <label>Nombre del Producto</label>
-                <input type="text" name="productos" id="productos">
+                <input type="text" name="producto" id="producto">
               </div>
               <div class="input-box">
                 <label>Imagen del Producto</label>
@@ -56,7 +56,7 @@
               </div>
               <div class="input-box">
                 <label>Categoría</label>
-                <select name="categoriaproducto" id="categoria">
+                <select name="categoriaproducto" id="categoriaproducto">
                   <!-- Aquí cargarás las opciones de categorías desde la base de datos -->
                 </select>
               </div>
@@ -84,8 +84,11 @@
             url: 'http://localhost:5062/api/categoriaproducto',
             type: 'GET',
             success: function (categorias) {
+              // Limpiar opciones previas
+              $('#categoriaproducto').empty();
+              // Agregar nuevas opciones
               categorias.forEach(function (categoria) {
-                $('#categoria').append(`<option value="${categoria.id}">${categoria.nombre}</option>`);
+                $('#categoriaproducto').append(`<option value="${categoria.id}">${categoria.nombre}</option>`);
               });
             },
             error: function (error) {
@@ -102,14 +105,13 @@
             type: 'GET',
             success: function (producto) {
               $('#id').val(producto.id);
-              $('#productos').val(producto.productos);
+              $('#producto').val(producto.productos);
               $('#imagen').val(producto.imagen);
               $('#precio').val(producto.precio);
               $('#cantidad').val(producto.cantidad);
               $('#iva').val(producto.iva);
-              $('#categoria').val(producto.categoriaproductoId); // Usar categoriaproductoId en lugar de categoriaproducto
+              $('#categoriaproducto').val(producto.categoriaproductoId); // Cambiado a categoriaproductoId
             },
-
             error: function (error) {
               console.error('Error al obtener datos del producto:', error);
             }
@@ -130,34 +132,28 @@
           event.preventDefault();
 
           const id = $('#id').val();
-          const productos = $('#productos').val();
+          const producto = $('#producto').val();
           const imagen = $('#imagen').val();
           const precio = parseFloat($('#precio').val());
           const cantidad = parseInt($('#cantidad').val());
           const iva = parseFloat($('#iva').val());
-          const categoria = $('#categoria').val(); // Obtener la categoría seleccionada
+          const categoria = $('#categoriaproducto').val();
 
-          if (!id || !productos || !imagen || !precio || !cantidad || !iva || !categoria) {
+          if (!id || !producto || !imagen || !precio || !cantidad || !iva || !categoria) {
             console.error('Todos los campos son obligatorios');
-            return;
-          }
-
-          // Verifica que categoria no sea null antes de enviar la solicitud
-          if (!categoria) {
-            console.error('La categoría es obligatoria');
             return;
           }
 
           const productoData = {
             id: id,
-            productos: productos,
+            productos: producto, // Cambiado a productos
             imagen: imagen,
             precio: precio,
             cantidad: cantidad,
+            categoria:categoria,
             iva: iva,
-            categoriaproductoId: categoria,
-            categoria: categoria,
-            categoriaproducto: null,
+            categoriaproductoId: categoria, // Cambiado a categoriaproductoId
+            categoriaproducto: null // Mantenido como null, ya que no se actualiza directamente
           };
 
           console.log("Datos enviados:", JSON.stringify(productoData));
@@ -171,7 +167,8 @@
               Swal.fire({
                 title: '¡Actualizado!',
                 text: 'El producto ha sido actualizado con éxito.',
-                icon: 'success'
+                icon: 'success',
+                backdrop:false
               }).then(() => {
                 window.location.href = '/ProductoAdmin';
               });

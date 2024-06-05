@@ -6,7 +6,6 @@ const expresiones = {
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // Formato de correo.
     telefono: /^\d{7,14}$/, // 7 a 14 números.
     rol: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    estado: /^(Activo|Inactivo)$/ // Solo puede ser Activo o Inactivo.
 };
 
 const campos = {
@@ -14,7 +13,6 @@ const campos = {
     correo: false,
     telefono: false,
     rol: false,
-    estado: false
 };
 
 const validarFormulario = (e) => {
@@ -30,9 +28,6 @@ const validarFormulario = (e) => {
             break;
         case "rol":
             validarCampo(expresiones.rol, e.target, 'rol');
-            break;
-        case "estado":
-            validarCampo(expresiones.estado, e.target, 'estado');
             break;
     }
 }
@@ -63,9 +58,9 @@ formulario.addEventListener('submit', async (e) => {
     const correo = document.getElementById('correo').value;
     const telefono = document.getElementById('telefono').value;
     const rol = document.getElementById('rol').value;
-    const estado = document.getElementById('estado').value === 'Activo'; // Convertir a booleano
+    const estado = true;
 
-    if (campos.nombre && campos.correo && campos.telefono && campos.rol && campos.estado) {
+    if (campos.nombre && campos.correo && campos.telefono && campos.rol) {
         const data = {
             nombre: nombre,
             correo: correo,
@@ -75,7 +70,7 @@ formulario.addEventListener('submit', async (e) => {
         };
 
         try {
-            const response = await fetch('http://localhost:5211/api/empleado', {
+            const response = await fetch('http://localhost:5106/api/empleado', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -93,7 +88,10 @@ formulario.addEventListener('submit', async (e) => {
                 showConfirmButton: false,
                 timer: 1500,
                 backdrop: false
-            });
+            }).then(() => {
+                // Redireccionar a la lista de servicios
+                window.location.href = '/Empleados';
+            });;
 
             formulario.reset();
 
@@ -118,4 +116,72 @@ formulario.addEventListener('submit', async (e) => {
             document.getElementById('formulario_mensaje').classList.remove('formulario_mensaje-activo');
         }, 5000);
     }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // URL de la API
+    const apiUrl = 'http://localhost:5106/api/empleado';
+    let idEmpleado;
+
+    // Función para cargar los datos del empleado a editar
+    function cargarEmpleado(id) {
+        axios.get(`${apiUrl}/${id}`)
+            .then(response => {
+                const empleado = response.data;
+                idEmpleado = empleado.id;
+                document.getElementById('nombre').value = empleado.nombre;
+                document.getElementById('correo').value = empleado.correo;
+                document.getElementById('telefono').value = empleado.telefono;
+                document.getElementById('rol').value = empleado.rol;
+                document.getElementById('estado').value = empleado.estado ? 'true' : 'false';
+            })
+            .catch(error => {
+                console.error('Error al cargar el empleado:', error);
+            });
+    }
+
+    // Obtener el ID del empleado de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    if (id) {
+        cargarEmpleado(id);
+    }
+
+    // Agregar evento click al botón de editar
+    document.getElementById('btn-editar').addEventListener('click', function(event) {
+        event.preventDefault(); // Evitar el envío automático del formulario
+
+        // Obtener los valores editados del formulario
+        const empleadoActualizado = {
+            id: idEmpleado,
+            nombre: document.getElementById('nombre').value,
+            correo: document.getElementById('correo').value,
+            telefono: document.getElementById('telefono').value,
+            rol: document.getElementById('rol').value,
+            estado: document.getElementById('estado').value === 'true'
+        };
+
+        // Enviar los datos actualizados al servidor
+        axios.put(`${apiUrl}/${idEmpleado}`, empleadoActualizado)
+            .then(response => {
+                Swal.fire({
+                    title: 'Empleado actualizado correctamente',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                    backdrop:false
+                }).then(() => {
+                    // Redireccionar a la lista de empleados
+                    window.location.href = '/Empleados';
+                });
+            })
+            .catch(error => {
+                console.error('Error al actualizar el empleado:', error);
+                Swal.fire({
+                    title: 'Error al actualizar el empleado',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    backdrop:false
+                });
+            });
+    });
 });

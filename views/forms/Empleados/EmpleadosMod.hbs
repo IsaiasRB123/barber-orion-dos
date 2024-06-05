@@ -59,10 +59,15 @@
                                 <input type="text" name="rol" id="rol" required>
                                 <p class="formulario__input-error">Por favor solo ingrese letras</p>
                             </div>
-                            <div class="input-box" id="grupo__estado">
-                                <label>Estado</label>
-                                <input type="text" name="estado" id="estado" required>
-                                <p class="formulario__input-error">Por favor solo ingrese letras</p>
+                            <div class="input-box address mb-4" id="grupo__estado">
+                                <label>*Estado</label>
+                                <div class="select-box">
+                                    <select id="estado">
+                                        <option hidden="">Estado</option>
+                                        <option value="true">Activo</option>
+                                        <option value="false">Inactivo</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="formulario__mensaje" id="formulario__mensaje">
                                 <p>
@@ -80,76 +85,6 @@
             </div>
         </div>
     </section>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // URL de la API
-            const apiUrl = 'http://localhost:5211/api/empleado';
-            let idEmpleado;
-
-            // Función para cargar los datos del empleado a editar
-            function cargarEmpleado(id) {
-                axios.get(`${apiUrl}/${id}`)
-                    .then(response => {
-                        const empleado = response.data;
-                        idEmpleado = empleado.id;
-                        document.getElementById('nombre').value = empleado.nombre;
-                        document.getElementById('correo').value = empleado.correo;
-                        document.getElementById('telefono').value = empleado.telefono;
-                        document.getElementById('rol').value = empleado.rol;
-                        document.getElementById('estado').value = empleado.estado ? 'true' : 'false';
-                    })
-                    .catch(error => {
-                        console.error('Error al cargar el empleado:', error);
-                    });
-            }
-
-            // Obtener el ID del empleado de la URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const id = urlParams.get('id');
-            if (id) {
-                cargarEmpleado(id);
-            }
-
-            // Agregar evento click al botón de editar
-            document.getElementById('btn-editar').addEventListener('click', function(event) {
-                event.preventDefault(); // Evitar el envío automático del formulario
-
-                // Obtener los valores editados del formulario
-                const empleadoActualizado = {
-                    id: idEmpleado,
-                    nombre: document.getElementById('nombre').value,
-                    correo: document.getElementById('correo').value,
-                    telefono: document.getElementById('telefono').value,
-                    rol: document.getElementById('rol').value,
-                    estado: document.getElementById('estado').value === 'true'
-                };
-
-                // Enviar los datos actualizados al servidor
-                axios.put(`${apiUrl}/${idEmpleado}`, empleadoActualizado)
-                    .then(response => {
-                        Swal.fire({
-                            title: 'Empleado actualizado correctamente',
-                            icon: 'success',
-                            confirmButtonText: 'OK',
-                            backdrop:false
-                        }).then(() => {
-                            // Redireccionar a la lista de empleados
-                            window.location.href = '/Empleados';
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Error al actualizar el empleado:', error);
-                        Swal.fire({
-                            title: 'Error al actualizar el empleado',
-                            icon: 'error',
-                            confirmButtonText: 'OK',
-                            backdrop:false
-                        });
-                    });
-            });
-        });
-    </script>
 
     <script src="./js/jquery-3.1.1.min.js"></script>
     <script src="./js/sweetalert2.min.js"></script>

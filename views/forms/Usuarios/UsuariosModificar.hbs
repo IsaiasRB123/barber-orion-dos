@@ -38,28 +38,38 @@
                 <div class="col-md-6">
                     <section class="container-form">
                         <header>Editar usuario</header>
-                        <form class="form-admin" action="#" id="">
-                            <div class="input-box">
+                        <form class="form-admin" action="#" id="formulario">
+                            <div class="input-box" id="grupo__nombre">
                                 <label>Nombre</label>
                                 <input type="text" name="nombre" id="nombre" required>
+                                <div class="formulario__input-error">Nombre no válido</div>
                             </div>
-                            <div class="input-box">
+                            <div class="input-box" id="grupo__correo">
                                 <label>Correo</label>
                                 <input type="email" name="correo" id="correo" required>
+                                <div class="formulario__input-error">Correo no válido</div>
                             </div>
-                            <div class="input-box">
+                            <div class="input-box" id="grupo__telefono">
                                 <label>Teléfono</label>
                                 <input type="tel" name="telefono" id="telefono" required>
+                                <div class="formulario__input-error">Teléfono no válido</div>
                             </div>
-                            <div class="input-box">
+                            <div class="input-box" id="grupo__rol">
                                 <label>Rol</label>
                                 <input type="text" name="rol" id="rol" required>
+                                <div class="formulario__input-error">Rol no válido</div>
                             </div>
-                            <div class="input-box">
-                                <label>Estado</label>
-                                <input type="text" name="estado" id="estado" required>
+                            <div class="input-box address mb-4" id="grupo__estado">
+                                <label>*Estado</label>
+                                <div class="select-box">
+                                    <select id="estado">
+                                        <option hidden="">Estado</option>
+                                        <option value="true">Activo</option>
+                                        <option value="false">Inactivo</option>
+                                    </select>
+                                </div>
                             </div>
-                            <button  id="btn-editar">Editar</button>
+                            <button id="btn-editar">Editar</button>
                             <a type="button" href="/Usuarios" style="text-decoration:none;text-align:center;margin-left:115px;position:absolute;padding-top:8px">Cerrar</a>
                         </form>
                     </section>
@@ -76,169 +86,187 @@
     <!-- Axios para las llamadas HTTP -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    
-    <script src="./js/validaciones/validacionesUsuarios.js"></script>
+    <!-- Validaciones -->
     <script>
-        //Inicio validaciones
-    const formulario = document.getElementById('formulario');
-const inputs = document.querySelectorAll('#formulario input');
+        const formulario = document.getElementById('formulario');
+        const inputs = document.querySelectorAll('#formulario input');
 
+        const expresiones = {
+            nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+            correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // Formato de correo.
+            telefono: /^\d{7,14}$/, // 7 a 14 números.
+            rol: /^\d{1,3}$/, // Letras y espacios, pueden llevar acentos.
 
-
-const expresiones = {
-    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // Formato de correo.
-    telefono: /^\d{7,14}$/, // 7 a 14 números.
-    rol: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    estado: /^(Activo|Inactivo)$/ // Solo puede ser Activo o Inactivo.
-};
-
-const campos = {
-    nombre: false,
-    correo: false,
-    telefono: false,
-    rol: false,
-    estado: false
-};
-
-const validarFormulario = (e) => {
-    switch (e.target.name) {
-        case "nombre":
-            validarCampo(expresiones.nombre, e.target, 'nombre');
-            break;
-        case "correo":
-            validarCampo(expresiones.correo, e.target, 'correo');
-            break;
-        case "telefono":
-            validarCampo(expresiones.telefono, e.target, 'telefono');
-            break;
-        case "rol":
-            validarCampo(expresiones.rol, e.target, 'rol');
-            break;
-        case "estado":
-            validarCampo(expresiones.estado, e.target, 'estado');
-            break;
-    }
-}
-
-const validarCampo = (expresion, input, campo) => {
-    const grupoCampo = document.getElementById(`grupo__${campo}`);
-    const inputError = document.querySelector(`#grupo__${campo} .formulario__input-error`);
-
-    if (!grupoCampo || !inputError) {
-        console.error(`El grupo de campo o el error de input para ${campo} no existe.`);
-        return;
-    }
-
-    if (expresion.test(input.value)) {
-        grupoCampo.classList.remove('input-box-incorrecto');
-        grupoCampo.classList.add('input-box-correcto');
-        inputError.classList.remove('formulario__input-error-activo');
-        campos[campo] = true;
-    } else {
-        grupoCampo.classList.add('input-box-incorrecto');
-        grupoCampo.classList.remove('input-box-correcto');
-        inputError.classList.add('formulario__input-error-activo');
-        campos[campo] = false;
-    }
-}
-
-inputs.forEach((input) => {
-    input.addEventListener('keyup', validarFormulario);
-    input.addEventListener('blur', validarFormulario);
-});
-///Fin validaciones
-       document.addEventListener('DOMContentLoaded', async function () {
-    const apiUrl = 'http://localhost:5276/api/UsuarioDos';
-
-    let idDelServicio;
-
-    async function mostrarDetalleServicio(id) {
-        try {
-            const response = await fetch(`${apiUrl}/${id}`);
-            if (!response.ok) throw new Error('Error en la respuesta de la API');
-
-            const servicio = await response.json();
-            idDelServicio = servicio.id;
-
-            console.log(servicio);  // Depuración: Verificar los datos del servicio
-
-            document.getElementById('nombre').value = servicio.nombre;
-            document.getElementById('correo').value = servicio.correo;
-            document.getElementById('telefono').value = servicio.telefono;
-            document.getElementById('rol').value = servicio.roleDosId;
-            document.getElementById('estado').value = servicio.estado ? "true" : "false";
-
-        } catch (error) {
-            console.error('Error al obtener los detalles del servicio:', error);
-        }
-    }
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-
-    console.log(id);  // Depuración: Verificar el ID obtenido de la URL
-
-    await mostrarDetalleServicio(id);
-
-    document.getElementById('btn-editar').addEventListener('click', function (event) {
-        event.preventDefault();
-
-        const servicioActualizado = {
-            id: idDelServicio,
-            nombre: document.getElementById('nombre').value,
-            correo: document.getElementById('correo').value,
-            telefono: document.getElementById('telefono').value,
-            roleDosId: document.getElementById('rol').value,
-            estado: document.getElementById('estado').value === "true"
         };
 
-        console.log(servicioActualizado);  // Depuración: Verificar los datos actualizados
+        const campos = {
+            nombre: false,
+            correo: false,
+            telefono: false,
+            rol: false,
 
-        axios.put(`${apiUrl}/${idDelServicio}`, servicioActualizado)
-            .then(response => {
-                if (response.data.success) {
-                    Swal.fire({
-                        title: 'Servicio actualizado correctamente',
-                        icon: 'success',
-                        confirmButtonText: 'OK',
-                        backdrop: false
-                    }).then(() => {
-                        window.location.href = '/';
-                    });
-                } else {
-                    Swal.fire({
-                        title: 'Servicio actualizado correctamente',
-                        icon: 'success',
-                        confirmButtonText: 'OK',
-                        backdrop: false
-                    }).then(() => {
-                        window.location.href = '/Usuarios';
-                    });
+        };
+
+        const validarFormulario = (e) => {
+            switch (e.target.name) {
+                case "nombre":
+                    validarCampo(expresiones.nombre, e.target, 'nombre');
+                    break;
+                case "correo":
+                    validarCampo(expresiones.correo, e.target, 'correo');
+                    break;
+                case "telefono":
+                    validarCampo(expresiones.telefono, e.target, 'telefono');
+                    break;
+                case "rol":
+                    validarCampo(expresiones.rol, e.target, 'rol');
+                    break;
+
+            }
+        }
+
+        const validarCampo = (expresion, input, campo) => {
+            const grupoCampo = document.getElementById(`grupo__${campo}`);
+            const inputError = document.querySelector(`#grupo__${campo} .formulario__input-error`);
+
+            if (!grupoCampo || !inputError) {
+                console.error(`El grupo de campo o el error de input para ${campo} no existe.`);
+                return;
+            }
+
+            if (expresion.test(input.value)) {
+                grupoCampo.classList.remove('input-box-incorrecto');
+                grupoCampo.classList.add('input-box-correcto');
+                inputError.classList.remove('formulario__input-error-activo');
+                campos[campo] = true;
+            } else {
+                grupoCampo.classList.add('input-box-incorrecto');
+                grupoCampo.classList.remove('input-box-correcto');
+                inputError.classList.add('formulario__input-error-activo');
+                campos[campo] = false;
+            }
+        }
+
+        inputs.forEach((input) => {
+            input.addEventListener('keyup', validarFormulario);
+            input.addEventListener('blur', validarFormulario);
+        });
+
+        document.addEventListener('DOMContentLoaded', async function () {
+            const apiUrl = 'http://localhost:5276/api/UsuarioDos';
+
+            let idDelServicio;
+
+            async function mostrarDetalleServicio(id) {
+                try {
+                    const response = await fetch(`${apiUrl}/${id}`);
+                    if (!response.ok) throw new Error('Error en la respuesta de la API');
+
+                    const servicio = await response.json();
+                    idDelServicio = servicio.id;
+
+                    console.log(servicio);  // Depuración: Verificar los datos del servicio
+
+                    document.getElementById('nombre').value = servicio.nombre;
+                    document.getElementById('correo').value = servicio.correo;
+                    document.getElementById('telefono').value = servicio.telefono;
+                    document.getElementById('rol').value = servicio.roleDosId;
+                    document.getElementById('estado').value = servicio.estado ? "true" : "false";
+
+                } catch (error) {
+                    console.error('Error al obtener los detalles del servicio:', error);
                 }
-            })
-            .catch(error => {
-                console.error('Error al actualizar el Servicio:', error);
-                Swal.fire({
-                    title: 'Error al actualizar el Servicio',
-                    text: 'Hubo un problema al intentar actualizar el Servicio. Por favor, intenta de nuevo más tarde.',
-                    icon: 'error',
-                    confirmButtonText: 'OK',
-                    backdrop: false
-                });
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+
+            console.log(id);  // Depuración: Verificar el ID obtenido de la URL
+
+            await mostrarDetalleServicio(id);
+
+            document.getElementById('btn-editar').addEventListener('click', function (event) {
+                event.preventDefault();
+
+                if (!Object.values(campos).every(value => value === true)) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Por favor, asegúrate de que todos los campos estén correctos.',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        backdrop: false
+                    });
+                    return;
+                }
+
+                const servicioActualizado = {
+                    id: idDelServicio,
+                    nombre: document.getElementById('nombre').value,
+                    correo: document.getElementById('correo').value,
+                    telefono: document.getElementById('telefono').value,
+                    roleDosId: document.getElementById('rol').value,
+                    estado: document.getElementById('estado').value === "true" ? true : false
+                };
+
+                console.log(servicioActualizado);  // Depuración: Verificar los datos actualizados
+
+                axios.put(`${apiUrl}/${idDelServicio}`, servicioActualizado)
+                    .then(response => {
+                        if (response.data.success) {
+                            Swal.fire({
+                                title: 'Servicio actualizado correctamente',
+                                icon: 'success',
+                                confirmButtonText: 'OK',
+                                backdrop: false
+                            }).then(() => {
+                                window.location.href = '/';
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Servicio actualizado correctamente',
+                                icon: 'success',
+                                confirmButtonText: 'OK',
+                                backdrop: false
+                            }).then(() => {
+                                window.location.href = '/Usuarios';
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error al actualizar el Servicio:', error);
+                        Swal.fire({
+                            title: 'Error al actualizar el Servicio',
+                            text: 'Hubo un problema al intentar actualizar el Servicio. Por favor, intenta de nuevo más tarde.',
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                            backdrop: false
+                        });
+                    });
             });
-    });
-});
-
-
+        });
     </script>
 
+    <style>
+        .alerta-roja {
+            color: red;
+        }
+
+        .input-box-incorrecto {
+            border-color: red;
+        }
+
+        .input-box-correcto {
+            border-color: green;
+        }
+
+        .formulario__input-error-activo {
+            display: block;
+        }
+
+        .formulario__input-error {
+            display: none;
+            color: red;
+        }
+    </style>
 </body>
-
-<style>
-    .alerta-roja {
-        color: red;
-    }
-</style>
-
 </html>

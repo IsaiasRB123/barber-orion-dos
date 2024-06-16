@@ -65,17 +65,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (campos.empleado && campos.mes && campos.horaInicio && campos.horaFin && campos.estado) {
             const data = {
-                empleadoId: parseInt(empleado),
-                mes: mes,
-                horaInicio: new Date().toISOString().slice(0,10) + "T" + horaInicio + ":00",
-                horaFin: new Date().toISOString().slice(0,10) + "T" + horaFin + ":00",
-                estado: estado
+                EmpleadoId: parseInt(empleado),
+                Mes: mes,
+                HoraInicio: new Date().toISOString().slice(0, 10) + "T" + horaInicio + ":00",
+                HoraFin: new Date().toISOString().slice(0, 10) + "T" + horaFin + ":00",
+                Estado: estado
             };
 
             console.log('Enviando datos:', data); // Log para depuración
 
             try {
-                const response = await fetch('http://localhost:5211/api/programEmpleado', {
+                const response = await fetch('http://isaiasrb-001-site1.ctempurl.com/api/programempleado', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 formulario.reset();
 
-                // Restablecer los campos a false, excepto empleado
+                // Restablecer los campos a false
                 campos.mes = false;
                 campos.horaInicio = false;
                 campos.horaFin = false;
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Obtener empleados
-    fetch('http://localhost:5211/api/empleado')
+    fetch('http://isaiasrb-001-site1.ctempurl.com/api/empleado')
         .then(response => response.json())
         .then(data => {
             const empleadoSelect = document.getElementById('empleado');
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para listar las programaciones en una tabla
     const listarProgramaciones = () => {
-        fetch('http://localhost:5211/api/programEmpleado')
+        fetch('http://isaiasrb-001-site1.ctempurl.com/api/programempleado')
             .then(response => response.json())
             .then(data => {
                 // Aquí agregar el código para actualizar la tabla con los datos recibidos

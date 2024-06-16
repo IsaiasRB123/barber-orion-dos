@@ -11,7 +11,7 @@
       backdrop:false
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5211/api/programempleado/${id}`)
+        axios.delete(`http://isaiasrb-001-site1.ctempurl.com/api/programempleado/${id}`)
           .then(response => {
             Swal.fire({
               title: '¡Eliminado!',
@@ -77,7 +77,7 @@
 
   // Función para obtener los empleados desde el servidor
   function obtenerEmpleados() {
-    const apiUrl = 'http://localhost:5211/api/programempleado';
+    const apiUrl = 'http://isaiasrb-001-site1.ctempurl.com/api/programempleado';
 
     axios.get(apiUrl)
       .then(response => {
@@ -93,7 +93,7 @@
   document.addEventListener('DOMContentLoaded', obtenerEmpleados);
 
 function cargarEmpleado(id) {
-axios.get(`http://localhost:5211/api/programempleado/${id}`)
+axios.get(`http://isaiasrb-001-site1.ctempurl.com/api/programempleado/${id}`)
   .then(response => {
     const empleado = response.data;
 

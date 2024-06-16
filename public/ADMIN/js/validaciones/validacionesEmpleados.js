@@ -70,7 +70,7 @@ formulario.addEventListener('submit', async (e) => {
         };
 
         try {
-            const response = await fetch('http://localhost:5106/api/empleado', {
+            const response = await fetch('http://isaiasrb-001-site1.ctempurl.com/api/empleado', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -120,7 +120,7 @@ formulario.addEventListener('submit', async (e) => {
 
 document.addEventListener('DOMContentLoaded', function() {
     // URL de la API
-    const apiUrl = 'http://localhost:5106/api/empleado';
+    const apiUrl = 'http://isaiasrb-001-site1.ctempurl.com/api/empleado';
     let idEmpleado;
 
     // Función para cargar los datos del empleado a editar

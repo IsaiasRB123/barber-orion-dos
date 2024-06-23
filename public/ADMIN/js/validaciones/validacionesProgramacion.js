@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const campos = {
-        empleado: true, // Empleado siempre está validado
+        empleado: false, // Cambiado a false para validación
         mes: false,
         horaInicio: false,
         horaFin: false,
@@ -37,12 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (expresion.test(input.value)) {
             document.getElementById(`grupo__${campo}`).classList.remove('input-box-incorrecto');
             document.getElementById(`grupo__${campo}`).classList.add('input-box-correcto');
-            document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
+            const errorElement = document.querySelector(`#grupo__${campo} .formulario__input-error`);
+            if (errorElement) {
+                errorElement.classList.remove('formulario__input-error-activo');
+            }
             campos[campo] = true;
         } else {
             document.getElementById(`grupo__${campo}`).classList.add('input-box-incorrecto');
             document.getElementById(`grupo__${campo}`).classList.remove('input-box-correcto');
-            document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
+            const errorElement = document.querySelector(`#grupo__${campo} .formulario__input-error`);
+            if (errorElement) {
+                errorElement.classList.add('formulario__input-error-activo');
+            }
             campos[campo] = false;
         }
     };
@@ -60,6 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const horaInicio = document.getElementById('horaInicio').value;
         const horaFin = document.getElementById('horaFin').value;
         const estado = document.getElementById('estado').value.toLowerCase() === 'activo';
+
+        // Verificación de valor de empleado
+        console.log('Valor de empleado:', empleado);
+
+        // Validar que el empleado haya sido seleccionado
+        if (empleado !== '') {
+            campos.empleado = true;
+        } else {
+            campos.empleado = false;
+        }
 
         console.log('Valores del formulario:', { empleado, mes, horaInicio, horaFin, estado });
 
@@ -98,12 +114,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     title: "Programación registrada correctamente",
                     showConfirmButton: false,
                     timer: 1500,
-                    backdrop: false
+                    backdrop: false,
+                }).then(() => {
+                    // Redireccionar a la lista de empleados
+                    window.location.href = '/Horario';
                 });
 
                 formulario.reset();
 
                 // Restablecer los campos a false
+                campos.empleado = false;
                 campos.mes = false;
                 campos.horaInicio = false;
                 campos.horaFin = false;
@@ -122,17 +142,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } catch (error) {
                 console.error('Error al enviar la solicitud:', error);
-                document.getElementById('formulario_mensaje').classList.add('formulario__mensaje-activo');
-                setTimeout(() => {
-                    document.getElementById('formulario_mensaje').classList.remove('formulario__mensaje-activo');
-                }, 5000);
+                const mensajeError = document.getElementById('formulario_mensaje');
+                if (mensajeError) {
+                    mensajeError.classList.add('formulario__mensaje-activo');
+                    setTimeout(() => {
+                        mensajeError.classList.remove('formulario__mensaje-activo');
+                    }, 5000);
+                }
             }
         } else {
             console.log('Campos con error:', campos); // Log para depuración
-            document.getElementById('formulario_mensaje').classList.add('formulario__mensaje-activo');
-            setTimeout(() => {
-                document.getElementById('formulario_mensaje').classList.remove('formulario__mensaje-activo');
-            }, 5000);
+            const mensajeError = document.getElementById('formulario_mensaje');
+            if (mensajeError) {
+                mensajeError.classList.add('formulario__mensaje-activo');
+                setTimeout(() => {
+                    mensajeError.classList.remove('formulario__mensaje-activo');
+                }, 5000);
+            }
         }
     });
 

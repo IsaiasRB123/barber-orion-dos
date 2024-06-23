@@ -88,7 +88,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // URL de la API
-            const apiUrl = 'http://localhost:5211/api/programEmpleado';
+            const apiUrl = 'http://isaiasrb-001-site1.ctempurl.com/api/programempleado';
             let idProgramacion;
 
             // Función para cargar los datos de la programación a editar
@@ -117,7 +117,7 @@
 
             // Cargar la lista de empleados
             function cargarEmpleados() {
-                axios.get('http://localhost:5211/api/empleado')
+                axios.get('http://isaiasrb-001-site1.ctempurl.com/api/empleado')
                     .then(response => {
                         const empleados = response.data;
                         const empleadoSelect = document.getElementById('empleado');

@@ -95,7 +95,7 @@ app.get('/CategoriasModificar', (req, res) => {
   res.render('forms/categorias/categoriasModificar');
 });
 
-app.get('/CategoriasShowww', (req, res) => {
+app.get('/CategoriasShow', (req, res) => {
   res.render('forms/categorias/categoriasShow');
 });
 //Fin categorias

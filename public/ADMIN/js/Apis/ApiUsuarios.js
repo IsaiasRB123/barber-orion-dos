@@ -23,7 +23,7 @@ function eliminarServicio(idServicio) {
                         timer: 1500,
                         backdrop: false
                       });
-                    console.log('Servicio eliminado exitosamente:', response.data);
+                    console.log('Usuario eliminado exitosamente:', response.data);
                     setTimeout(()=> {location.reload();},1000
                     )
                     // Se recarga la página para mostrar los cambios actualizados
@@ -33,10 +33,10 @@ function eliminarServicio(idServicio) {
                     // Si ocurre un error al eliminar el servicio, se muestra una alerta de error
                     Swal.fire(
                         'Error',
-                        'Hubo un error al eliminar el servicio. Por favor, inténtalo de nuevo.',
+                        'Hubo un error al eliminar el usuario. Por favor, inténtalo de nuevo.',
                         'error'
                     );
-                    console.error('Error al eliminar el servicio:', error);
+                    console.error('Error al eliminar el usuario:', error);
                 });
         }
     });

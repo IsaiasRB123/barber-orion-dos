@@ -16,6 +16,11 @@ app.use(express.static('public'));
 app.use(express.static('public/ADMIN'));
 
 
+//Permisos
+app.get('/Permisos', (req, res) => {
+  res.render('Permisos');
+});
+
 // admin
 app.get('/admin', (req, res) => {
   res.render('home');

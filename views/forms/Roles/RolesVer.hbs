@@ -36,16 +36,9 @@
         <div class="container" style="margin-top: 60px;">
             <div class="row justify-content-center">
                 <div class="col-md-6 ">
-                    <section class="container-form">
-                        <form class="form-admin" action="#" id="formulario">
-                            <header>Ver roles</header>
-                            <p>Nombre del rol: Admin</p>
-                            <p>Estado: Activo</p>
-                            <p>Permisos: Dasboard, home</p>
-                            <a type="button" href="/Roles"
-                                style="text-decoration:none;text-align:center;margin-left:145px;position:absolute;padding-top:8px">Cerrar</a>
-                        </form>
-                    </section>
+                        <section class="container-form" id="detalleRoles">
+                        <!-- Aquí se mostrarán los detalles del servicio -->
+                        </section>
                 </div>
             </div>
         </div>
@@ -70,7 +63,45 @@
 
         <!-- Tu JavaScript personalizado -->
         <script src="../../public/ADMIN/js/usuarioDas.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // URL de la API
+            const apiUrl = 'http://localhost:5276/api/RoleDos';
+
+            // Función para mostrar los detalles del servicio
+            function mostrarDetalleEmpleado(empleado) {
+                const detalleEmpleado =
+                    document.getElementById('detalleRoles');
+                detalleEmpleado.innerHTML = `
+                        <header>Ver detalle rol</header>
+                        <h5>Nombre</h5>
+                        <p>${empleado.nombre}</p>
+                        <h5>Permiso</h5>
+                        <p>${empleado.permisos}</p>
+                        <h5>Estado</h5>
+                        <p>${empleado.estado ? 'Activo' : 'Inactivo'}</p>
+                        <a type="button" href="/Roles"class="BotoncerrarAdmin">Cerrar</a>
+                    `;
+            }
+
+            // Obtener el ID del empleado de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const idEmpleado = urlParams.get('id');
+
+                // Llamada a la API para obtener los detalles del  empleado con el ID específico
+            axios.get(`${apiUrl}/${idEmpleado}`)
+                .then(response => {
+                    const empleado = response.data;
+                    mostrarDetalleEmpleado(empleado);
+                })
+                .catch(error => {
+                    console.error('Error al obtener los detallesdel empleado: ', error);
+                    });
+        });
+    </script>
 
 </body>
 
